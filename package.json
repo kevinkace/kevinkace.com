@@ -1,0 +1,25 @@
+{
+  "name": "kevinkace.com",
+  "version": "0.0.1",
+  "description": "Portfolio site.",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kevinkace/kevinkace.com.git"
+  },
+  "author": "Kevin Cameron",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kevinkace/kevinkace.com/issues"
+  },
+  "homepage": "https://github.com/kevinkace/kevinkace.com#readme",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-sass": "^2.0.4",
+    "gulp-watch": "^4.3.5",
+    "node-bourbon": "^4.2.3"
+  }
+}
