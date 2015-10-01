@@ -1,22 +1,39 @@
 "use strict";
 
-var gulp      = require("gulp"),
+var argv      = require("yargs").argv,
+    gulp      = require("gulp"),
     sass      = require("gulp-sass"),
+    minify    = require("gulp-minify-css"),
+    rename    = require("gulp-rename"),
     bourbon   = require("node-bourbon"),
+    neat      = require("node-neat"),
     entryFile = "./sass/**/kevinkace.scss";
 
+
 gulp.task("sass", function() {
-    gulp.src(entryFile)
-        .pipe(sass({
-            includePaths : bourbon.includePaths
-        }))//.on("error", sass.logError))
+    return gulp.src(entryFile)
+        .pipe(sass({ includePaths : bourbon.includePaths }))
         .pipe(gulp.dest("./public/css"));
 });
 
 gulp.task("sass:watch", function() {
-    gulp.watch("./sass/**/*.scss", [ "sass" ]);
+    return gulp.watch("./sass/**/*.scss", [ "sass" ]);
+});
+
+gulp.task("sass:prod", function() {
+    return gulp.src(entryFile)
+        .pipe(sass({ includePaths : bourbon.includePaths }))
+        .pipe(minify())
+        .pipe(rename({ suffix : ".min" }))
+        .pipe(gulp.dest("./public/css"));
 });
 
 gulp.task("default", function() {
-    gulp.start("sass");
+    if(argv.watch) {
+        return gulp.start("sass:watch");
+    } else if(argv.prod) {
+        return gulp.start("sass:prod");
+    } else {
+        return gulp.start("sass");
+    }
 });
