@@ -12,7 +12,7 @@ var argv      = require("yargs").argv,
 
 gulp.task("sass", function() {
     return gulp.src(entryFile)
-        .pipe(sass({ includePaths : bourbon.includePaths }))
+        .pipe(sass({ includePaths : neat.includePaths }))
         .pipe(gulp.dest("./public/css"));
 });
 
@@ -22,7 +22,7 @@ gulp.task("sass:watch", function() {
 
 gulp.task("sass:prod", function() {
     return gulp.src(entryFile)
-        .pipe(sass({ includePaths : bourbon.includePaths }))
+        .pipe(sass({ includePaths : neat.includePaths }))
         .pipe(minify())
         .pipe(rename({ suffix : ".min" }))
         .pipe(gulp.dest("./public/css"));

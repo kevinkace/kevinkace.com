@@ -1,0 +1,7 @@
+.icon-list {
+    padding: 0;
+    @include outer-container;
+    li {
+        @include span-columns(3);
+    }
+}

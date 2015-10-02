@@ -1,20 +1,9 @@
 @import "bourbon";
+@import "neat";
+@import "import/layout";
+@import "import/typog";
+@import "import/footer";
 
-html {
-    box-sizing: border-box;
-    font: normal 100%/1 "Slabo 27px", Georgia, "Times New Roman", serif;
-    color: #eee;
-}
-*,
-*:before,
-*:after {
-    box-sizing: inherit;
-}
-
-html,
-body {
-    height: 100%;
-}
 
 body {
     @include radial-gradient(#3a4549, #0f080b, $fallback: #3a4549);
@@ -23,29 +12,19 @@ body {
     // background: radial-gradient(ellipse at center,  #3a4549 0%,#0f080b 100%);
 }
 
-h1 {
-    margin: 0;
-    font-size: 4em;
-}
-h2 {
-    margin-bottom: 1em;
-}
-
 header {
-    margin: 2%;
+    margin: 2% 0;
     padding: 2%;
     background: rgba(0, 0, 0, 0.2);
+    @media screen and (min-width: 700px) {
+        margin: 4em 0;
+        padding: 0 0.5em;
+    }
 }
 
 .content {
     padding: 0 5%;
-}
-@media screen and (min-width: 700px) {
-    header {
-        margin: 4em 0;
-        padding: 0.5em;
-    }
-    .content {
+    @media screen and (min-width: 700px) {
         padding: 0 20px;
         width: 500px;
         margin: 0 auto;
