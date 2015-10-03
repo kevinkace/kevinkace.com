@@ -1,28 +1,31 @@
+// jshint node:true
 "use strict";
 
 var argv      = require("yargs").argv,
     gulp      = require("gulp"),
-    sass      = require("gulp-sass"),
+    less      = require("gulp-less"),
     minify    = require("gulp-minify-css"),
     rename    = require("gulp-rename"),
-    bourbon   = require("node-bourbon"),
-    neat      = require("node-neat"),
-    entryFile = "./sass/**/kevinkace.scss";
+    entryFile = "./less/**/kevinkace.less";
 
 
-gulp.task("sass", function() {
+gulp.task("less", function() {
     return gulp.src(entryFile)
-        .pipe(sass({ includePaths : neat.includePaths }))
+        .pipe(less({
+            paths : [ "./less/import" ]
+        }))
         .pipe(gulp.dest("./public/css"));
 });
 
-gulp.task("sass:watch", function() {
-    return gulp.watch("./sass/**/*.scss", [ "sass" ]);
+gulp.task("less:watch", function() {
+    return gulp.watch("./less/**/*.less", [ "less" ]);
 });
 
-gulp.task("sass:prod", function() {
+gulp.task("less:prod", function() {
     return gulp.src(entryFile)
-        .pipe(sass({ includePaths : neat.includePaths }))
+        .pipe(less({
+            paths : [ "./less/import" ]
+        }))
         .pipe(minify())
         .pipe(rename({ suffix : ".min" }))
         .pipe(gulp.dest("./public/css"));
@@ -30,10 +33,10 @@ gulp.task("sass:prod", function() {
 
 gulp.task("default", function() {
     if(argv.watch) {
-        return gulp.start("sass:watch");
+        return gulp.start("less:watch");
     } else if(argv.prod) {
-        return gulp.start("sass:prod");
+        return gulp.start("less:prod");
     } else {
-        return gulp.start("sass");
+        return gulp.start("less");
     }
 });
