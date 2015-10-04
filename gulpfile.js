@@ -13,40 +13,24 @@ var argv      = require("yargs").argv,
     replace   = require("gulp-replace"),
     rename    = require("gulp-rename"),
     cssBeaut  = require("gulp-cssbeautify"),
-    path      = require("path"),
     rework    = require("rework"),
     pureGrids = require("rework-pure-grids"),
-    entryFile = "./less/*.less",
     lessOpts  = require("./lessOpts.js"),
-    lessCfg   = {
-        paths : [
-            path.join(
-                __dirname,
-                "./less/import",
-                "./purecss/build"
-            )
-        ]
-    },
-    ensureEm = function(sizeStr, fontSize) {
-        fontSize = fontSize || 16;
-        return /[0-9]*(px)$/.test(sizeStr) ?
-            parseInt(sizeStr.replace(/(px)$/, ""), 10) / fontSize + "em" :
-            sizeStr;
-    };
+    ensureEm  = require("./build/ensureem.js");
 
 gulp.task("less:watch", function() {
-    return gulp.watch("./less/**/*.less", [ "less" ]);
+    return gulp.watch([ "./less/**/*.less", "./lessOpts.js" ], [ "less" ]);
 });
 
 gulp.task("less", [ "lessSizes" ], function() {
-    return gulp.src(entryFile)
-        .pipe(less(lessCfg))
+    return gulp.src(lessOpts.src)
+        .pipe(less({ paths : lessOpts.paths }))
         .pipe(gulp.dest("./public/css"));
 });
 
 gulp.task("less:prod",[ "lessSizes" ] , function() {
-    return gulp.src(entryFile)
-        .pipe(less(lessCfg))
+    return gulp.src(lessOpts.src)
+        .pipe(less({ paths : lessOpts.paths }))
         .pipe(minify())
         .pipe(rename({ suffix : ".min" }))
         .pipe(gulp.dest("./public/css"));
@@ -58,7 +42,7 @@ gulp.task("lessSizes", [ "lessPureGridBase", "lessPureGrid" ], function() {
             .reduce(function(prev, curr) {
                 var sizeDef = {
                         size  : curr,
-                        width : ensureEm(lessOpts.mediaQueries[curr])
+                        width : ensureEm(lessOpts.mediaQueries[curr], lessOpts.basePx)
                     };
 
                 return prev.concat(_.template("@<%= size %>: <%= width %>;\n")(sizeDef));
@@ -86,7 +70,7 @@ gulp.task("lessPureGrid", function() {
                 lessOpts.units,
                 {
                     mediaQueries : _.mapValues(lessOpts.mediaQueries, function(size) {
-                        return "screen and (min-width: " + ensureEm(size) + ")";
+                        return "screen and (min-width: " + ensureEm(size, lessOpts.basePx) + ")";
                     }),
                     selectorPrefix : "." + lessOpts.prefix + "-u-"
                 }
