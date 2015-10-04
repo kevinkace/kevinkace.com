@@ -8,8 +8,16 @@ var argv      = require("yargs").argv,
     less      = require("gulp-less"),
     minify    = require("gulp-minify-css"),
     rename    = require("gulp-rename"),
+    gutil     = require("gulp-util"),
+    strip     = require("gulp-strip-comments"),
+    replace   = require("gulp-replace"),
+    rename    = require("gulp-rename"),
+    cssBeaut  = require("gulp-cssbeautify"),
     path      = require("path"),
-    entryFile = "./less/**/kevinkace.less",
+    rework    = require("rework"),
+    pureGrids = require("rework-pure-grids"),
+    entryFile = "./less/*.less",
+    lessOpts  = require("./lessOpts.js"),
     lessCfg   = {
         paths : [
             path.join(
@@ -19,21 +27,16 @@ var argv      = require("yargs").argv,
             )
         ]
     },
-    lessOpts = {
-        units : [
-            24,
-            7,
-            5
-        ],
-        mediaQueries : {
-            p1 : "300px",
-            p2 : "500px",
-            tb : "768px",
-            pc : "960px"
-        },
-        prefix : "kace",
-        basePx : 16
+    ensureEm = function(sizeStr, fontSize) {
+        fontSize = fontSize || 16;
+        return /[0-9]*(px)$/.test(sizeStr) ?
+            parseInt(sizeStr.replace(/(px)$/, ""), 10) / fontSize + "em" :
+            sizeStr;
     };
+
+gulp.task("less:watch", function() {
+    return gulp.watch("./less/**/*.less", [ "less" ]);
+});
 
 gulp.task("less", [ "lessSizes" ], function() {
     return gulp.src(entryFile)
@@ -41,7 +44,7 @@ gulp.task("less", [ "lessSizes" ], function() {
         .pipe(gulp.dest("./public/css"));
 });
 
-gulp.task("less:prod", function() {
+gulp.task("less:prod",[ "lessSizes" ] , function() {
     return gulp.src(entryFile)
         .pipe(less(lessCfg))
         .pipe(minify())
@@ -49,18 +52,13 @@ gulp.task("less:prod", function() {
         .pipe(gulp.dest("./public/css"));
 });
 
-gulp.task("less:watch", [ "lessSizes" ], function() {
-    return gulp.watch("./less/**/*.less", [ "less" ]);
-});
-
-gulp.task("lessSizes", function() {
+// Generate a less file with vars for breakpoints.
+gulp.task("lessSizes", [ "lessPureGridBase", "lessPureGrid" ], function() {
     var lessSizes = Object.keys(lessOpts.mediaQueries)
             .reduce(function(prev, curr) {
                 var sizeDef = {
                         size  : curr,
-                        width : /[0-9]*(px)$/.test(lessOpts.mediaQueries[curr]) ?
-                            parseInt(lessOpts.mediaQueries[curr].replace(/(px)$/, ""), 10) / 16 + "em" :
-                            lessOpts.mediaQueries[curr]
+                        width : ensureEm(lessOpts.mediaQueries[curr])
                     };
 
                 return prev.concat(_.template("@<%= size %>: <%= width %>;\n")(sizeDef));
@@ -68,6 +66,32 @@ gulp.task("lessSizes", function() {
 
     return file("sizes.less", lessSizes, { src : true })
         .pipe(gulp.dest("./less/vars"));
+});
+
+// Lessify Pure base grid
+gulp.task("lessPureGridBase", function() {
+    return gulp.src("./node_modules/purecss/build/grids-core.css")
+        .pipe(strip())
+        .pipe(replace("pure-", lessOpts.prefix + "-"))
+        .pipe(cssBeaut())
+        .pipe(rename("pureGridBase.less"))
+        .pipe(gulp.dest("./less"));
+});
+
+// Generate less pure grid file
+gulp.task("lessPureGrid", function() {
+    return file("pureGrid.less",
+        rework("")
+            .use(pureGrids.units(
+                lessOpts.units,
+                {
+                    mediaQueries : _.mapValues(lessOpts.mediaQueries, function(size) {
+                        return "screen and (min-width: " + ensureEm(size) + ")";
+                    }),
+                    selectorPrefix : "." + lessOpts.prefix + "-u-"
+                }
+            )).toString(), { src : true })
+        .pipe(gulp.dest("./less"));
 });
 
 gulp.task("default", function() {
