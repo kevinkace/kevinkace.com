@@ -14,6 +14,10 @@ body {
 }
 
 .content {
-    max-width: 960px;
+    max-width: @pc;
     margin: 0 auto;
+    padding: 0 3%;
+    .pc({
+        padding: 0 29px;
+    });
 }

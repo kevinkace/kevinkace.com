@@ -12,10 +12,15 @@ var argv      = require("yargs").argv,
     strip     = require("gulp-strip-comments"),
     replace   = require("gulp-replace"),
     cssBeaut  = require("gulp-cssbeautify"),
+    prefixer  = require("gulp-autoprefixer"),
     rework    = require("rework"),
     pureGrids = require("rework-pure-grids"),
     lessOpts  = require("./lessOpts.js"),
-    ensureEm  = require("./build/ensureem.js");
+    ensureEm  = require("./build/ensureem.js"),
+    prefixOpts = {
+        browsers : [ "last 2 versions", "IE 7", "Chrome > 20" ],
+        remove   : false
+    };
 
 gulp.task("less:watch", function() {
     return gulp.watch([ "./less/**/*.less", "./lessOpts.js" ], [ "less" ]);
@@ -24,19 +29,21 @@ gulp.task("less:watch", function() {
 gulp.task("less", [ "lessSizes" ], function() {
     return gulp.src(lessOpts.src)
         .pipe(less({ paths : lessOpts.paths }))
+        .pipe(prefixer(prefixOpts))
         .pipe(gulp.dest("./public/css"));
 });
 
 gulp.task("less:prod",[ "lessSizes" ] , function() {
     return gulp.src(lessOpts.src)
         .pipe(less({ paths : lessOpts.paths }))
+        .pipe(prefixer(prefixOpts))
         .pipe(minify())
         .pipe(rename({ suffix : ".min" }))
         .pipe(gulp.dest("./public/css"));
 });
 
-// Generate a less file with vars for breakpoints.
-gulp.task("lessSizes", [ "lessPureGridBase", "lessPureGrid", "lessMediaQueries" ], function() {
+// Generate less file for breakpoints
+gulp.task("lessSizes", [ "lessPure", "lessPureGrid", "lessMediaQueries" ], function() {
     var lessSizes = Object.keys(lessOpts.mediaQueries)
             .reduce(function(prev, curr) {
                 var sizeDef = {
@@ -51,17 +58,25 @@ gulp.task("lessSizes", [ "lessPureGridBase", "lessPureGrid", "lessMediaQueries" 
         .pipe(gulp.dest("./less/vars"));
 });
 
-// Lessify Pure base grid
-gulp.task("lessPureGridBase", function() {
-    return gulp.src("./node_modules/purecss/build/grids-core.css")
+// Lessify Pure base files
+gulp.task("lessPure", function() {
+    return gulp.src([
+            "./node_modules/purecss/build/*.css",
+            "!./node_modules/purecss/build/*-min.css",
+            "!./node_modules/purecss/build/*-nr.css",
+            "!./node_modules/purecss/build/pure*.css",
+            "!./node_modules/purecss/build/grids.css",
+            "!./node_modules/purecss/build/grids-responsive*.css",
+            "!./node_modules/purecss/build/grids-units*.css"
+        ])
         .pipe(strip())
-        .pipe(replace("pure-", lessOpts.prefix + "-"))
+        .pipe(replace("pure", lessOpts.prefix))
         .pipe(cssBeaut())
-        .pipe(rename("pureGridBase.less"))
-        .pipe(gulp.dest("./less"));
+        .pipe(rename({ extname : ".less" }))
+        .pipe(gulp.dest("./less/pure"));
 });
 
-// Generate less pure grid file
+// Generate less pure grids file from breakpoints in lessOpts.js
 gulp.task("lessPureGrid", function() {
     var lessPureGrid = rework("")
             .use(pureGrids.units(
@@ -75,8 +90,8 @@ gulp.task("lessPureGrid", function() {
             ))
             .toString();
 
-    return file("pureGrid.less", lessPureGrid, { src : true })
-        .pipe(gulp.dest("./less"));
+    return file("grids-responsive.less", lessPureGrid, { src : true })
+        .pipe(gulp.dest("./less/pure"));
 });
 
 // Generate less shorthands for media queries

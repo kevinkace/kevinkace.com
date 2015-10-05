@@ -1,38 +1,10 @@
 @import "./vars/sizes";
 @import "./mixins/media-queries";
+@import "./pure/base";
+@import "./pure/grids-core";
+@import "./pure/grids-responsive";
 @import "./import/layout";
+@import "./import/colors";
 @import "./import/typog";
-@import "./import/footer";
-
-
-body {
-    background: #3a4549;
-    background: -webkit-radial-gradient(center, ellipse cover,  #3a4549 0%,#0f080b 100%);
-    background: radial-gradient(ellipse at center,  #3a4549 0%,#0f080b 100%);
-    .pc({
-        background: red;
-    })
-}
-
-header {
-    margin: 2% 0;
-    padding: 2%;
-    background: rgba(0, 0, 0, 0.2);
-    .pc({
-        margin: 4em 0;
-        padding: 0 0.5em;
-    })
-}
-
-.content {
-    padding: 0 5%;
-    .pc({
-        padding: 0 20px;
-        width: 500px;
-        margin: 0 auto;
-    })
-}
-
-footer {
-    margin-top: 4em;
-}
+@import "./import/theme";
+@import "./import/header";

@@ -1,0 +1,55 @@
+/*!
+Pure v0.6.0
+Copyright 2014 Yahoo! Inc. All rights reserved.
+Licensed under the BSD License.
+https://github.com/yahoo/kace/blob/master/LICENSE.md
+*/
+.kace-menu-separator {
+    background-color: #ccc;
+    height: 1px;
+    margin: .3em 0;
+}
+
+.kace-menu-horizontal .kace-menu-separator {
+    width: 1px;
+    height: 1.3em;
+    margin: 0 .3em;
+}
+
+.kace-menu-heading {
+    text-transform: uppercase;
+    color: #565d64;
+}
+
+.kace-menu-link {
+    color: #777;
+}
+
+.kace-menu-children {
+    background-color: #fff;
+}
+
+.kace-menu-link,
+.kace-menu-disabled,
+.kace-menu-heading {
+    padding: .5em 1em;
+}
+
+.kace-menu-disabled {
+    opacity: .5;
+}
+
+.kace-menu-disabled .kace-menu-link:hover {
+    background-color: transparent;
+}
+
+.kace-menu-active > .kace-menu-link,
+.kace-menu-link:hover,
+.kace-menu-link:focus {
+    background-color: #eee;
+}
+
+.kace-menu-selected .kace-menu-link,
+.kace-menu-selected .kace-menu-link:visited {
+    color: #000;
+}

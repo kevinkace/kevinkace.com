@@ -1,0 +1,368 @@
+/*!
+Pure v0.6.0
+Copyright 2014 Yahoo! Inc. All rights reserved.
+Licensed under the BSD License.
+https://github.com/yahoo/kace/blob/master/LICENSE.md
+*/
+.kace-form input[type="text"],
+.kace-form input[type="password"],
+.kace-form input[type="email"],
+.kace-form input[type="url"],
+.kace-form input[type="date"],
+.kace-form input[type="month"],
+.kace-form input[type="time"],
+.kace-form input[type="datetime"],
+.kace-form input[type="datetime-local"],
+.kace-form input[type="week"],
+.kace-form input[type="number"],
+.kace-form input[type="search"],
+.kace-form input[type="tel"],
+.kace-form input[type="color"],
+.kace-form select,
+.kace-form textarea {
+    padding: 0.5em 0.6em;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-shadow: inset 0 1px 3px #ddd;
+    border-radius: 4px;
+    vertical-align: middle;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.kace-form input:not([type]) {
+    padding: 0.5em 0.6em;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-shadow: inset 0 1px 3px #ddd;
+    border-radius: 4px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.kace-form input[type="color"] {
+    padding: 0.2em 0.5em;
+}
+
+.kace-form input[type="text"]:focus,
+.kace-form input[type="password"]:focus,
+.kace-form input[type="email"]:focus,
+.kace-form input[type="url"]:focus,
+.kace-form input[type="date"]:focus,
+.kace-form input[type="month"]:focus,
+.kace-form input[type="time"]:focus,
+.kace-form input[type="datetime"]:focus,
+.kace-form input[type="datetime-local"]:focus,
+.kace-form input[type="week"]:focus,
+.kace-form input[type="number"]:focus,
+.kace-form input[type="search"]:focus,
+.kace-form input[type="tel"]:focus,
+.kace-form input[type="color"]:focus,
+.kace-form select:focus,
+.kace-form textarea:focus {
+    outline: 0;
+    border-color: #129FEA;
+}
+
+.kace-form input:not([type]):focus {
+    outline: 0;
+    border-color: #129FEA;
+}
+
+.kace-form input[type="file"]:focus,
+.kace-form input[type="radio"]:focus,
+.kace-form input[type="checkbox"]:focus {
+    outline: thin solid #129FEA;
+    outline: 1px auto #129FEA;
+}
+
+.kace-form .kace-checkbox,
+.kace-form .kace-radio {
+    margin: 0.5em 0;
+    display: block;
+}
+
+.kace-form input[type="text"][disabled],
+.kace-form input[type="password"][disabled],
+.kace-form input[type="email"][disabled],
+.kace-form input[type="url"][disabled],
+.kace-form input[type="date"][disabled],
+.kace-form input[type="month"][disabled],
+.kace-form input[type="time"][disabled],
+.kace-form input[type="datetime"][disabled],
+.kace-form input[type="datetime-local"][disabled],
+.kace-form input[type="week"][disabled],
+.kace-form input[type="number"][disabled],
+.kace-form input[type="search"][disabled],
+.kace-form input[type="tel"][disabled],
+.kace-form input[type="color"][disabled],
+.kace-form select[disabled],
+.kace-form textarea[disabled] {
+    cursor: not-allowed;
+    background-color: #eaeded;
+    color: #cad2d3;
+}
+
+.kace-form input:not([type])[disabled] {
+    cursor: not-allowed;
+    background-color: #eaeded;
+    color: #cad2d3;
+}
+
+.kace-form input[readonly],
+.kace-form select[readonly],
+.kace-form textarea[readonly] {
+    background-color: #eee;
+    color: #777;
+    border-color: #ccc;
+}
+
+.kace-form input:focus:invalid,
+.kace-form textarea:focus:invalid,
+.kace-form select:focus:invalid {
+    color: #b94a48;
+    border-color: #e9322d;
+}
+
+.kace-form input[type="file"]:focus:invalid:focus,
+.kace-form input[type="radio"]:focus:invalid:focus,
+.kace-form input[type="checkbox"]:focus:invalid:focus {
+    outline-color: #e9322d;
+}
+
+.kace-form select {
+    height: 2.25em;
+    border: 1px solid #ccc;
+    background-color: white;
+}
+
+.kace-form select[multiple] {
+    height: auto;
+}
+
+.kace-form label {
+    margin: 0.5em 0 0.2em;
+}
+
+.kace-form fieldset {
+    margin: 0;
+    padding: 0.35em 0 0.75em;
+    border: 0;
+}
+
+.kace-form legend {
+    display: block;
+    width: 100%;
+    padding: 0.3em 0;
+    margin-bottom: 0.3em;
+    color: #333;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.kace-form-stacked input[type="text"],
+.kace-form-stacked input[type="password"],
+.kace-form-stacked input[type="email"],
+.kace-form-stacked input[type="url"],
+.kace-form-stacked input[type="date"],
+.kace-form-stacked input[type="month"],
+.kace-form-stacked input[type="time"],
+.kace-form-stacked input[type="datetime"],
+.kace-form-stacked input[type="datetime-local"],
+.kace-form-stacked input[type="week"],
+.kace-form-stacked input[type="number"],
+.kace-form-stacked input[type="search"],
+.kace-form-stacked input[type="tel"],
+.kace-form-stacked input[type="color"],
+.kace-form-stacked input[type="file"],
+.kace-form-stacked select,
+.kace-form-stacked label,
+.kace-form-stacked textarea {
+    display: block;
+    margin: 0.25em 0;
+}
+
+.kace-form-stacked input:not([type]) {
+    display: block;
+    margin: 0.25em 0;
+}
+
+.kace-form-aligned input,
+.kace-form-aligned textarea,
+.kace-form-aligned select,
+.kace-form-aligned .kace-help-inline,
+.kace-form-message-inline {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    vertical-align: middle;
+}
+
+.kace-form-aligned textarea {
+    vertical-align: top;
+}
+
+.kace-form-aligned .kace-control-group {
+    margin-bottom: 0.5em;
+}
+
+.kace-form-aligned .kace-control-group label {
+    text-align: right;
+    display: inline-block;
+    vertical-align: middle;
+    width: 10em;
+    margin: 0 1em 0 0;
+}
+
+.kace-form-aligned .kace-controls {
+    margin: 1.5em 0 0 11em;
+}
+
+.kace-form input.kace-input-rounded,
+.kace-form .kace-input-rounded {
+    border-radius: 2em;
+    padding: 0.5em 1em;
+}
+
+.kace-form .kace-group fieldset {
+    margin-bottom: 10px;
+}
+
+.kace-form .kace-group input,
+.kace-form .kace-group textarea {
+    display: block;
+    padding: 10px;
+    margin: 0 0 -1px;
+    border-radius: 0;
+    position: relative;
+    top: -1px;
+}
+
+.kace-form .kace-group input:focus,
+.kace-form .kace-group textarea:focus {
+    z-index: 3;
+}
+
+.kace-form .kace-group input:first-child,
+.kace-form .kace-group textarea:first-child {
+    top: 1px;
+    border-radius: 4px 4px 0 0;
+    margin: 0;
+}
+
+.kace-form .kace-group input:first-child:last-child,
+.kace-form .kace-group textarea:first-child:last-child {
+    top: 1px;
+    border-radius: 4px;
+    margin: 0;
+}
+
+.kace-form .kace-group input:last-child,
+.kace-form .kace-group textarea:last-child {
+    top: -2px;
+    border-radius: 0 0 4px 4px;
+    margin: 0;
+}
+
+.kace-form .kace-group button {
+    margin: 0.35em 0;
+}
+
+.kace-form .kace-input-1 {
+    width: 100%;
+}
+
+.kace-form .kace-input-2-3 {
+    width: 66%;
+}
+
+.kace-form .kace-input-1-2 {
+    width: 50%;
+}
+
+.kace-form .kace-input-1-3 {
+    width: 33%;
+}
+
+.kace-form .kace-input-1-4 {
+    width: 25%;
+}
+
+.kace-form .kace-help-inline,
+.kace-form-message-inline {
+    display: inline-block;
+    padding-left: 0.3em;
+    color: #666;
+    vertical-align: middle;
+    font-size: 0.875em;
+}
+
+.kace-form-message {
+    display: block;
+    color: #666;
+    font-size: 0.875em;
+}
+
+@media only screen and (max-width : 480px) {
+    .kace-form button[type="submit"] {
+        margin: 0.7em 0 0;
+    }
+
+    .kace-form input:not([type]),
+    .kace-form input[type="text"],
+    .kace-form input[type="password"],
+    .kace-form input[type="email"],
+    .kace-form input[type="url"],
+    .kace-form input[type="date"],
+    .kace-form input[type="month"],
+    .kace-form input[type="time"],
+    .kace-form input[type="datetime"],
+    .kace-form input[type="datetime-local"],
+    .kace-form input[type="week"],
+    .kace-form input[type="number"],
+    .kace-form input[type="search"],
+    .kace-form input[type="tel"],
+    .kace-form input[type="color"],
+    .kace-form label {
+        margin-bottom: 0.3em;
+        display: block;
+    }
+
+    .kace-group input:not([type]),
+    .kace-group input[type="text"],
+    .kace-group input[type="password"],
+    .kace-group input[type="email"],
+    .kace-group input[type="url"],
+    .kace-group input[type="date"],
+    .kace-group input[type="month"],
+    .kace-group input[type="time"],
+    .kace-group input[type="datetime"],
+    .kace-group input[type="datetime-local"],
+    .kace-group input[type="week"],
+    .kace-group input[type="number"],
+    .kace-group input[type="search"],
+    .kace-group input[type="tel"],
+    .kace-group input[type="color"] {
+        margin-bottom: 0;
+    }
+
+    .kace-form-aligned .kace-control-group label {
+        margin-bottom: 0.3em;
+        text-align: left;
+        display: block;
+        width: 100%;
+    }
+
+    .kace-form-aligned .kace-controls {
+        margin: 1.5em 0 0 0;
+    }
+
+    .kace-form .kace-help-inline,
+    .kace-form-message-inline,
+    .kace-form-message {
+        display: block;
+        font-size: 0.75em;
+        padding: 0.2em 0 0.8em;
+    }
+}
