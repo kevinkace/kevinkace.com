@@ -1346,8 +1346,8 @@ body {
 /* Setup */
 html {
   /* Change default typefaces here */
-  font-family: serif;
-  font-size: 137.5%;
+  font-family: "Noto Sans", Arial, Helvetica, sans-serif;
+  font-size: 100%;
   -webkit-font-smoothing: antialiased;
 }
 /* Copy & Lists */
@@ -1385,7 +1385,7 @@ h4,
 h5,
 h6 {
   /* Change heading typefaces here */
-  font-family: sans-serif;
+  font-family: "Rokkitt", Georgia, "Times New Roman", serif;
   margin-top: 1.5rem;
   margin-bottom: 0;
   line-height: 1.5rem;
@@ -1421,7 +1421,7 @@ table {
 table td,
 table th {
   padding: 0;
-  line-height: 33px;
+  line-height: 24px;
 }
 /* Code blocks */
 code {
@@ -1435,8 +1435,9 @@ code {
 .hug {
   margin-top: 0;
 }
-html {
-  font: normal 100%/1 "Noto Sans", Arial, Helvetica, sans-serif;
+body {
+  color: #EEF3E8;
+  font-familty: "Noto Sans", Arial, Helvetica, sans-serif;
 }
 h1,
 h2,
@@ -1448,8 +1449,10 @@ h5 {
 h1 {
   text-transform: uppercase;
 }
+a {
+  color: #C3397E;
+}
 body {
-  color: #fff;
   background: #3a4549;
   background: -webkit-radial-gradient(#3a4549 0%, #0f080b 100%);
   background: radial-gradient(#3a4549 0%, #0f080b 100%);
@@ -1464,7 +1467,7 @@ header {
 }
 .logo {
   color: #1a575f;
-  text-shadow: 1px 1px 0 #1bbcce;
+  text-shadow: 1px 1px 0 #1bbcce, 0 0 10px #000;
   margin: 0;
   line-height: 0.81;
   font-weight: 100;

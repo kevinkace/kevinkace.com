@@ -1,11 +1,12 @@
-@font-serif:  "Alfa Slab One", Georgia, "Times New Roman", serif;
-@font-serif2: "Rokkitt", Georgia, "Times New Roman", serif;
-@font-sans:   "Noto Sans", Arial, Helvetica, sans-serif;
+@font-serif-1:  "Alfa Slab One", Georgia, "Times New Roman", serif;
+@font-serif-2: "Rokkitt", Georgia, "Times New Roman", serif;
+@font-sans-1:   "Noto Sans", Arial, Helvetica, sans-serif;
 
 @import "../typebase/typebase";
 
-html {
-    font: normal 100%/1 @font-sans;
+body {
+    color: @color-type-1;
+    font-familty: @font-sans-1;
 }
 
 h1,
@@ -13,8 +14,12 @@ h2,
 h3,
 h4,
 h5 {
-    font-family: @font-serif2;
+    font-family: @font-serif-2;
 }
 h1 {
     text-transform: uppercase;
+}
+
+a {
+    color: @color-link-1;
 }
