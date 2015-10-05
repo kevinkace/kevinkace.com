@@ -11,7 +11,6 @@ var argv      = require("yargs").argv,
     gutil     = require("gulp-util"),
     strip     = require("gulp-strip-comments"),
     replace   = require("gulp-replace"),
-    rename    = require("gulp-rename"),
     cssBeaut  = require("gulp-cssbeautify"),
     rework    = require("rework"),
     pureGrids = require("rework-pure-grids"),
@@ -37,7 +36,7 @@ gulp.task("less:prod",[ "lessSizes" ] , function() {
 });
 
 // Generate a less file with vars for breakpoints.
-gulp.task("lessSizes", [ "lessPureGridBase", "lessPureGrid" ], function() {
+gulp.task("lessSizes", [ "lessPureGridBase", "lessPureGrid", "lessMediaQueries" ], function() {
     var lessSizes = Object.keys(lessOpts.mediaQueries)
             .reduce(function(prev, curr) {
                 var sizeDef = {
@@ -64,18 +63,31 @@ gulp.task("lessPureGridBase", function() {
 
 // Generate less pure grid file
 gulp.task("lessPureGrid", function() {
-    return file("pureGrid.less",
-        rework("")
+    var lessPureGrid = rework("")
             .use(pureGrids.units(
                 lessOpts.units,
                 {
-                    mediaQueries : _.mapValues(lessOpts.mediaQueries, function(size) {
-                        return "screen and (min-width: " + ensureEm(size, lessOpts.basePx) + ")";
-                    }),
-                    selectorPrefix : "." + lessOpts.prefix + "-u-"
+                    selectorPrefix : _.template(".<%- prefix %>-u-")({ prefix : lessOpts.prefix }),
+                    mediaQueries   : _.mapValues(lessOpts.mediaQueries, function(size) {
+                            return _.template("screen and (min-width: <%= lessSize %>)")({ lessSize : ensureEm(size, lessOpts.basePx) });
+                        })
                 }
-            )).toString(), { src : true })
+            ))
+            .toString();
+
+    return file("pureGrid.less", lessPureGrid, { src : true })
         .pipe(gulp.dest("./less"));
+});
+
+// Generate less shorthands for media queries
+gulp.task("lessMediaQueries", function() {
+    var lessMediaQueries = _.reduce(lessOpts.mediaQueries, function(prev, curr, idx) {
+            return prev.concat(_.template(".<%= size %>(@rules) {\n\t@media screen and (min-width: @<%- size %>) {\n\t\t@rules();\n\t}\n}\n\n")({ size : idx }));
+        }, "");
+
+    return file("media-queries.less", lessMediaQueries, { src : true })
+        .pipe(replace("\t", "    "))
+        .pipe(gulp.dest("./less/mixins"));
 });
 
 gulp.task("default", function() {
