@@ -15,28 +15,24 @@ var argv      = require("yargs").argv,
     prefixer  = require("gulp-autoprefixer"),
     rework    = require("rework"),
     pureGrids = require("rework-pure-grids"),
-    lessOpts  = require("./lessOpts.js"),
-    ensureEm  = require("./build/ensureem.js"),
-    prefixOpts = {
-        browsers : [ "last 2 versions", "IE 7", "Chrome > 20" ],
-        remove   : false
-    };
+    opts      = require("./build/opts.js"),
+    ensureEm  = require("./build/ensureem.js");
 
 gulp.task("less:watch", function() {
-    return gulp.watch([ "./less/**/*.less", "./lessOpts.js" ], [ "less" ]);
+    return gulp.watch([ "./less/**/*.less", "./build/opts.js" ], [ "less" ]);
 });
 
 gulp.task("less", [ "lessSizes" ], function() {
-    return gulp.src(lessOpts.src)
-        .pipe(less({ paths : lessOpts.paths }))
-        .pipe(prefixer(prefixOpts))
+    return gulp.src(opts.less.src)
+        .pipe(less({ paths : opts.less.paths }))
+        .pipe(prefixer(opts.prefixer))
         .pipe(gulp.dest("./public/css"));
 });
 
 gulp.task("less:prod",[ "lessSizes" ] , function() {
-    return gulp.src(lessOpts.src)
-        .pipe(less({ paths : lessOpts.paths }))
-        .pipe(prefixer(prefixOpts))
+    return gulp.src(opts.less.src)
+        .pipe(less({ paths : opts.less.paths }))
+        .pipe(prefixer(opts.prefixer))
         .pipe(minify())
         .pipe(rename({ suffix : ".min" }))
         .pipe(gulp.dest("./public/css"));
@@ -44,11 +40,11 @@ gulp.task("less:prod",[ "lessSizes" ] , function() {
 
 // Generate less file for breakpoints
 gulp.task("lessSizes", [ "lessPure", "lessPureGrid", "lessMediaQueries" ], function() {
-    var lessSizes = Object.keys(lessOpts.mediaQueries)
+    var lessSizes = Object.keys(opts.less.mediaQueries)
             .reduce(function(prev, curr) {
                 var sizeDef = {
                         size  : curr,
-                        width : ensureEm(lessOpts.mediaQueries[curr], lessOpts.basePx)
+                        width : ensureEm(opts.less.mediaQueries[curr], opts.less.basePx)
                     };
 
                 return prev.concat(_.template("@<%= size %>: <%= width %>;\n")(sizeDef));
@@ -70,21 +66,21 @@ gulp.task("lessPure", function() {
             "!./node_modules/purecss/build/grids-units*.css"
         ])
         .pipe(strip())
-        .pipe(replace("pure", lessOpts.prefix))
+        .pipe(replace("pure", opts.less.prefix))
         .pipe(cssBeaut())
         .pipe(rename({ extname : ".less" }))
         .pipe(gulp.dest("./less/pure"));
 });
 
-// Generate less pure grids file from breakpoints in lessOpts.js
+// Generate less pure grids file from breakpoints in opts.js
 gulp.task("lessPureGrid", function() {
     var lessPureGrid = rework("")
             .use(pureGrids.units(
-                lessOpts.units,
+                opts.less.units,
                 {
-                    selectorPrefix : _.template(".<%- prefix %>-u-")({ prefix : lessOpts.prefix }),
-                    mediaQueries   : _.mapValues(lessOpts.mediaQueries, function(size) {
-                            return _.template("screen and (min-width: <%= lessSize %>)")({ lessSize : ensureEm(size, lessOpts.basePx) });
+                    selectorPrefix : _.template(".<%- prefix %>-u-")({ prefix : opts.less.prefix }),
+                    mediaQueries   : _.mapValues(opts.less.mediaQueries, function(size) {
+                            return _.template("screen and (min-width: <%= lessSize %>)")({ lessSize : ensureEm(size, opts.less.basePx) });
                         })
                 }
             ))
@@ -96,7 +92,7 @@ gulp.task("lessPureGrid", function() {
 
 // Generate less shorthands for media queries
 gulp.task("lessMediaQueries", function() {
-    var lessMediaQueries = _.reduce(lessOpts.mediaQueries, function(prev, curr, idx) {
+    var lessMediaQueries = _.reduce(opts.less.mediaQueries, function(prev, curr, idx) {
             return prev.concat(_.template(".<%= size %>(@rules) {\n\t@media screen and (min-width: @<%- size %>) {\n\t\t@rules();\n\t}\n}\n\n")({ size : idx }));
         }, "");
 
