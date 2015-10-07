@@ -1473,3 +1473,20 @@ header {
   font-weight: 100;
   font-family: "Alfa Slab One", Georgia, "Times New Roman", serif;
 }
+.logo em {
+  font-style: normal;
+}
+.logo em i {
+  font-style: normal;
+  font-size: 0.6em;
+}
+.logo span {
+  display: block;
+}
+.logo:hover em {
+  display: inline;
+}
+.logo:hover span {
+  display: block;
+  opacity: 0.7;
+}

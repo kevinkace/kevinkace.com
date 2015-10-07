@@ -11,4 +11,27 @@ header {
     line-height: 0.81;
     font-weight: 100;
     font-family: @font-serif-1;
+
+    em {
+        font-style: normal;
+        // display: none;
+        i {
+            font-style: normal;
+            font-size: 0.6em;
+        }
+    }
+
+    span {
+        display: block;
+    }
+
+    &:hover {
+        em {
+            display: inline;
+        }
+        span {
+            display: block;
+            opacity: 0.7;
+        }
+    }
 }
