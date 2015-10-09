@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/kevinkace/kevinkace.com#readme",
   "devDependencies": {
+    "font-awesome": "^4.4.0",
     "gulp": "^3.9.0",
     "gulp-autoprefixer": "^3.0.2",
     "gulp-cssbeautify": "^0.1.3",
