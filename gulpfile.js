@@ -15,6 +15,7 @@ var argv      = require("yargs").argv,
     prefixer  = require("gulp-autoprefixer"),
     rework    = require("rework"),
     pureGrids = require("rework-pure-grids"),
+    merge     = require("merge-stream"),
     opts      = require("./build/opts.js"),
     ensureEm  = require("./build/ensureem.js");
 
@@ -69,7 +70,18 @@ gulp.task("lessPure", function() {
         .pipe(replace("pure", opts.less.prefix))
         .pipe(cssBeaut())
         .pipe(rename({ extname : ".less" }))
-        .pipe(gulp.dest("./src/less/pure"));
+        .pipe(gulp.dest("./src/libs/pure"));
+});
+
+// Move Font Awesome files
+gulp.task("fontAwesome", function() {
+    var faDirs = [ "less", "fonts" ],
+        tasks  = faDirs.map(function(dir) {
+            return gulp.src(_.template("./node_modules/font-awesome/<%- dir %>/*")({ dir : dir }))
+                .pipe(gulp.dest("./src/libs/font-awesome/" + dir))
+            });
+
+    return merge(tasks);
 });
 
 // Generate less pure grids file from breakpoints in opts.js
@@ -87,7 +99,7 @@ gulp.task("lessPureGrid", function() {
             .toString();
 
     return file("grids-responsive.less", lessPureGrid, { src : true })
-        .pipe(gulp.dest("./src/less/pure"));
+        .pipe(gulp.dest("./src/libs/pure"));
 });
 
 // Generate less shorthands for media queries
