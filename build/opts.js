@@ -5,14 +5,14 @@ var path = require("path");
 
 module.exports = {
     less : {
-        src    : "./less/*.less",
+        src    : "./src/less/*.less",
         prefix : "kace",
         units  : [ 24, 7, 5 ],
         basePx : 16,
         paths  : [
             path.join(
                 __dirname,
-                "./less/import"
+                "./src/less/import"
             )
         ],
         mediaQueries : {

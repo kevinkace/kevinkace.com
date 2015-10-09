@@ -19,7 +19,7 @@ var argv      = require("yargs").argv,
     ensureEm  = require("./build/ensureem.js");
 
 gulp.task("less:watch", function() {
-    return gulp.watch([ "./less/**/*.less", "./build/opts.js" ], [ "less" ]);
+    return gulp.watch([ "./src/less/**/*.less", "./build/opts.js" ], [ "less" ]);
 });
 
 gulp.task("less", [ "lessSizes" ], function() {
@@ -51,7 +51,7 @@ gulp.task("lessSizes", [ "lessPure", "lessPureGrid", "lessMediaQueries" ], funct
             }, "");
 
     return file("sizes.less", lessSizes, { src : true })
-        .pipe(gulp.dest("./less/vars"));
+        .pipe(gulp.dest("./src/less/vars"));
 });
 
 // Lessify Pure base files
@@ -69,7 +69,7 @@ gulp.task("lessPure", function() {
         .pipe(replace("pure", opts.less.prefix))
         .pipe(cssBeaut())
         .pipe(rename({ extname : ".less" }))
-        .pipe(gulp.dest("./less/pure"));
+        .pipe(gulp.dest("./src/less/pure"));
 });
 
 // Generate less pure grids file from breakpoints in opts.js
@@ -87,7 +87,7 @@ gulp.task("lessPureGrid", function() {
             .toString();
 
     return file("grids-responsive.less", lessPureGrid, { src : true })
-        .pipe(gulp.dest("./less/pure"));
+        .pipe(gulp.dest("./src/less/pure"));
 });
 
 // Generate less shorthands for media queries
@@ -98,7 +98,7 @@ gulp.task("lessMediaQueries", function() {
 
     return file("media-queries.less", lessMediaQueries, { src : true })
         .pipe(replace("\t", "    "))
-        .pipe(gulp.dest("./less/mixins"));
+        .pipe(gulp.dest("./src/less/mixins"));
 });
 
 gulp.task("default", function() {
