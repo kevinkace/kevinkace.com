@@ -33,7 +33,6 @@
     "gulp-watch": "^4.3.5",
     "lodash": "^3.10.1",
     "merge-stream": "^1.0.0",
-    "normalize.css": "^3.0.3",
     "purecss": "^0.6.0",
     "rework": "^1.0.1",
     "rework-pure-grids": "^1.0.0",

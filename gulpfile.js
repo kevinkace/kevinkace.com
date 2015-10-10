@@ -19,44 +19,84 @@ var argv      = require("yargs").argv,
     opts      = require("./build/opts.js"),
     ensureEm  = require("./build/ensureem.js");
 
-gulp.task("less:watch", function() {
-    return gulp.watch([ "./src/less/**/*.less", "./build/opts.js" ], [ "less" ]);
+
+gulp.task(
+    "default",
+    [ "dev" ],
+    function() {
+        return;
+    }
+);
+
+gulp.task(
+    "src",
+    [
+        "fontAwesomeSrc",
+        "pureBaseSrc",
+        "pureGrid",
+        "lessSizes",
+        "lessMediaQueries"
+    ],
+    function() {
+        return;
+    }
+);
+
+// Move assets from src to public
+gulp.task("moveAssets", function() {
+
 });
 
-gulp.task("less", function() {
+gulp.task(
+    "dev",
+    [
+        "lessc",
+        "moveAssets"
+    ],
+    function() {
+        return;
+    }
+);
+
+gulp.task(
+    "dev:watch",
+    [ "lessc" ],
+    function() {
+        return gulp.watch([ "./src/less/**/*.less" ], [ "lessc" ]);
+    }
+);
+
+
+// compile less from src to public
+gulp.task("lessc", function() {
     return gulp.src(opts.less.src)
         .pipe(less({ paths : opts.less.paths }))
         .pipe(prefixer(opts.prefixer))
         .pipe(gulp.dest("./public/css"));
 });
 
-gulp.task("less:prod", function() {
-    return gulp.src(opts.less.src)
-        .pipe(less({ paths : opts.less.paths }))
-        .pipe(prefixer(opts.prefixer))
-        .pipe(minify())
-        .pipe(rename({ suffix : ".min" }))
-        .pipe(gulp.dest("./public/css"));
-});
+// gulp.task("less:prod", function() {
+//     return gulp.src(opts.less.src)
+//         .pipe(less({ paths : opts.less.paths }))
+//         .pipe(prefixer(opts.prefixer))
+//         .pipe(minify())
+//         .pipe(rename({ suffix : ".min" }))
+//         .pipe(gulp.dest("./public/css"));
+// });
 
-// Generate less file for breakpoints
-gulp.task("lessSizes", [ "lessPureGrid", "lessMediaQueries" ], function() {
-    var lessSizes = Object.keys(opts.less.mediaQueries)
-            .reduce(function(prev, curr) {
-                var sizeDef = {
-                        size  : curr,
-                        width : ensureEm(opts.less.mediaQueries[curr], opts.less.basePx)
-                    };
+// Move Font Awesome files from node_modules to src
+gulp.task("fontAwesomeSrc", function() {
+    var faDirs = [ "less", "fonts" ],
+        tasks  = faDirs.map(function(dir) {
+            return gulp.src(_.template("./node_modules/font-awesome/<%- dir %>/*")({ dir : dir }))
+                .pipe(gulp.dest("./src/libs/font-awesome/" + dir));
+            });
 
-                return prev.concat(_.template("@<%= size %>: <%= width %>;\n")(sizeDef));
-            }, "");
-
-    return file("sizes.less", lessSizes, { src : true })
-        .pipe(gulp.dest("./src/less/vars"));
+    return merge(tasks);
 });
 
 // Lessify Pure base files from node_modules to src
-gulp.task("lessPure", function() {
+gulp.task("pureBaseSrc", function() {
     return gulp.src([
             "./node_modules/purecss/build/*.css",
             "!./node_modules/purecss/build/*-min.css",
@@ -74,7 +114,7 @@ gulp.task("lessPure", function() {
 });
 
 // Generate less pure grids file from breakpoints in opts.js
-gulp.task("lessPureGrid", function() {
+gulp.task("pureGrid", function() {
     var lessPureGrid = rework("")
             .use(pureGrids.units(
                 opts.less.units,
@@ -91,6 +131,22 @@ gulp.task("lessPureGrid", function() {
         .pipe(gulp.dest("./src/libs/pure"));
 });
 
+// Generate less file for breakpoints to src
+gulp.task("lessSizes", function() {
+    var lessSizes = Object.keys(opts.less.mediaQueries)
+            .reduce(function(prev, curr) {
+                var sizeDef = {
+                        size  : curr,
+                        width : ensureEm(opts.less.mediaQueries[curr], opts.less.basePx)
+                    };
+
+                return prev.concat(_.template("@<%= size %>: <%= width %>;\n")(sizeDef));
+            }, "");
+
+    return file("sizes.less", lessSizes, { src : true })
+        .pipe(gulp.dest("./src/less/vars"));
+});
+
 // Generate less shorthands for media queries
 gulp.task("lessMediaQueries", function() {
     var lessMediaQueries = _.reduce(opts.less.mediaQueries, function(prev, curr, idx) {
@@ -100,40 +156,4 @@ gulp.task("lessMediaQueries", function() {
     return file("media-queries.less", lessMediaQueries, { src : true })
         .pipe(replace("\t", "    "))
         .pipe(gulp.dest("./src/less/mixins"));
-});
-
-// Move Font Awesome files from node_modules to src
-gulp.task("fontAwesome", function() {
-    var faDirs = [ "less", "fonts" ],
-        tasks  = faDirs.map(function(dir) {
-            return gulp.src(_.template("./node_modules/font-awesome/<%- dir %>/*")({ dir : dir }))
-                .pipe(gulp.dest("./src/libs/font-awesome/" + dir))
-            });
-
-    return merge(tasks);
-});
-
-// Move assets from src to public
-gulp.task("moveAssets", function() {
-
-})
-
-gulp.task("prep", [ "lessSizes", "fontAwesome" ], function() {
-    return;
-});
-
-gulp.task("build", [ "less", "moveAssets" ], function() {
-    return;
-});
-
-gulp.task("default", function() {
-    if(argv.watch) {
-        return gulp.start("less:watch");
-    } else if(argv.prod) {
-        return gulp.start("less:prod");
-    } else if(argv.prep) {
-        return gulp.start("prep");
-    } else {
-        return gulp.start("build");
-    }
 });
