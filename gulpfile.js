@@ -3,6 +3,7 @@
 
 var argv      = require("yargs").argv,
     _         = require("lodash"),
+    path      = require("path"),
     gulp      = require("gulp"),
     file      = require("gulp-file"),
     less      = require("gulp-less"),
@@ -20,16 +21,16 @@ var argv      = require("yargs").argv,
     ensureEm  = require("./build/ensureem.js");
 
 
-gulp.task(
-    "default",
-    [ "dev" ],
-    function() {
-        return;
-    }
+
+gulp.task("default",
+    [
+        "dev"
+    ],
+    function() { return; }
 );
 
-gulp.task(
-    "src",
+
+gulp.task("src",
     [
         "fontAwesomeSrc",
         "pureBaseSrc",
@@ -37,57 +38,43 @@ gulp.task(
         "lessSizes",
         "lessMediaQueries"
     ],
-    function() {
-        return;
-    }
+    function() { return; }
 );
 
-// Move assets from src to public
-gulp.task("moveAssets", function() {
 
-});
-
-gulp.task(
-    "dev",
+gulp.task("dev",
     [
         "lessc",
-        "moveAssets"
+        "imgsPublic",
+        "fontsPublic"
+    ],
+    function() { return; }
+);
+
+
+gulp.task("dev:watch",
+    [
+        "lessc",
+        "imgsPublic",
+        "fontsPublic"
     ],
     function() {
-        return;
+        return gulp.watch([
+            "./src/less/**/*.less",
+            "./src/imgs/*"
+        ], [
+            "lessc",
+            "imgsPublic",
+            "fontsPublic"
+        ]);
     }
 );
 
-gulp.task(
-    "dev:watch",
-    [ "lessc" ],
-    function() {
-        return gulp.watch([ "./src/less/**/*.less" ], [ "lessc" ]);
-    }
-);
 
 
-// compile less from src to public
-gulp.task("lessc", function() {
-    return gulp.src(opts.less.src)
-        .pipe(less({ paths : opts.less.paths }))
-        .pipe(prefixer(opts.prefixer))
-        .pipe(gulp.dest("./public/css"));
-});
-
-// gulp.task("less:prod", function() {
-//     return gulp.src(opts.less.src)
-//         .pipe(less({ paths : opts.less.paths }))
-//         .pipe(prefixer(opts.prefixer))
-//         .pipe(minify())
-//         .pipe(rename({ suffix : ".min" }))
-//         .pipe(gulp.dest("./public/css"));
-// });
-
-// Move Font Awesome files from node_modules to src
+// FONTAWESOME | NPM -> SRC
 gulp.task("fontAwesomeSrc", function() {
-    var faDirs = [ "less", "fonts" ],
-        tasks  = faDirs.map(function(dir) {
+    var tasks = [ "less", "fonts" ].map(function(dir) {
             return gulp.src(_.template("./node_modules/font-awesome/<%- dir %>/*")({ dir : dir }))
                 .pipe(gulp.dest("./src/libs/font-awesome/" + dir));
             });
@@ -95,7 +82,7 @@ gulp.task("fontAwesomeSrc", function() {
     return merge(tasks);
 });
 
-// Lessify Pure base files from node_modules to src
+// PURE | NPM -> SRC
 gulp.task("pureBaseSrc", function() {
     return gulp.src([
             "./node_modules/purecss/build/*.css",
@@ -113,7 +100,7 @@ gulp.task("pureBaseSrc", function() {
         .pipe(gulp.dest("./src/libs/pure"));
 });
 
-// Generate less pure grids file from breakpoints in opts.js
+// GEN | PURE GRIDS -> SRC
 gulp.task("pureGrid", function() {
     var lessPureGrid = rework("")
             .use(pureGrids.units(
@@ -131,7 +118,7 @@ gulp.task("pureGrid", function() {
         .pipe(gulp.dest("./src/libs/pure"));
 });
 
-// Generate less file for breakpoints to src
+// GEN | LESS SIZES -> SRC
 gulp.task("lessSizes", function() {
     var lessSizes = Object.keys(opts.less.mediaQueries)
             .reduce(function(prev, curr) {
@@ -147,7 +134,7 @@ gulp.task("lessSizes", function() {
         .pipe(gulp.dest("./src/less/vars"));
 });
 
-// Generate less shorthands for media queries
+// GEN | MEDIA QUERIES -> SRC
 gulp.task("lessMediaQueries", function() {
     var lessMediaQueries = _.reduce(opts.less.mediaQueries, function(prev, curr, idx) {
             return prev.concat(_.template(".<%= size %>(@rules) {\n\t@media screen and (min-width: @<%- size %>) {\n\t\t@rules();\n\t}\n}\n\n")({ size : idx }));
@@ -157,3 +144,35 @@ gulp.task("lessMediaQueries", function() {
         .pipe(replace("\t", "    "))
         .pipe(gulp.dest("./src/less/mixins"));
 });
+
+// LESS | COMPILE -> PUBLIC
+gulp.task("lessc", function() {
+    return gulp.src("./src/less/*.less")
+        .pipe(less({ paths : path.join(__dirname, "./src/less/import" ) }))
+        .pipe(prefixer(opts.prefixer))
+        .pipe(gulp.dest("./public/css"));
+});
+
+// FONTS | SRC -> PUBLIC
+gulp.task("fontsPublic", function() {
+    return gulp.src([
+        "./src/libs/font-awesome/fonts/*",
+        "./src/libs/google-fonts/fonts/*"
+        ])
+        .pipe(gulp.dest("./public/fonts"));
+});
+
+// IMG | SRC -> PUBLIC
+gulp.task("imgsPublic", function() {
+    return gulp.src("./src/imgs/*")
+        .pipe(gulp.dest("./public/imgs"));
+});
+
+// gulp.task("less:prod", function() {
+//     return gulp.src(opts.less.src)
+//         .pipe(less({ paths : opts.less.paths }))
+//         .pipe(prefixer(opts.prefixer))
+//         .pipe(minify())
+//         .pipe(rename({ suffix : ".min" }))
+//         .pipe(gulp.dest("./public/css"));
+// });
