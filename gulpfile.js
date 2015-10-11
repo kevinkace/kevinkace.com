@@ -1,30 +1,33 @@
 // jshint node:true
 "use strict";
 
-var argv      = require("yargs").argv,
-    _         = require("lodash"),
-    path      = require("path"),
-    gulp      = require("gulp"),
-    file      = require("gulp-file"),
-    less      = require("gulp-less"),
-    minify    = require("gulp-minify-css"),
-    rename    = require("gulp-rename"),
-    gutil     = require("gulp-util"),
-    strip     = require("gulp-strip-comments"),
-    replace   = require("gulp-replace"),
-    cssBeaut  = require("gulp-cssbeautify"),
-    prefixer  = require("gulp-autoprefixer"),
-    rework    = require("rework"),
-    pureGrids = require("rework-pure-grids"),
-    merge     = require("merge-stream"),
-    opts      = require("./build/opts.js"),
-    ensureEm  = require("./build/ensureem.js");
+var argv       = require("yargs").argv,
+    _          = require("lodash"),
+    path       = require("path"),
+    gulp       = require("gulp"),
+    file       = require("gulp-file"),
+    less       = require("gulp-less"),
+    minify     = require("gulp-minify-css"),
+    rename     = require("gulp-rename"),
+    gutil      = require("gulp-util"),
+    strip      = require("gulp-strip-comments"),
+    replace    = require("gulp-replace"),
+    cssBeaut   = require("gulp-cssbeautify"),
+    prefixer   = require("gulp-autoprefixer"),
+    gls        = require("gulp-live-server"),
+    server     = gls.new("./app/index.js"),
+    rework     = require("rework"),
+    pureGrids  = require("rework-pure-grids"),
+    merge      = require("merge-stream"),
+    opts       = require("./build/opts.js"),
+    ensureEm   = require("./build/ensureem.js");
 
 
 
 gulp.task("default",
     [
-        "dev"
+        "dev",
+        "startApp"
     ],
     function() { return; }
 );
@@ -41,12 +44,19 @@ gulp.task("src",
     function() { return; }
 );
 
+gulp.task("public",
+    [
+        "imgsPublic",
+        "fontsPublic"
+    ],
+    function() { return; }
+);
+
 
 gulp.task("dev",
     [
         "lessc",
-        "imgsPublic",
-        "fontsPublic"
+        "public"
     ],
     function() { return; }
 );
@@ -56,20 +66,26 @@ gulp.task("dev:watch",
     [
         "lessc",
         "imgsPublic",
-        "fontsPublic"
+        "startApp"
     ],
     function() {
-        return gulp.watch([
-            "./src/less/**/*.less",
-            "./src/imgs/*"
-        ], [
-            "lessc",
-            "imgsPublic",
-            "fontsPublic"
-        ]);
+        gulp.watch("./src/less/**/*.less", [ "lessc" ]);
+        gulp.watch("./src/imgs/*",         [ "imgsPublic" ]);
+        gulp.watch("./app/**", function() {
+            gutil.log("app change");
+            server.start.bind(server)();
+        });
+        gulp.watch("./public/**", function(file) {
+            server.notify.apply(server, [file]);
+        });
     }
 );
 
+
+// APP | START
+gulp.task("startApp", function() {
+    server.start();
+});
 
 
 // FONTAWESOME | NPM -> SRC
