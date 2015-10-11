@@ -26,8 +26,7 @@ var argv       = require("yargs").argv,
 
 gulp.task("default",
     [
-        "dev",
-        "startApp"
+        "dev"
     ],
     function() { return; }
 );
@@ -56,7 +55,8 @@ gulp.task("public",
 gulp.task("dev",
     [
         "lessc",
-        "public"
+        "public",
+        "startApp"
     ],
     function() { return; }
 );
@@ -64,9 +64,7 @@ gulp.task("dev",
 
 gulp.task("dev:watch",
     [
-        "lessc",
-        "imgsPublic",
-        "startApp"
+        "dev"
     ],
     function() {
         gulp.watch("./src/less/**/*.less", [ "lessc" ]);

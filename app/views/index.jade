@@ -1,0 +1,40 @@
+doctype html
+html(lang="en")
+  head
+    block title
+      title Kevin Cameron
+
+    meta(charset="utf-8")
+    meta(http-equiv="x-ua-compatible", content="ie=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+
+    link(
+      href="https://fonts.googleapis.com/css?family=Alfa+Slab+One|Rokkitt|Noto+Sans",
+      rel="stylesheet"
+    )
+    link(
+      href="/css/kevinkace.css",
+      rel="stylesheet"
+    )
+  body
+
+    header
+      .content
+        h1.logo(data-rollText="Kace.com")
+          a(href="/") Kevin
+            em Kace
+              i .com
+            span Cameron
+
+    main
+      .content
+        block content
+
+    footer
+      .content
+        ul
+          each link in footer.links
+            li
+              a(class="btn btn-default", href="#{link.url}")
+                i(class="fa fa-#{link.title}")
+                span #{link.title}

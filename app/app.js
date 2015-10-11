@@ -2,11 +2,22 @@
 "use strict";
 
 var express = require("express"),
-    app     = module.exports = express();
+    app     = module.exports = express(),
+    data    = {
+        code   : require("./data/code"),
+        footer : require("./data/footer")
+    };
 
-app
-    .get("/", function(req, res) {
-        res.send("<html><head><link href=\"/css/kevinkace.css\" rel=\"stylesheet\" type=\"text/css\"></head><body><h1>Here's the h1</h1></body></html>");
+
+app.set("view engine", "jade");
+app.set("views", "./app/views");
+
+app.get("/", function(req, res) {
+        res.render("pages/home", data);
     })
     .use(express.static("./public"));
-    
+
+app.get("/code", function(req, res) {
+        res.render("pages/code", data);
+    })
+    .use(express.static("./public"));

@@ -11,7 +11,7 @@ header {
     line-height: 0.81;
     font-weight: 100;
     font-family: @font-serif-1;
-    perspective: 300px;
+    perspective: 800px;
 
     a {
         color: inherit;
@@ -20,6 +20,9 @@ header {
 
     em {
         display: none;
+        color: darken(@color-theme-1, 10%);
+        text-shadow: 1px 1px 0    darken(@color-theme-1-2, 10%),
+                     0   0   10px #000;
         .pc({
             display: inline-block;
             position: relative;
@@ -27,7 +30,10 @@ header {
             transform: rotateX(-90deg);
             transform-origin: 50% 83%;
             font-style: normal;
-            transition: top 0.3s, transform 0.3s;
+            transition: top 0.3s,
+                        transform 0.3s,
+                        color 0.3s,
+                        text-shadow 0.3s;
             i {
                 font-style: normal;
                 font-size: 0.6em;
@@ -48,6 +54,9 @@ header {
             em {
                 transform: rotateX(0);
                 top: 0;
+                text-shadow: 1px 1px 0    @color-theme-1-2,
+                             0   0   10px #000;
+                color: @color-theme-1;
             }
             span {
                 opacity: 0.4;

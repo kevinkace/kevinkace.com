@@ -1472,8 +1472,8 @@ header {
   line-height: 0.81;
   font-weight: 100;
   font-family: "Alfa Slab One", Georgia, "Times New Roman", serif;
-  -webkit-perspective: 300px;
-          perspective: 300px;
+  -webkit-perspective: 800px;
+          perspective: 800px;
 }
 .logo a {
   color: inherit;
@@ -1481,6 +1481,8 @@ header {
 }
 .logo em {
   display: none;
+  color: #0f3237;
+  text-shadow: 1px 1px 0 #1593a1, 0 0 10px #000;
 }
 @media screen and (min-width: 60em) {
   .logo em {
@@ -1492,8 +1494,8 @@ header {
     -webkit-transform-origin: 50% 83%;
             transform-origin: 50% 83%;
     font-style: normal;
-    -webkit-transition: top 0.3s, -webkit-transform 0.3s;
-            transition: top 0.3s, transform 0.3s;
+    -webkit-transition: top 0.3s, -webkit-transform 0.3s, color 0.3s, text-shadow 0.3s;
+            transition: top 0.3s, transform 0.3s, color 0.3s, text-shadow 0.3s;
   }
   .logo em i {
     font-style: normal;
@@ -1515,6 +1517,8 @@ header {
     -webkit-transform: rotateX(0);
             transform: rotateX(0);
     top: 0;
+    text-shadow: 1px 1px 0 #1bbcce, 0 0 10px #000;
+    color: #1a575f;
   }
   .logo:hover span {
     opacity: 0.4;
