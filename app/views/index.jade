@@ -13,6 +13,10 @@ html(lang="en")
       rel="stylesheet"
     )
     link(
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.css",
+      rel="stylesheet"
+    )
+    link(
       href="/css/kevinkace.css",
       rel="stylesheet"
     )
@@ -32,9 +36,9 @@ html(lang="en")
 
     footer
       .content
-        ul
-          each link in footer.links
-            li
+        ul.kace-g.guttered
+          each link, idx in footer.links
+            li(class="kace-u-1-#{footer.links.length}")
               a(class="btn btn-default", href="#{link.url}")
                 i(class="fa fa-#{link.title}")
                 span #{link.title}

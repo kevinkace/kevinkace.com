@@ -37,7 +37,7 @@ gulp.task("src",
         "fontAwesomeSrc",
         "pureBaseSrc",
         "pureGrid",
-        "lessSizes",
+        "lessBreakpoints",
         "lessMediaQueries"
     ],
     function() { return; }
@@ -133,8 +133,8 @@ gulp.task("pureGrid", function() {
 });
 
 // GEN | LESS SIZES -> SRC
-gulp.task("lessSizes", function() {
-    var lessSizes = Object.keys(opts.less.mediaQueries)
+gulp.task("lessBreakpoints", function() {
+    var lessBreakpoints = Object.keys(opts.less.mediaQueries)
             .reduce(function(prev, curr) {
                 var sizeDef = {
                         size  : curr,
@@ -144,7 +144,7 @@ gulp.task("lessSizes", function() {
                 return prev.concat(_.template("@<%= size %>: <%= width %>;\n")(sizeDef));
             }, "");
 
-    return file("sizes.less", lessSizes, { src : true })
+    return file("breakpoints.less", lessBreakpoints, { src : true })
         .pipe(gulp.dest("./src/less/vars"));
 });
 
