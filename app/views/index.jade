@@ -13,17 +13,13 @@ html(lang="en")
       rel="stylesheet"
     )
     link(
-      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.css",
-      rel="stylesheet"
-    )
-    link(
       href="/css/kevinkace.css",
       rel="stylesheet"
     )
   body
 
     header
-      .content
+      div.content
         h1.logo(data-rollText="Kace.com")
           a(href="/") Kevin
             em Kace
@@ -31,11 +27,11 @@ html(lang="en")
             span Cameron
 
     main
-      .content
+      div.content
         block content
 
     footer
-      .content
+      div.content
         ul.kace-g.guttered
           each link, idx in footer.links
             li(class="kace-u-1-#{footer.links.length}")
