@@ -1,0 +1,13 @@
+.growcon(@color-1: @color-theme-1, @color-2: @color-theme-1-2) {
+    color: @color-1;
+    text-shadow: 0   0   20px rgba(0, 0, 0, 0.5);
+    transition: font-size 0.2s,
+                text-shadow 0.2s;
+    &:hover {
+        font-size: 1.2em;
+        text-shadow: 3px 3px 0 @color-2,
+                     -3px -3px 0 red,
+                     3px -3px 0 orange,
+                     0   0   10px #000;
+    }
+}

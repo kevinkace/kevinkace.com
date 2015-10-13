@@ -1,3 +1,29 @@
+.blockon {
+  margin: 1.4em 0;
+}
+.blockon h3 {
+  margin: 0;
+}
+.blockon a {
+  display: block;
+  padding: 0.7em;
+  border: solid 1px rgba(255, 255, 255, 0.1);
+  border-right-color: rgba(0, 0, 0, 0.4);
+  border-bottom-color: rgba(0, 0, 0, 0.4);
+  text-shadow: 0 0 15px #000;
+  text-align: center;
+  background: -webkit-linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.2) 100%);
+  background: linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.2) 100%);
+  -webkit-transition: text-shadow 0.3s;
+          transition: text-shadow 0.3s;
+}
+.blockon a:hover {
+  text-shadow: 0 0 24px #000,
+                         0 0 24px #000,
+                         0 0 24px #000;
+  background: -webkit-linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%);
+  background: linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%);
+}
 /*!
 Pure v0.6.0
 Copyright 2014 Yahoo! Inc. All rights reserved.
@@ -1317,6 +1343,157 @@ https://github.com/yahoo/kace/blob/master/LICENSE.md
   .kace-u-pc-24-24 {
     width: 100%;
   }
+}
+/*!
+Pure v0.6.0
+Copyright 2014 Yahoo! Inc. All rights reserved.
+Licensed under the BSD License.
+https://github.com/yahoo/kace/blob/master/LICENSE.md
+*/
+.kace-menu {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.kace-menu-fixed {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 3;
+}
+.kace-menu-list,
+.kace-menu-item {
+  position: relative;
+}
+.kace-menu-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.kace-menu-item {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+}
+.kace-menu-link,
+.kace-menu-heading {
+  display: block;
+  text-decoration: none;
+  white-space: nowrap;
+}
+/*!
+Pure v0.6.0
+Copyright 2014 Yahoo! Inc. All rights reserved.
+Licensed under the BSD License.
+https://github.com/yahoo/kace/blob/master/LICENSE.md
+*/
+.kace-menu-horizontal {
+  width: 100%;
+  white-space: nowrap;
+}
+.kace-menu-horizontal .kace-menu-list {
+  display: inline-block;
+}
+.kace-menu-horizontal .kace-menu-item,
+.kace-menu-horizontal .kace-menu-heading,
+.kace-menu-horizontal .kace-menu-separator {
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
+  vertical-align: middle;
+}
+/*! Typebase.less v0.1.0 | MIT License */
+/* Setup */
+html {
+  /* Change default typefaces here */
+  font-family: "Noto Sans", Arial, Helvetica, sans-serif;
+  font-size: 100%;
+  -webkit-font-smoothing: antialiased;
+}
+/* Copy & Lists */
+p {
+  line-height: 1.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0;
+}
+ul,
+ol {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+ul li,
+ol li {
+  line-height: 1.5rem;
+}
+ul ul,
+ol ul,
+ul ol,
+ol ol {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+blockquote {
+  line-height: 1.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+/* Headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  /* Change heading typefaces here */
+  font-family: "Rokkitt", Georgia, "Times New Roman", serif;
+  margin-top: 1.5rem;
+  margin-bottom: 0;
+  line-height: 1.5rem;
+}
+h1 {
+  font-size: 4.242rem;
+  line-height: 4.5rem;
+  margin-top: 3rem;
+}
+h2 {
+  font-size: 2.828rem;
+  line-height: 3rem;
+  margin-top: 3rem;
+}
+h3 {
+  font-size: 1.414rem;
+}
+h4 {
+  font-size: 0.707rem;
+}
+h5 {
+  font-size: 0.47133333rem;
+}
+h6 {
+  font-size: 0.3535rem;
+}
+/* Tables */
+table {
+  margin-top: 1.5rem;
+  border-spacing: 0px;
+  border-collapse: collapse;
+}
+table td,
+table th {
+  padding: 0;
+  line-height: 24px;
+}
+/* Code blocks */
+code {
+  vertical-align: bottom;
+}
+/* Leading paragraph text */
+.lead {
+  font-size: 1.414rem;
+}
+/* Hug a the block above you */
+.hug {
+  margin-top: 0;
 }
 /*!
  *  Font Awesome 4.4.0 by @davegandy - http://fontawesome.io - @fontawesome
@@ -3347,6 +3524,7 @@ https://github.com/yahoo/kace/blob/master/LICENSE.md
   content: "\f280";
 }
 html {
+  position: relative;
   box-sizing: border-box;
 }
 *,
@@ -3356,9 +3534,12 @@ html {
 }
 html,
 body {
-  height: 100%;
+  min-height: 100%;
   margin: 0;
   padding: 0;
+}
+main {
+  margin-bottom: 70px;
 }
 .content {
   max-width: 60em;
@@ -3370,102 +3551,9 @@ body {
     padding: 0 29px;
   }
 }
-/*! Typebase.less v0.1.0 | MIT License */
-/* Setup */
-html {
-  /* Change default typefaces here */
-  font-family: "Noto Sans", Arial, Helvetica, sans-serif;
-  font-size: 100%;
-  -webkit-font-smoothing: antialiased;
-}
-/* Copy & Lists */
-p {
-  line-height: 1.5rem;
-  margin-top: 1.5rem;
-  margin-bottom: 0;
-}
-ul,
-ol {
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
-}
-ul li,
-ol li {
-  line-height: 1.5rem;
-}
-ul ul,
-ol ul,
-ul ol,
-ol ol {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-blockquote {
-  line-height: 1.5rem;
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
-}
-/* Headings */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  /* Change heading typefaces here */
-  font-family: "Rokkitt", Georgia, "Times New Roman", serif;
-  margin-top: 1.5rem;
-  margin-bottom: 0;
-  line-height: 1.5rem;
-}
-h1 {
-  font-size: 4.242rem;
-  line-height: 4.5rem;
-  margin-top: 3rem;
-}
-h2 {
-  font-size: 2.828rem;
-  line-height: 3rem;
-  margin-top: 3rem;
-}
-h3 {
-  font-size: 1.414rem;
-}
-h4 {
-  font-size: 0.707rem;
-}
-h5 {
-  font-size: 0.47133333rem;
-}
-h6 {
-  font-size: 0.3535rem;
-}
-/* Tables */
-table {
-  margin-top: 1.5rem;
-  border-spacing: 0px;
-  border-collapse: collapse;
-}
-table td,
-table th {
-  padding: 0;
-  line-height: 24px;
-}
-/* Code blocks */
-code {
-  vertical-align: bottom;
-}
-/* Leading paragraph text */
-.lead {
-  font-size: 1.414rem;
-}
-/* Hug a the block above you */
-.hug {
-  margin-top: 0;
-}
 body {
   color: #EEF3E8;
-  font-familty: "Noto Sans", Arial, Helvetica, sans-serif;
+  font-family: "Noto Sans", Arial, Helvetica, sans-serif;
 }
 h1,
 h2,
@@ -3477,13 +3565,26 @@ h5 {
 h1 {
   text-transform: uppercase;
 }
+h3 {
+  font: 200 2em/1 "Raleway", Arial, Helvetica, sans-serif;
+  text-transform: uppercase;
+}
+ul.flatlist,
+ol.flatlist {
+  margin: 0;
+  padding: 0;
+}
 a {
   color: #C3397E;
+  text-decoration: none;
 }
 .noTxt {
   display: inline-block;
   overflow: hidden;
   text-indent: -9999em;
+}
+.stroke {
+  text-shadow: 1px 1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, -1px -1px 0 #000;
 }
 body {
   background: #3a4549;
@@ -3502,9 +3603,7 @@ header {
   color: #1a575f;
   text-shadow: 1px 1px 0 #1bbcce, 0 0 10px #000;
   margin: 0;
-  line-height: 0.81;
-  font-weight: 100;
-  font-family: "Alfa Slab One", Georgia, "Times New Roman", serif;
+  font: 100 5em/0.82 "Alfa Slab One", Georgia, "Times New Roman", serif;
   -webkit-perspective: 800px;
           perspective: 800px;
 }
@@ -3517,7 +3616,7 @@ header {
   color: #0f3237;
   text-shadow: 1px 1px 0 #1593a1, 0 0 10px #000;
 }
-@media screen and (min-width: 60em) {
+@media screen and (min-width: 48em) {
   .logo em {
     display: inline-block;
     position: relative;
@@ -3538,14 +3637,14 @@ header {
 .logo span {
   display: block;
 }
-@media screen and (min-width: 60em) {
+@media screen and (min-width: 48em) {
   .logo span {
     opacity: 1;
     -webkit-transition: opacity 0.3s;
             transition: opacity 0.3s;
   }
 }
-@media screen and (min-width: 60em) {
+@media screen and (min-width: 48em) {
   .logo:hover em {
     -webkit-transform: rotateX(0);
             transform: rotateX(0);
@@ -3557,11 +3656,24 @@ header {
     opacity: 0.4;
   }
 }
+.container {
+  margin-bottom: 70px;
+}
+footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
 .icon-list {
-  margin-right: -2%;
-  margin-left: -2%;
+  position: relative;
+  height: 70px;
+  margin: 0.3em 0;
   padding: 0;
   text-align: center;
+  font-size: 3em;
+  margin-right: -2%;
+  margin-left: -2%;
 }
 .icon-list [class*="kace-u"] {
   padding-right: 2%;
@@ -3569,4 +3681,15 @@ header {
 }
 .icon-list a {
   color: #1a575f;
+  text-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  -webkit-transition: font-size 0.2s, text-shadow 0.2s;
+          transition: font-size 0.2s, text-shadow 0.2s;
+  position: absolute;
+  bottom: 0;
+  width: 1.6em;
+  margin-left: -0.8em;
+}
+.icon-list a:hover {
+  font-size: 1.2em;
+  text-shadow: 3px 3px 0 #1bbcce, -3px -3px 0 red, 3px -3px 0 orange, 0 0 10px #000;
 }

@@ -1,8 +1,26 @@
+.container {
+    margin-bottom: @footer-height;
+}
+footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
 .icon-list {
-    .guttered();
+    position: relative;
+    height: @footer-height;
+    margin: 0.3em 0;
     padding: 0;
     text-align: center;
+    font-size: 3em;
+    .guttered();
     a {
-        color: @color-theme-1;
+        .growcon();
+        position: absolute;
+        bottom: 0;
+        width: 1.6em;
+        margin-left: -0.8em;
     }
 }

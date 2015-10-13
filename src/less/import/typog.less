@@ -1,12 +1,16 @@
-@font-serif-1: "Alfa Slab One", Georgia, "Times New Roman", serif;
-@font-serif-2: "Rokkitt",       Georgia, "Times New Roman", serif;
-@font-sans-1: "Noto Sans", Arial, Helvetica, sans-serif;
+@font-serif: Georgia, "Times New Roman", serif;
+@font-sans: Arial, Helvetica, sans-serif;
 
-@import "../../libs/typebase/typebase";
+@font-serif-1: "Alfa Slab One", @font-serif;
+@font-serif-2: "Rokkitt",       @font-serif;
+@font-sans-1:  "Noto Sans",     @font-sans;
+@font-sans-2:  "Raleway",       @font-sans;
+
+// @import "../../libs/typebase/typebase";
 
 body {
     color: @color-type-1;
-    font-familty: @font-sans-1;
+    font-family: @font-sans-1;
 }
 
 h1,
@@ -19,13 +23,30 @@ h5 {
 h1 {
     text-transform: uppercase;
 }
+h2 {}
+h3 {
+    font: 200 2em/1 @font-sans-2;
+    text-transform: uppercase;
+}
+
+ul,
+ol {
+    &.flatlist {
+        margin: 0;
+        padding:0;
+    }
+}
 
 a {
     color: @color-link-1;
+    text-decoration: none;
 }
 
 .noTxt {
     display: inline-block;
     overflow: hidden;
     text-indent: -9999em;
+}
+.stroke {
+    .stroke();
 }
