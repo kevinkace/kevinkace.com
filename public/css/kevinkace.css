@@ -3480,6 +3480,11 @@ h1 {
 a {
   color: #C3397E;
 }
+.noTxt {
+  display: inline-block;
+  overflow: hidden;
+  text-indent: -9999em;
+}
 body {
   background: #3a4549;
   background: -webkit-radial-gradient(#3a4549 0%, #0f080b 100%);
@@ -3551,4 +3556,17 @@ header {
   .logo:hover span {
     opacity: 0.4;
   }
+}
+.icon-list {
+  margin-right: -2%;
+  margin-left: -2%;
+  padding: 0;
+  text-align: center;
+}
+.icon-list [class*="kace-u"] {
+  padding-right: 2%;
+  padding-left: 2%;
+}
+.icon-list a {
+  color: #1a575f;
 }

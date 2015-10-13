@@ -32,9 +32,17 @@ html(lang="en")
 
     footer
       div.content
-        ul.kace-g.guttered
+        ul.kace-g.icon-list.guttered
           each link, idx in footer.links
             li(class="kace-u-1-#{footer.links.length}")
               a(class="btn btn-default", href="#{link.url}")
-                i(class="fa fa-#{link.title}")
-                span #{link.title}
+                if link.icon && typeof link.icon === "string"
+                  i(class="fa fa-#{link.icon}")
+                else if link.icon && link.icon.length === 2
+                  span.fa-stack
+                    each icon, idx in link.icon
+                      - var inverse = idx === 0 ? "" : "fa-inverse"
+                      i(class="fa fa-#{icon} fa-stack-#{2 - idx}x #{inverse}")
+                else
+                  i(class="fa fa-#{link.title}")
+                span.noTxt= link.title
