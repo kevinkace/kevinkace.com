@@ -1,8 +1,6 @@
-.blockon {
-  margin: 1.4em 0;
-}
 .blockon h3 {
   margin: 0;
+  overflow: hidden;
 }
 .blockon a {
   display: block;
@@ -18,11 +16,19 @@
           transition: text-shadow 0.3s;
 }
 .blockon a:hover {
-  text-shadow: 0 0 24px #000,
-                         0 0 24px #000,
-                         0 0 24px #000;
   background: -webkit-linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%);
   background: linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%);
+}
+.blockon a:hover i {
+  text-shadow: 2px 2px 0 #842755, 2px -2px 0 #842755, -2px 2px 0 #842755, -2px -2px 0 #842755;
+  -webkit-transform: scale(1.8) rotate(18deg);
+          transform: scale(1.8) rotate(18deg);
+  -webkit-transition: -webkit-transform 5s cubic-bezier(0.06, 0.22, 0, 0.355), text-shadow 2s cubic-bezier(0.06, 0.22, 0, 0.355);
+          transition: transform 5s cubic-bezier(0.06, 0.22, 0, 0.355), text-shadow 2s cubic-bezier(0.06, 0.22, 0, 0.355);
+}
+.blockon i {
+  -webkit-transition: -webkit-transform 0.2s;
+          transition: transform 0.2s;
 }
 /*!
 Pure v0.6.0
@@ -3538,6 +3544,10 @@ body {
   margin: 0;
   padding: 0;
 }
+i {
+  display: inline-block;
+  font-style: normal;
+}
 main {
   margin-bottom: 70px;
 }
@@ -3584,7 +3594,7 @@ a {
   text-indent: -9999em;
 }
 .stroke {
-  text-shadow: 1px 1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, -1px -1px 0 #000;
+  text-shadow: 1px 1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, -1px -1px 0 #fff;
 }
 body {
   background: #3a4549;
