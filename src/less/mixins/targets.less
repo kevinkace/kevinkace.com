@@ -14,16 +14,15 @@
         background: linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, .2) 100%);
         transition: text-shadow 0.3s;
         &:hover {
-            // text-shadow: 0 0 24px #000,
-            //              0 0 24px #000,
-            //              0 0 24px #000;
+            text-shadow: 0 0 24px #000,
+                         0 0 30px #000,
+                         0 0 15px #000;
             background: linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%);
             i {
-
-            .stroke(2px, darken(@color-link-1, 16%));
-                transform: scale(1.8) rotate(18deg); 
+                // .stroke(2px, fadeout(@color-link-1, 50%));
+                transform: scale(1.8) rotate(18deg);
                 transition: transform   5s cubic-bezier(0.060, 0.220, 0.000, 0.355),
-                            text-shadow 2s cubic-bezier(0.060, 0.220, 0.000, 0.355);
+                            text-shadow 5s cubic-bezier(0.060, 0.220, 0.000, 0.355);
             }
         }
     }
