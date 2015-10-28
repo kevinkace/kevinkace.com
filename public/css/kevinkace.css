@@ -16,15 +16,17 @@
           transition: text-shadow 0.3s;
 }
 .blockon a:hover {
+  text-shadow: 0 0 24px #000,
+                         0 0 30px #000,
+                         0 0 15px #000;
   background: -webkit-linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%);
   background: linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%);
 }
 .blockon a:hover i {
-  text-shadow: 2px 2px 0 #842755, 2px -2px 0 #842755, -2px 2px 0 #842755, -2px -2px 0 #842755;
   -webkit-transform: scale(1.8) rotate(18deg);
           transform: scale(1.8) rotate(18deg);
-  -webkit-transition: -webkit-transform 5s cubic-bezier(0.06, 0.22, 0, 0.355), text-shadow 2s cubic-bezier(0.06, 0.22, 0, 0.355);
-          transition: transform 5s cubic-bezier(0.06, 0.22, 0, 0.355), text-shadow 2s cubic-bezier(0.06, 0.22, 0, 0.355);
+  -webkit-transition: -webkit-transform 5s cubic-bezier(0.06, 0.22, 0, 0.355), text-shadow 5s cubic-bezier(0.06, 0.22, 0, 0.355);
+          transition: transform 5s cubic-bezier(0.06, 0.22, 0, 0.355), text-shadow 5s cubic-bezier(0.06, 0.22, 0, 0.355);
 }
 .blockon i {
   -webkit-transition: -webkit-transform 0.2s;
@@ -3569,7 +3571,9 @@ h1,
 h2,
 h3,
 h4,
-h5 {
+h5,
+h6 {
+  margin: 0.8em 0 0.4em;
   font-family: "Rokkitt", Georgia, "Times New Roman", serif;
 }
 h1 {
