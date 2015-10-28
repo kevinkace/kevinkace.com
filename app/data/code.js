@@ -3,10 +3,11 @@
 module.exports = {
     projects : [
         {
-            title : "kevinkace.com",
-            url   : "http://github.com/kevinkace/kevinkace.com",
-            desc  : "This portfolio site. Express for routing &amp; template rendering, generate custom responsive grid using Rework Pure Grids.",
-            tech  : [
+            title  : "kevinkace.com",
+            url    : "http://github.com/kevinkace/kevinkace.com",
+            status : "production",
+            desc   : "kevinkace.md",
+            tech   : [
                 "node",
                 "express",
                 "gulp",
@@ -15,13 +16,53 @@ module.exports = {
                 "responsive"
             ]
         }, {
-            title : "GuildWars2.com",
-            url   : "http://guildwars2.com",
-            desc  : "Main informational and marketing site for the greatest MMORPG: <em>Guild Wars 2</em>. YUI module loading",
-            tech  : [
+            title  : "Guild Wars 2",
+            url    : "http://guildwars2.com",
+            status : "production",
+            desc   : "gw2.md",
+            tech   : [
                 "wordpress",
+                "javascript",
                 "yui",
                 "jssrv"
+            ]
+        }, {
+            title  : "Guild Wars 2 welcome sites",
+            url    : "https://welcome.guildwars2.com/welcome",
+            status : "production",
+            desc   : "welcome.md"
+            tech   : [
+                "yui3",
+                "responsive",
+                "less"
+            ]
+        }, {
+            title  : "Dragins",
+            url    : "http://demo.kevinkace.com/dragins",
+            status : "mvp",
+            desc   : "dragins.md",
+            tech   : [
+                "javascript",
+                "mithril"
+            ]
+        }, {
+            title  : "Skate Trick Tracker",
+            url    : "https://github.com/kevinkace/ttSails",
+            status : "incomplete",
+            desc   : "ttsails.md",
+            tech   : [
+                "sails",
+                "mithril"
+            ]
+        }, {
+            title  : "Anime-Planet",
+            url    : "http://anime-planet.com",
+            status : "production",
+            desc   : "ap.md",
+            tech   : [
+                "less",
+                "dullard",
+                "jquery"
             ]
         }
     ]

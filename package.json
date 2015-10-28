@@ -40,5 +40,8 @@
     "rework": "^1.0.1",
     "rework-pure-grids": "^1.0.0",
     "yargs": "^3.26.0"
+  },
+  "dependencies": {
+    "remarkable": "^1.6.0"
   }
 }
