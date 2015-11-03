@@ -16,4 +16,6 @@ block content
         a(href="http://instagram.com/kacekevin" class="kace-menu-link")
           i skating
 
-  
+  ul.portlist
+    each proj, idx in code.projects
+      li!= proj.longDesc

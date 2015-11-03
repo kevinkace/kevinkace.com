@@ -21,7 +21,7 @@ header {
         color: darken(@color-theme-1, 10%);
         text-shadow: 1px 1px 0    darken(@color-theme-1-2, 10%),
                      0   0   10px #000;
-        .tb({
+        .bp-tb({
             display: inline-block;
             position: relative;
             top: 0.13em;
@@ -41,13 +41,13 @@ header {
 
     span {
         display: block;
-        .tb({
+        .bp-tb({
             opacity: 1;
             transition: opacity 0.3s;
         });
     }
 
-    .tb({
+    .bp-tb({
         &:hover {
             em {
                 transform: rotateX(0);
