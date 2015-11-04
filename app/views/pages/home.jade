@@ -1,5 +1,9 @@
 extends ../index.jade
 
+block intro
+  div.intro
+    != sections.intro.content
+
 block content
   h2 Some things I'm into:
   ul.kace-g.flatlist
@@ -18,4 +22,5 @@ block content
 
   ul.portlist
     each proj, idx in code.projects
-      li!= proj.longDesc
+      li
+        != proj.longDesc

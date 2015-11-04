@@ -3583,6 +3583,9 @@ h3 {
   font: 200 2em/1 "Raleway", Arial, Helvetica, sans-serif;
   text-transform: uppercase;
 }
+p.imp {
+  font: 200 2em/1 "Raleway", Arial, Helvetica, sans-serif;
+}
 ul.flatlist,
 ol.flatlist {
   margin: 0;
