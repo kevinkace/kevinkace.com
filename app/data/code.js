@@ -3,11 +3,11 @@
 module.exports = {
     projects : [
         {
-            title   : "kevinkace.com",
-            url     : "http://github.com/kevinkace/kevinkace.com",
-            status  : "production",
-            descKey : "kevinkace.md",
-            tech    : [
+            title    : "kevinkace.com",
+            url      : "http://github.com/kevinkace/kevinkace.com",
+            status   : "production",
+            descPath : "code/kevinkace.md",
+            tech     : [
                 "node",
                 "express",
                 "gulp",
@@ -16,50 +16,50 @@ module.exports = {
                 "responsive"
             ]
         }, {
-            title   : "Guild Wars 2",
-            url     : "http://guildwars2.com",
-            status  : "production",
-            descKey : "gw2.md",
-            tech    : [
+            title    : "Guild Wars 2",
+            url      : "http://guildwars2.com",
+            status   : "production",
+            descPath : "code/gw2.md",
+            tech     : [
                 "wordpress",
                 "javascript",
                 "yui",
                 "jssrv"
             ]
         }, {
-            title   : "Guild Wars 2 welcome sites",
-            url     : "https://welcome.guildwars2.com/welcome",
-            status  : "production",
-            descKey : "welcome.md",
-            tech    : [
+            title    : "Guild Wars 2 welcome sites",
+            url      : "https://welcome.guildwars2.com/welcome",
+            status   : "production",
+            descPath : "code/welcome.md",
+            tech     : [
                 "yui3",
                 "responsive",
                 "less"
             ]
         }, {
-            title   : "Dragins",
-            url     : "http://demo.kevinkace.com/dragins",
-            status  : "mvp",
-            descKey : "dragins.md",
-            tech    : [
+            title    : "Dragins",
+            url      : "http://demo.kevinkace.com/dragins",
+            status   : "mvp",
+            descPath : "code/dragins.md",
+            tech     : [
                 "javascript",
                 "mithril"
             ]
         }, {
-            title   : "Skate Trick Tracker",
-            url     : "https://github.com/kevinkace/ttSails",
-            status  : "incomplete",
-            descKey : "ttsails.md",
-            tech    : [
+            title    : "Skate Trick Tracker",
+            url      : "https://github.com/kevinkace/ttSails",
+            status   : "incomplete",
+            descPath : "code/ttsails.md",
+            tech     : [
                 "sails",
                 "mithril"
             ]
         }, {
-            title   : "Anime-Planet",
-            url     : "http://anime-planet.com",
-            status  : "production",
-            descKey : "ap.md",
-            tech    : [
+            title    : "Anime-Planet",
+            url      : "http://anime-planet.com",
+            status   : "production",
+            descPath : "code/ap.md",
+            tech     : [
                 "less",
                 "dullard",
                 "jquery"
