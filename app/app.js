@@ -63,13 +63,13 @@ async.waterfall([
             }, function(err) {
                 if(err) {
                     // this will never run
-                    console.log(err : " not loaded");
+                    console.log(err + " not loaded");
                 }
                 cb(null, state);
             });
         });
     },
-    function runApp(state, cb) {
+    function runApp(state) {
         console.log("Start app");
         app.set("view engine", "jade");
         app.set("views", "./app/views");

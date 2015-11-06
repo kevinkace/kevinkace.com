@@ -1,2 +1,2 @@
-<p class="imp">I'm a fullstack webdev based in Seattle. <br>
+<p class="imp">I'm a full stack webdev based in Seattle. <br>
 I like frontend and thinking about user experience.</p>
