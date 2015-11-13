@@ -32,6 +32,30 @@
   -webkit-transition: -webkit-transform 0.2s;
           transition: transform 0.2s;
 }
+.cont {
+  display: inline-block;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  margin-left: -30px;
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+  border: solid 4px #2E3437;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+.cont:after {
+  position: absolute;
+  content: "";
+  top: 6px;
+  left: 11px;
+  width: 30px;
+  height: 30px;
+  border: solid 8px rgba(26, 87, 95, 0.5);
+  border-width: 8px 8px 0 0;
+  -webkit-transform: rotate(135deg);
+          transform: rotate(135deg);
+}
 /*!
 Pure v0.6.0
 Copyright 2014 Yahoo! Inc. All rights reserved.
@@ -3546,6 +3570,9 @@ body {
   margin: 0;
   padding: 0;
 }
+body {
+  position: relative;
+}
 i {
   display: inline-block;
   font-style: normal;
@@ -3562,6 +3589,24 @@ main {
   .content {
     padding: 0 29px;
   }
+}
+.slide {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background: -webkit-radial-gradient(#3a4549 0%, #0f080b 100%);
+  background: radial-gradient(#3a4549 0%, #0f080b 100%);
+}
+.align {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 body {
   color: #EEF3E8;
@@ -3604,16 +3649,17 @@ a {
   text-shadow: 1px 1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, -1px -1px 0 #fff;
 }
 body {
-  background: #3a4549;
-  background: -webkit-radial-gradient(#3a4549 0%, #0f080b 100%);
-  background: radial-gradient(#3a4549 0%, #0f080b 100%);
+  background: #000;
 }
 header {
-  background: rgba(0, 0, 0, 0.2);
-}
-header {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
   margin: 1em 0;
   padding: 2em 0;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.2);
   box-shadow: 0 -10px 24px rgba(255, 255, 255, 0.1);
 }
 .logo {
@@ -3672,6 +3718,16 @@ header {
   .logo:hover span {
     opacity: 0.4;
   }
+}
+.links {
+  text-align: center;
+  font-size: 2em;
+  margin-right: -2%;
+  margin-left: -2%;
+}
+.links [class*="kace-u"] {
+  padding-right: 2%;
+  padding-left: 2%;
 }
 .container {
   margin-bottom: 70px;

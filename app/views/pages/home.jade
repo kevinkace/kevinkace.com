@@ -1,26 +1,34 @@
 extends ../index.jade
 
 block intro
-  div.intro
+  div.content
     != sections.intro
+    ul.kace-g.links
+      each link in footer.links
+        li(class="kace-u-1-#{footer.links.length}")
+          a(class="btn btn-default", href="#{link.url}")
+            i(class="fa fa-#{link.icon}")
+            span.noTxt= link.title
+    a.cont(href="#more")
 
 block content
-  h2 Some things I'm into:
-  ul.kace-g.flatlist
-    li.kace-u-1-1.kace-u-tb-1-3.blockon
-      h3
-        a(href="/code" class="kace-menu-link")
-          i code
-    li.kace-u-1-1.kace-u-tb-1-3.blockon
-      h3
-        a(href="http://kaceaudio.com" class="kace-menu-link")
-          i audio
-    li.kace-u-1-1.kace-u-tb-1-3.blockon
-      h3
-        a(href="http://instagram.com/kacekevin" class="kace-menu-link")
-          i skating
+  div.content#more
+    h2 Some things I'm into:
+    ul.kace-g.flatlist
+      li.kace-u-1-1.kace-u-tb-1-3.blockon
+        h3
+          a(href="/code" class="kace-menu-link")
+            i code
+      li.kace-u-1-1.kace-u-tb-1-3.blockon
+        h3
+          a(href="http://kaceaudio.com" class="kace-menu-link")
+            i audio
+      li.kace-u-1-1.kace-u-tb-1-3.blockon
+        h3
+          a(href="http://instagram.com/kacekevin" class="kace-menu-link")
+            i skating
 
-  ul.portlist
-    each proj, idx in code.projects
-      li
-        != proj.longDesc
+    ul.portlist
+      each proj, idx in code.projects
+        li
+          != proj.longDesc

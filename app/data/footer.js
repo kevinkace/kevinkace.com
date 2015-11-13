@@ -5,7 +5,8 @@ module.exports = {
     links : [
         {
             title : "github",
-            url   : "http://github.com/kevinkace"
+            url   : "http://github.com/kevinkace",
+            icon  : "github"
         }, {
             title : "linkedin",
             url   : "https://www.linkedin.com/in/kevinkace",
@@ -16,10 +17,12 @@ module.exports = {
             icon  : "soundcloud"
         }, {
             title : "twitter",
-            url   : "http://twitter.com/kevinkace"
+            url   : "http://twitter.com/kevinkace",
+            icon  : "twitter"
         }, {
             title : "instagram",
-            url   : "http://instagram.com/kacekevin"
+            url   : "http://instagram.com/kacekevin",
+            icon  : "instagram"
         }
     ]
 };
