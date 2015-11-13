@@ -1,16 +1,25 @@
+/*! Typebase.less v0.1.0 | MIT License */
+
 @font-serif: Georgia, "Times New Roman", serif;
 @font-sans: Arial, Helvetica, sans-serif;
 
 @font-serif-1: "Alfa Slab One", @font-serif;
 @font-serif-2: "Rokkitt",       @font-serif;
-@font-sans-1:  "Noto Sans",     @font-sans;
+@font-sans-1:  "Pontano Sans",  @font-sans;
 @font-sans-2:  "Raleway",       @font-sans;
 
-// @import "../../libs/typebase/typebase";
+@baseFontSize: @font-baseSize;
+@baseLineHeight: 1.5;
+@leading: @baseLineHeight * 1rem;
+@scale: 1.414;
 
-body {
-    color: @color-type-1;
+html {
+    /* Change default typefaces here */
     font-family: @font-sans-1;
+    font-size: @baseFontSize / 16 * 100%;
+
+    // Make everything look a little nicer in webkit
+    -webkit-font-smoothing: antialiased;
 }
 
 h1,
@@ -19,26 +28,65 @@ h3,
 h4,
 h5,
 h6 {
-    margin: 0.8em 0 0.4em;
     font-family: @font-serif-2;
+    margin-top: @leading;
+    margin-bottom: 0;
+    line-height: @leading;
 }
+
 h1 {
+    margin-top: 2 * @leading;
+    font-size: 3 * @scale * 1rem;
+    line-height: 3 * @leading;
     text-transform: uppercase;
 }
-h2 {}
+h2 {
+    margin-top: 2 * @leading;
+    font-size: 2 * @scale * 1rem;
+    line-height: 2 * @leading;
+}
 h3 {
     font: 200 2em/1 @font-sans-2;
     text-transform: uppercase;
 }
+h4 {
+    font-size: @scale / 2 * 1rem;
+}
+h5 {
+    font-size: @scale / 3 * 1rem;
+}
+h6 {
+    font-size: @scale / 4 * 1rem;
+}
 
+/* Copy & Lists */
 p {
+    margin-top: @leading;
+    margin-bottom: 0;
+    line-height: @leading;
     &.imp {
-        font: 200 2em/1 @font-sans-2;
+        font: 200 2em/1.4 @font-sans-2;
+    }
+    a {
+        text-decoration: underline;
     }
 }
 
 ul,
 ol {
+    margin-top: @leading;
+    margin-bottom: @leading;
+    padding-left: 1.5em;
+
+    li {
+        line-height: @leading;
+    }
+
+    ul, ol {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
     &.flatlist {
         margin: 0;
         padding: 0;
@@ -46,15 +94,45 @@ ol {
 }
 
 a {
-    color: @color-link-1;
     text-decoration: none;
+}
+
+blockquote {
+    line-height: @leading;
+    margin-top: @leading;
+    margin-bottom: @leading;
+}
+
+table {
+    margin-top: @leading;
+    border-spacing: 0px;
+    border-collapse: collapse;
+
+    td, th {
+        padding: 0;
+        line-height: @baseLineHeight * @baseFontSize - 0px;
+    }
+}
+
+code {
+    // Forces text to constrain to the line-height. Not ideal, but works.
+    vertical-align: bottom;
+}
+
+.lead {
+    font-size: @scale * 1rem;
+}
+
+.hug {
+    margin-top: 0;
+}
+
+.stroke {
+    .stroke();
 }
 
 .noTxt {
     display: inline-block;
     overflow: hidden;
     text-indent: -9999em;
-}
-.stroke {
-    .stroke();
 }
