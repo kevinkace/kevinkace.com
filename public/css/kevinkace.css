@@ -1431,99 +1431,6 @@ https://github.com/yahoo/kace/blob/master/LICENSE.md
   zoom: 1;
   vertical-align: middle;
 }
-/*! Typebase.less v0.1.0 | MIT License */
-/* Setup */
-html {
-  /* Change default typefaces here */
-  font-family: "Noto Sans", Arial, Helvetica, sans-serif;
-  font-size: 100%;
-  -webkit-font-smoothing: antialiased;
-}
-/* Copy & Lists */
-p {
-  line-height: 1.5rem;
-  margin-top: 1.5rem;
-  margin-bottom: 0;
-}
-ul,
-ol {
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
-}
-ul li,
-ol li {
-  line-height: 1.5rem;
-}
-ul ul,
-ol ul,
-ul ol,
-ol ol {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-blockquote {
-  line-height: 1.5rem;
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
-}
-/* Headings */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  /* Change heading typefaces here */
-  font-family: "Rokkitt", Georgia, "Times New Roman", serif;
-  margin-top: 1.5rem;
-  margin-bottom: 0;
-  line-height: 1.5rem;
-}
-h1 {
-  font-size: 4.242rem;
-  line-height: 4.5rem;
-  margin-top: 3rem;
-}
-h2 {
-  font-size: 2.828rem;
-  line-height: 3rem;
-  margin-top: 3rem;
-}
-h3 {
-  font-size: 1.414rem;
-}
-h4 {
-  font-size: 0.707rem;
-}
-h5 {
-  font-size: 0.47133333rem;
-}
-h6 {
-  font-size: 0.3535rem;
-}
-/* Tables */
-table {
-  margin-top: 1.5rem;
-  border-spacing: 0px;
-  border-collapse: collapse;
-}
-table td,
-table th {
-  padding: 0;
-  line-height: 24px;
-}
-/* Code blocks */
-code {
-  vertical-align: bottom;
-}
-/* Leading paragraph text */
-.lead {
-  font-size: 1.414rem;
-}
-/* Hug a the block above you */
-.hug {
-  margin-top: 0;
-}
 /*!
  *  Font Awesome 4.4.0 by @davegandy - http://fontawesome.io - @fontawesome
  *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
@@ -3605,9 +3512,12 @@ main {
       -ms-flex-pack: center;
           justify-content: center;
 }
-body {
-  color: #EEF3E8;
-  font-family: "Noto Sans", Arial, Helvetica, sans-serif;
+/*! Typebase.less v0.1.0 | MIT License */
+html {
+  /* Change default typefaces here */
+  font-family: "Pontano Sans", Arial, Helvetica, sans-serif;
+  font-size: 100%;
+  -webkit-font-smoothing: antialiased;
 }
 h1,
 h2,
@@ -3615,18 +3525,63 @@ h3,
 h4,
 h5,
 h6 {
-  margin: 0.8em 0 0.4em;
   font-family: "Rokkitt", Georgia, "Times New Roman", serif;
+  margin-top: 1.5rem;
+  margin-bottom: 0;
+  line-height: 1.5rem;
 }
 h1 {
+  margin-top: 3rem;
+  font-size: 4.242rem;
+  line-height: 4.5rem;
   text-transform: uppercase;
+}
+h2 {
+  margin-top: 3rem;
+  font-size: 2.828rem;
+  line-height: 3rem;
 }
 h3 {
   font: 200 2em/1 "Raleway", Arial, Helvetica, sans-serif;
   text-transform: uppercase;
 }
+h4 {
+  font-size: 0.707rem;
+}
+h5 {
+  font-size: 0.47133333rem;
+}
+h6 {
+  font-size: 0.3535rem;
+}
+/* Copy & Lists */
+p {
+  margin-top: 1.5rem;
+  margin-bottom: 0;
+  line-height: 1.5rem;
+}
 p.imp {
-  font: 200 2em/1 "Raleway", Arial, Helvetica, sans-serif;
+  font: 200 2em/1.4 "Raleway", Arial, Helvetica, sans-serif;
+}
+p a {
+  text-decoration: underline;
+}
+ul,
+ol {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding-left: 1.5em;
+}
+ul li,
+ol li {
+  line-height: 1.5rem;
+}
+ul ul,
+ol ul,
+ul ol,
+ol ol {
+  margin-top: 0;
+  margin-bottom: 0;
 }
 ul.flatlist,
 ol.flatlist {
@@ -3634,19 +3589,46 @@ ol.flatlist {
   padding: 0;
 }
 a {
-  color: #C3397E;
   text-decoration: none;
+}
+blockquote {
+  line-height: 1.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+table {
+  margin-top: 1.5rem;
+  border-spacing: 0px;
+  border-collapse: collapse;
+}
+table td,
+table th {
+  padding: 0;
+  line-height: 24px;
+}
+code {
+  vertical-align: bottom;
+}
+.lead {
+  font-size: 1.414rem;
+}
+.hug {
+  margin-top: 0;
+}
+.stroke {
+  text-shadow: 1px 1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, -1px -1px 0 #fff;
 }
 .noTxt {
   display: inline-block;
   overflow: hidden;
   text-indent: -9999em;
 }
-.stroke {
-  text-shadow: 1px 1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, -1px -1px 0 #fff;
-}
 body {
+  color: #EEF3E8;
   background: #000;
+}
+a {
+  color: #C3397E;
 }
 header {
   position: absolute;
@@ -3668,6 +3650,7 @@ header {
           perspective: 800px;
 }
 .logo a {
+  display: block;
   color: inherit;
   text-decoration: none;
 }
@@ -3713,8 +3696,16 @@ header {
     color: #1a575f;
   }
   .logo:hover span {
-    opacity: 0.4;
+    opacity: 0.3;
   }
+}
+p + p {
+  opacity: 0.8;
+  font-size: 1.7em !important;
+}
+p + p + p {
+  opacity: 0.5;
+  font-size: 1.4em !important;
 }
 .links {
   text-align: center;

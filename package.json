@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/kevinkace/kevinkace.com#readme",
   "devDependencies": {
+    "animatic": "^1.0.0",
     "express": "^4.13.3",
     "font-awesome": "^4.4.0",
     "gulp": "^3.9.0",

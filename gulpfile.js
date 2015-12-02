@@ -36,6 +36,7 @@ gulp.task("src",
     [
         "fontAwesomeSrc",
         "pureBaseSrc",
+        "animaticSrc",
         "pureGrid",
         "lessBreakpoints",
         "lessMediaQueries"
@@ -46,7 +47,8 @@ gulp.task("src",
 gulp.task("public",
     [
         "imgsPublic",
-        "fontsPublic"
+        "fontsPublic",
+        "jsPublic"
     ],
     function() { return; }
 );
@@ -114,6 +116,14 @@ gulp.task("pureBaseSrc", function() {
         .pipe(gulp.dest("./src/libs/pure"));
 });
 
+// ANIMATIC | NPM -> SRC
+gulp.task("animaticSrc", function() {
+    return gulp.src([
+            "./node_modules/animatic/animatic.js"
+        ])
+        .pipe(gulp.dest("./src/libs/animatic"));
+});
+
 // GEN | PURE GRIDS -> SRC
 gulp.task("pureGrid", function() {
     var lessPureGrid = rework("")
@@ -141,7 +151,7 @@ gulp.task("lessBreakpoints", function() {
                         width : ensureEm(opts.less.mediaQueries[curr], opts.less.basePx)
                     };
 
-                return prev.concat(_.template("@<%= size %>: <%= width %>;\n")(sizeDef));
+                return prev.concat(_.template("@bp-<%= size %>: <%= width %>;\n")(sizeDef));
             }, "");
 
     return file("breakpoints.less", lessBreakpoints, { src : true })
@@ -151,7 +161,7 @@ gulp.task("lessBreakpoints", function() {
 // GEN | MEDIA QUERIES -> SRC
 gulp.task("lessMediaQueries", function() {
     var lessMediaQueries = _.reduce(opts.less.mediaQueries, function(prev, curr, idx) {
-            return prev.concat(_.template(".<%= size %>(@rules) {\n\t@media screen and (min-width: @<%- size %>) {\n\t\t@rules();\n\t}\n}\n\n")({ size : idx }));
+            return prev.concat(_.template(".bp-<%= size %>(@rules) {\n\t@media screen and (min-width: @bp-<%- size %>) {\n\t\t@rules();\n\t}\n}\n\n")({ size : idx }));
         }, "");
 
     return file("media-queries.less", lessMediaQueries, { src : true })
@@ -180,6 +190,10 @@ gulp.task("fontsPublic", function() {
 gulp.task("imgsPublic", function() {
     return gulp.src("./src/imgs/*")
         .pipe(gulp.dest("./public/imgs"));
+});
+
+// JS | SRC -> PUBLIC
+gulp.task("jsPublic", function() {
 });
 
 // gulp.task("less:prod", function() {
