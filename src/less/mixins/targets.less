@@ -32,7 +32,7 @@
 }
 
 .target-circ {
-    @size: 60px;
+    @size: 80px;
     position: relative;
     display: inline-block;
     width: @size;
@@ -40,16 +40,23 @@
     border-radius: @size/2;
     border: solid 4px #2E3437;
     background-color: rgba(0, 0, 0, 0.6);
-    &.target-chev:after {
-        @thickness: 8px;
+}
+.target-chev {
+    @size: 200px;
+    position: relative;
+    display: inline-block;
+    width: @size;
+    height: @size/2;
+    &:after {
+        @thickness: 16px;
         position: absolute;
         content: "";
-        top: @size/6-@thickness/2;
+        top: 0; /*@size/6-@thickness/2;*/
         left: @size/4-@thickness/2;
         width: @size/2;
         height: @size/2;
         border: solid @thickness fadeout(@color-theme-1, 20%);
         border-width: @thickness @thickness 0 0;
-        transform: rotate(135deg);
+        transform: rotateX(50deg) rotate(135deg);
     }
 }

@@ -6,11 +6,11 @@ module.exports = {
         {
             title : "github",
             url   : "http://github.com/kevinkace",
-            icon  : "github"
+            icon  : "github-alt"
         }, {
             title : "linkedin",
             url   : "https://www.linkedin.com/in/kevinkace",
-            icon  : "linkedin-square"
+            icon  : "linkedin"
         }, {
             title : "soundcloud",
             url   : "http://soundcloud.com",
