@@ -1,5 +1,16 @@
 .links {
     text-align: center;
-    font-size: 2em;
+    font-size: 2.4em;
     .guttered();
+    a {
+        color: @color-theme-1;
+    }
+}
+
+a[href="#more"] {
+    @size: 60px;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    margin-left: -@size/2;
 }
