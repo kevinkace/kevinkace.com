@@ -3492,7 +3492,7 @@ main {
   margin-bottom: 70px;
 }
 .content {
-  width: 60em;
+  max-width: 60em;
   margin: 0 auto;
   padding: 0 3%;
 }
@@ -3508,13 +3508,21 @@ main {
   background: -webkit-radial-gradient(#3a4549 0%, #0f080b 100%);
   background: radial-gradient(#3a4549 0%, #0f080b 100%);
 }
-.align {
+.align.align-v {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
+}
+.align.align-v > div {
+  width: 100%;
+}
+.align.align-h {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-justify-content: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -3568,7 +3576,7 @@ p {
   line-height: 1.5rem;
 }
 p.imp {
-  font: 200 3em/1.4 "Raleway", Arial, Helvetica, sans-serif;
+  font: 200 3em/1.1 "Raleway", Arial, Helvetica, sans-serif;
 }
 p a {
   text-decoration: underline;
@@ -3638,7 +3646,7 @@ a {
   color: #8E8E42;
 }
 header {
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   left: 0;
@@ -3706,21 +3714,27 @@ header {
     opacity: 0.3;
   }
 }
+.intro.slide {
+  height: 90vh;
+  padding-top: 10vh;
+}
 .l-1 {
   display: block;
   -webkit-animation: fadein 2s 1;
           animation: fadein 2s 1;
 }
-.l-2 {
+.l-2,
+.l-3 {
   display: block;
+  margin-top: 0.2em;
   opacity: 0;
+}
+.l-2 {
   font-size: 0.7em !important;
   -webkit-animation: fadeinup 2s 0.4s 1 forwards;
           animation: fadeinup 2s 0.4s 1 forwards;
 }
 .l-3 {
-  display: block;
-  opacity: 0;
   font-size: 0.6em !important;
   -webkit-animation: fadeinup2 1.5s 1s 1 forwards;
           animation: fadeinup2 1.5s 1s 1 forwards;
@@ -3815,7 +3829,7 @@ a[href="#more"] {
   position: absolute;
   bottom: 20px;
   left: 50%;
-  margin-left: -30px;
+  margin-left: -100px;
 }
 .container {
   margin-bottom: 70px;

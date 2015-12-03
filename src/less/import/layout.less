@@ -28,7 +28,7 @@ main {
 }
 
 .content {
-    width: @bp-pc;
+    max-width: @bp-pc;
     margin: 0 auto;
     padding: 0 3%;
     .bp-pc({
@@ -44,7 +44,15 @@ main {
 }
 
 .align {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    &.align-v {
+        display: flex;
+        align-items: center;
+        > div {
+            width: 100%;
+        }
+    }
+    &.align-h {
+        display: flex;
+        justify-content: center;
+    }
 }

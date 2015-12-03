@@ -5,8 +5,8 @@ block intro
     != sections.intro
     ul.kace-g.links
       each link in footer.links
-        li(class="kace-u-1-#{footer.links.length} align")
-          a(class="target-circ align", href="#{link.url}")
+        li(class="kace-u-1-#{footer.links.length} align align-h")
+          a(class="target-circ align align-v align-h", href="#{link.url}")
             i(class="fa fa-#{link.icon}")
             span.noTxt= link.title
     a.target-chev(href="#more")
