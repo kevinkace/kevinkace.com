@@ -9,7 +9,7 @@
 @font-sans-2:  "Raleway",       @font-sans;
 
 @baseFontSize: @font-baseSize;
-@baseLineHeight: 1.5;
+@baseLineHeight: 2;
 @leading: @baseLineHeight * 1rem;
 @scale: 1.414;
 
@@ -41,7 +41,7 @@ h1 {
     text-transform: uppercase;
 }
 h2 {
-    margin-top: 2 * @leading;
+    margin-top: 4 * @leading;
     font-size: 2 * @scale * 1rem;
     line-height: 2 * @leading;
 }
@@ -74,21 +74,17 @@ p {
 
 ul,
 ol {
-    margin-top: @leading;
-    margin-bottom: @leading;
+    margin-top: @leading/2;
+    margin-bottom: @leading/2;
+    margin-left: 1em;
     padding-left: 1.5em;
 
     li {
         line-height: @leading;
     }
 
-    ul, ol {
-        margin-top: 0;
-        margin-bottom: 0;
-    }
-
     &.flatlist {
-        margin: 0;
+        margin: 1em 0 0;
         padding: 0;
     }
 }

@@ -18,7 +18,7 @@ html(lang="en")
     )
   body
 
-    header
+    header#header
       div.content
         h1.logo(data-rollText="Kace.com")
           a(href="/") Kevin
@@ -48,3 +48,7 @@ html(lang="en")
                 else
                   i(class="fa fa-#{link.title}")
                 span.noTxt= link.title
+
+    script(
+      src="/js/kevinkace.js"
+    )

@@ -1,1 +1,3 @@
-A website for anime & manga cataloging, recommendations, reviews, etc. This is actually [my wife's](http://twitter.com/animeplanet) site, which I've ended up working on in various capacities, including feature design, UX, UI design, and some (mostly frontend) coding. Backend is a LAPP stack (Postgres over MySql), frontend uses Less, jQuery and dullard for some small build tasks.
+### [Anime-Planet](http://anime-planet.com)
+
+A website for anime & manga cataloging, recommendations, reviews, etc. This is actually [my wife's](http://twitter.com/animeplanet) site, which I'd worked on in various capacities, including feature design, UX, UI design, and some (mostly frontend) coding. Backend is a LAPP stack, frontend uses Less, jQuery, and [dullard](https://github.com/tivac/dullard) for some small build tasks.
