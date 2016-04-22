@@ -13,7 +13,7 @@ module.exports = {
             icon  : "linkedin"
         }, {
             title : "soundcloud",
-            url   : "http://soundcloud.com",
+            url   : "http://soundcloud.com/kace-1",
             icon  : "soundcloud"
         }, {
             title : "twitter",

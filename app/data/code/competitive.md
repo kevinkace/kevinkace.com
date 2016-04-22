@@ -1,0 +1,3 @@
+### [Guild Wars 2 Competitive](https://competitive.guildwars2.com/)
+
+And *another* site I built while at [ArenaNet](https://www.arena.net), to promote our venture into [esports](/img/esports.gif) with [ESL](http://www.eslgaming.com/). Data was fed into the site from ESLs API (game data) and from [Firebase](https://www.firebase.com/) which a custom CMS wrote to. Site front-end using [Mithril](http://mithril.js.org/) and [Modular-CSS](https://github.com/tivac/modular-css).
