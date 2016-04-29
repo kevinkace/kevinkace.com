@@ -2,4 +2,4 @@
 
 About time I made a portfolio site.
 
-Uses [LiveReload](https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei/related?hl=en) Chrome extension.
+Check [here](https://github.com/kevinkace/kevinkace.com/blob/master/app/data/code/kevinkace.md) for the details.
