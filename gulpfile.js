@@ -1,4 +1,3 @@
-// jshint node:true
 "use strict";
 
 var argv       = require("yargs").argv,
@@ -9,6 +8,11 @@ var argv       = require("yargs").argv,
     less       = require("gulp-less"),
     minify     = require("gulp-minify-css"),
     rename     = require("gulp-rename"),
+    watchify   = require("watchify"),
+    browserify = require("browserify"),
+    source     = require("vinyl-source-stream"),
+    buffer     = require("vinyl-buffer"),
+    sourcemaps = require("gulp-sourcemaps"),
     gutil      = require("gulp-util"),
     strip      = require("gulp-strip-comments"),
     replace    = require("gulp-replace"),
@@ -20,14 +24,17 @@ var argv       = require("yargs").argv,
     pureGrids  = require("rework-pure-grids"),
     merge      = require("merge-stream"),
     opts       = require("./build/opts.js"),
-    ensureEm   = require("./build/ensureem.js");
+    ensureEm   = require("./build/ensureem.js"),
 
-
+    browserifyOpts = {
+        entries : [ "./src/js/index.js" ],
+        debug   : true
+    },
+    bOpts = _.assign({}, watchify.args, browserifyOpts),
+    b     = watchify(browserify(bOpts));
 
 gulp.task("default",
-    [
-        "dev"
-    ],
+    [ "dev" ],
     function() { return; }
 );
 
@@ -54,11 +61,29 @@ gulp.task("public",
 );
 
 
+gulp.task("bundle", bundle);
+b.on("update", bundle);
+b.on("log", gutil.log);
+b.transform("babelify", { presets : [ "es2015" ] });
+
+
+function bundle() {
+    return b.bundle()
+        .on("error", gutil.log.bind(gutil, "Browserify error"))
+        .pipe(source("index.js"))
+        .pipe(buffer())
+        .pipe(sourcemaps.init({ loadMaps : true }))
+        .pipe(sourcemaps.write("./"))
+        .pipe(gulp.dest("./public/js"));
+}
+
+
 gulp.task("dev",
     [
         "lessc",
         "public",
-        "startApp"
+        "startApp",
+        "bundle"
     ],
     function() { return; }
 );
@@ -75,8 +100,9 @@ gulp.task("dev:watch",
             gutil.log("app change");
             server.start.bind(server)();
         });
+
         gulp.watch("./public/**", function(file) {
-            server.notify.apply(server, [file]);
+            server.notify.apply(server, [ file ]);
         });
     }
 );
@@ -91,9 +117,9 @@ gulp.task("startApp", function() {
 // FONTAWESOME | NPM -> SRC
 gulp.task("fontAwesomeSrc", function() {
     var tasks = [ "less", "fonts" ].map(function(dir) {
-            return gulp.src(_.template("./node_modules/font-awesome/<%- dir %>/*")({ dir : dir }))
-                .pipe(gulp.dest("./src/libs/font-awesome/" + dir));
-            });
+            return gulp.src(_.template(`./node_modules/font-awesome/${dir}/*`))
+            .pipe(gulp.dest(`./src/libs/font-awesome/${dir}`));
+        });
 
     return merge(tasks);
 });
@@ -161,7 +187,13 @@ gulp.task("lessBreakpoints", function() {
 // GEN | MEDIA QUERIES -> SRC
 gulp.task("lessMediaQueries", function() {
     var lessMediaQueries = _.reduce(opts.less.mediaQueries, function(prev, curr, idx) {
-            return prev.concat(_.template(".bp-<%= size %>(@rules) {\n\t@media screen and (min-width: @bp-<%- size %>) {\n\t\t@rules();\n\t}\n}\n\n")({ size : idx }));
+            return prev.concat(_.template(
+`.bp-<%= size %>(@rules) {
+    @media screen and (min-width: @bp-<%- size %>) {
+        @rules();
+    }
+}\n\n`
+            )({ size : idx }));
         }, "");
 
     return file("media-queries.less", lessMediaQueries, { src : true })
@@ -172,7 +204,7 @@ gulp.task("lessMediaQueries", function() {
 // LESS | COMPILE -> PUBLIC
 gulp.task("lessc", function() {
     return gulp.src("./src/less/*.less")
-        .pipe(less({ paths : path.join(__dirname, "./src/less/import" ) }))
+        .pipe(less({ paths : path.join(__dirname, "./src/less/import") }))
         .pipe(prefixer(opts.prefixer))
         .pipe(gulp.dest("./public/css"));
 });
