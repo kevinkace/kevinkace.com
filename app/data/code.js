@@ -37,6 +37,16 @@ module.exports = {
                 "less"
             ]
         }, {
+            title    : "Guild Wars 2 competitive sites",
+            url      : "https://competitive.guildwars2.com/",
+            status   : "production",
+            descPath : "code/competitive.md",
+            tech     : [
+                "mithril",
+                "responsive",
+                "modular-css"
+            ]
+        }, {
             title    : "Dragins",
             url      : "http://demo.kevinkace.com/dragins",
             status   : "mvp",

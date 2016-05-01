@@ -10,7 +10,7 @@
 
 @baseFontSize: @font-baseSize;
 @baseLineHeight: 2;
-@leading: @baseLineHeight * 1rem;
+@leading: @baseLineHeight/1.2;
 @scale: 1.414;
 
 html {
@@ -22,6 +22,14 @@ html {
     -webkit-font-smoothing: antialiased;
 }
 
+body {
+    font-size: 0.7em;
+
+    .bp-pc({
+        font-size: 1em;
+    });
+}
+
 h1,
 h2,
 h3,
@@ -29,58 +37,59 @@ h4,
 h5,
 h6 {
     font-family: @font-serif-2;
-    margin-top: @leading;
+    margin-top: @leading * 1em;
     margin-bottom: 0;
-    line-height: @leading;
+    line-height: @leading/2;
 }
 
 h1 {
-    margin-top: 2 * @leading;
-    font-size: 3 * @scale * 1rem;
+    margin-top: @leading * 2em;
+    font-size: @baseFontSize * @scale * 3em;
     line-height: 3 * @leading;
     text-transform: uppercase;
 }
 h2 {
-    margin-top: 4 * @leading;
-    font-size: 2 * @scale * 1rem;
-    line-height: 2 * @leading;
+    margin-top: @leading *1em;
+    font-size: 2.6 * @scale * 1em;
+    // text-transform: uppercase;
 }
 h3 {
     font: 200 2em/1 @font-sans-2;
     text-transform: uppercase;
 }
 h4 {
-    font-size: @scale / 2 * 1rem;
+    font-size: @scale / 2 * 1em;
 }
 h5 {
-    font-size: @scale / 3 * 1rem;
+    font-size: @scale / 3 * 1em;
 }
 h6 {
-    font-size: @scale / 4 * 1rem;
+    font-size: @scale / 4 * 1em;
 }
 
 /* Copy & Lists */
 p {
-    margin-top: @leading;
+    margin-top: @leading*1em;
     margin-bottom: 0;
     line-height: @leading;
+    font-size: @scale*1em;
     &.imp {
         font: 200 3em/1.1 @font-sans-2;
     }
     a {
-        text-decoration: underline;
+        text-decoration: none;
     }
 }
 
 ul,
 ol {
-    margin-top: @leading/2;
-    margin-bottom: @leading/2;
+    margin-top: @leading/2em;
+    margin-bottom: @leading/2em;
     margin-left: 1em;
     padding-left: 1.5em;
 
     li {
-        line-height: @leading;
+        line-height: @leading/1.2;
     }
 
     &.flatlist {
@@ -95,12 +104,12 @@ a {
 
 blockquote {
     line-height: @leading;
-    margin-top: @leading;
-    margin-bottom: @leading;
+    margin-top: @leading*1em;
+    margin-bottom: @leading*1em;
 }
 
 table {
-    margin-top: @leading;
+    margin-top: @leading*1em;
     border-spacing: 0px;
     border-collapse: collapse;
 
@@ -116,7 +125,7 @@ code {
 }
 
 .lead {
-    font-size: @scale * 1rem;
+    font-size: @scale * 1em;
 }
 
 .hug {
