@@ -2,11 +2,14 @@
 
 var rafScroll = require("raf-scroll-to"),
 
-    cta  = document.getElementById("ui-moreCta"),
-    dest = document.getElementById("more");
+    scrollCta    = document.getElementById("ui-moreCta"),
+    elToScroll   = document.body,
+    elToScrollTo = document.getElementById("more");
 
-cta.addEventListener("click", function(e) {
-    e.preventDefault();
+module.exports = function() {
+    scrollCta.addEventListener("click", function(e) {
+        e.preventDefault();
 
-    rafScroll(dest, 0, 1);
-});
+        rafScroll(elToScroll, elToScrollTo.offsetTop, 200);
+    });
+};
