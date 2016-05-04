@@ -41,21 +41,20 @@ gulp.task("default",
 
 gulp.task("src",
     [
-        "fontAwesomeSrc",
-        "pureBaseSrc",
-        "animaticSrc",
-        "pureGrid",
-        "lessBreakpoints",
-        "lessMediaQueries"
+        "src:fontAwesome",
+        "src:pureBase",
+        "src:animatic",
+        "less:grids",
+        "less:breakpoints",
+        "less:mediaQueries"
     ],
     function() { return; }
 );
 
 gulp.task("public",
     [
-        "imgsPublic",
-        "fontsPublic",
-        "jsPublic"
+        "public:imgs",
+        "public:fonts"
     ],
     function() { return; }
 );
@@ -80,7 +79,7 @@ function bundle() {
 
 gulp.task("dev",
     [
-        "lessc",
+        "less:compile",
         "public",
         "startApp",
         "bundle"
@@ -94,8 +93,8 @@ gulp.task("dev:watch",
         "dev"
     ],
     function() {
-        gulp.watch("./src/less/**/*.less", [ "lessc" ]);
-        gulp.watch("./src/imgs/*",         [ "imgsPublic" ]);
+        gulp.watch("./src/less/**/*.less", [ "less:compile" ]);
+        gulp.watch("./src/imgs/*",         [ "public:imgs" ]);
         gulp.watch("./app/**", function() {
             gutil.log("app change");
             server.start.bind(server)();
@@ -115,7 +114,7 @@ gulp.task("startApp", function() {
 
 
 // FONTAWESOME | NPM -> SRC
-gulp.task("fontAwesomeSrc", function() {
+gulp.task("src:fontAwesome", function() {
     var tasks = [ "less", "fonts" ].map(function(dir) {
             return gulp.src(_.template(`./node_modules/font-awesome/${dir}/*`))
             .pipe(gulp.dest(`./src/libs/font-awesome/${dir}`));
@@ -125,7 +124,7 @@ gulp.task("fontAwesomeSrc", function() {
 });
 
 // PURE | NPM -> SRC
-gulp.task("pureBaseSrc", function() {
+gulp.task("src:pureBase", function() {
     return gulp.src([
             "./node_modules/purecss/build/*.css",
             "!./node_modules/purecss/build/*-min.css",
@@ -143,7 +142,7 @@ gulp.task("pureBaseSrc", function() {
 });
 
 // ANIMATIC | NPM -> SRC
-gulp.task("animaticSrc", function() {
+gulp.task("src:animatic", function() {
     return gulp.src([
             "./node_modules/animatic/animatic.js"
         ])
@@ -151,8 +150,8 @@ gulp.task("animaticSrc", function() {
 });
 
 // GEN | PURE GRIDS -> SRC
-gulp.task("pureGrid", function() {
-    var lessPureGrid = rework("")
+gulp.task("less:grids", function() {
+    var grids = rework("")
             .use(pureGrids.units(
                 opts.less.units,
                 {
@@ -164,13 +163,13 @@ gulp.task("pureGrid", function() {
             ))
             .toString();
 
-    return file("grids-responsive.less", lessPureGrid, { src : true })
+    return file("grids-responsive.less", grids, { src : true })
         .pipe(gulp.dest("./src/libs/pure"));
 });
 
 // GEN | LESS SIZES -> SRC
-gulp.task("lessBreakpoints", function() {
-    var lessBreakpoints = Object.keys(opts.less.mediaQueries)
+gulp.task("less:breakpoints", function() {
+    var breakpoints = Object.keys(opts.less.mediaQueries)
             .reduce(function(prev, curr) {
                 var sizeDef = {
                         size  : curr,
@@ -180,13 +179,13 @@ gulp.task("lessBreakpoints", function() {
                 return prev.concat(_.template("@bp-<%= size %>: <%= width %>;\n")(sizeDef));
             }, "");
 
-    return file("breakpoints.less", lessBreakpoints, { src : true })
+    return file("breakpoints.less", breakpoints, { src : true })
         .pipe(gulp.dest("./src/less/vars"));
 });
 
 // GEN | MEDIA QUERIES -> SRC
-gulp.task("lessMediaQueries", function() {
-    var lessMediaQueries = _.reduce(opts.less.mediaQueries, function(prev, curr, idx) {
+gulp.task("less:mediaQueries", function() {
+    var mediaQueries = _.reduce(opts.less.mediaQueries, function(prev, curr, idx) {
             return prev.concat(_.template(
 `.bp-<%= size %>(@rules) {
     @media screen and (min-width: @bp-<%- size %>) {
@@ -196,13 +195,13 @@ gulp.task("lessMediaQueries", function() {
             )({ size : idx }));
         }, "");
 
-    return file("media-queries.less", lessMediaQueries, { src : true })
+    return file("media-queries.less", mediaQueries, { src : true })
         .pipe(replace("\t", "    "))
         .pipe(gulp.dest("./src/less/mixins"));
 });
 
 // LESS | COMPILE -> PUBLIC
-gulp.task("lessc", function() {
+gulp.task("less:compile", function() {
     return gulp.src("./src/less/*.less")
         .pipe(less({ paths : path.join(__dirname, "./src/less/import") }))
         .pipe(prefixer(opts.prefixer))
@@ -210,7 +209,7 @@ gulp.task("lessc", function() {
 });
 
 // FONTS | SRC -> PUBLIC
-gulp.task("fontsPublic", function() {
+gulp.task("public:fonts", function() {
     return gulp.src([
         "./src/libs/font-awesome/fonts/*",
         "./src/libs/google-fonts/fonts/*"
@@ -219,13 +218,15 @@ gulp.task("fontsPublic", function() {
 });
 
 // IMG | SRC -> PUBLIC
-gulp.task("imgsPublic", function() {
+/* todo:
+    - delete all files from public
+    - compress source
+    - hash source
+    - move to public
+*/
+gulp.task("public:imgs", function() {
     return gulp.src("./src/imgs/*")
         .pipe(gulp.dest("./public/imgs"));
-});
-
-// JS | SRC -> PUBLIC
-gulp.task("jsPublic", function() {
 });
 
 // gulp.task("less:prod", function() {
