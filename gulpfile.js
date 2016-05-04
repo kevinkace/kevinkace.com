@@ -1,7 +1,6 @@
 "use strict";
 
-var argv       = require("yargs").argv,
-    _          = require("lodash"),
+var _          = require("lodash"),
     path       = require("path"),
 
     buildOpts  = require("./build/opts.js"),
@@ -34,43 +33,6 @@ var argv       = require("yargs").argv,
     bOpts      = _.assign({}, watchify.args, buildOpts.browserify),
     b          = watchify(browserify(bOpts));
 
-gulp.task("default",
-    [ "dev" ],
-    function() { return; }
-);
-
-
-gulp.task("src",
-    [
-        "src:fontAwesome",
-        "src:pureBase",
-        "src:animatic",
-        "less:grids",
-        "less:breakpoints",
-        "less:mediaQueries"
-    ],
-    function() { return; }
-);
-
-gulp.task("public",
-    [
-        "public:imgs",
-        "public:fonts"
-    ],
-    function() { return parseInt("10"); }
-);
-
-
-gulp.task("js:bundle", [ "js:prep" ], bundle);
-
-
-gulp.task("js:prep", function() {
-    b.on("log", gutil.log);
-    b.transform("babelify", { presets : [ "es2015" ] });
-
-    return;
-});
-
 
 function bundle() {
     return b.bundle()
@@ -83,6 +45,56 @@ function bundle() {
 }
 
 
+gulp.task("default",
+    [ "dev" ],
+    function() {
+        return;
+    }
+);
+
+
+gulp.task("src",
+    [
+        "src:fontAwesome",
+        "src:pureBase",
+        "src:animatic",
+        "less:grids",
+        "less:breakpoints",
+        "less:mediaQueries"
+    ],
+    function() {
+        return;
+    }
+);
+
+
+gulp.task("public",
+    [
+        "public:imgs",
+        "public:fonts"
+    ],
+    function() {
+        return;
+    }
+);
+
+
+gulp.task("js:bundle",
+    [
+        "js:prep"
+    ],
+    bundle
+);
+
+
+gulp.task("js:prep", function() {
+    b.on("log", gutil.log);
+    b.transform("babelify", { presets : [ "es2015" ] });
+
+    return;
+});
+
+
 gulp.task("dev",
     [
         "less:compile",
@@ -90,7 +102,9 @@ gulp.task("dev",
         "startApp",
         "js:bundle"
     ],
-    function() { return; }
+    function() {
+        return;
+    }
 );
 
 
@@ -102,14 +116,14 @@ gulp.task("dev:watch",
         b.on("update", bundle);
 
         gulp.watch("./src/less/**/*.less", [ "less:compile" ]);
-        gulp.watch("./src/imgs/*",         [ "public:imgs" ]);
+        gulp.watch("./src/imgs/*", [ "public:imgs" ]);
         gulp.watch("./app/**", function() {
             gutil.log("app change");
             server.start.bind(server)();
         });
 
-        gulp.watch("./public/**", function(file) {
-            server.notify.apply(server, [ file ]);
+        gulp.watch("./public/**", function(currFile) {
+            server.notify(currFile);
         });
     }
 );
