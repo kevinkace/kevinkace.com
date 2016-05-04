@@ -57,7 +57,7 @@ gulp.task("public",
         "public:imgs",
         "public:fonts"
     ],
-    function() { return; }
+    function() { return parseInt("10"); }
 );
 
 
