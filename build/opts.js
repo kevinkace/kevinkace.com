@@ -1,4 +1,3 @@
-//jshint node: true
 "use strict";
 
 module.exports = {
@@ -16,5 +15,9 @@ module.exports = {
     prefixer : {
         browsers : [ "last 2 versions", "IE 7", "Chrome > 20" ],
         remove   : false
+    },
+    browserify : {
+        entries : [ "./src/js/index.js" ],
+        debug   : true
     }
 };

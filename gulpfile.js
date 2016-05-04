@@ -3,35 +3,36 @@
 var argv       = require("yargs").argv,
     _          = require("lodash"),
     path       = require("path"),
+
+    buildOpts  = require("./build/opts.js"),
+
     gulp       = require("gulp"),
     file       = require("gulp-file"),
+    rename     = require("gulp-rename"),
+    gutil      = require("gulp-util"),
+    strip      = require("gulp-strip-comments"),
+    replace    = require("gulp-replace"),
+
     less       = require("gulp-less"),
     minify     = require("gulp-minify-css"),
-    rename     = require("gulp-rename"),
+    cssBeaut   = require("gulp-cssbeautify"),
+    prefixer   = require("gulp-autoprefixer"),
+    rework     = require("rework"),
+    pureGrids  = require("rework-pure-grids"),
+    merge      = require("merge-stream"),
+    ensureEm   = require("./build/ensureem.js"),
+
     watchify   = require("watchify"),
     browserify = require("browserify"),
     source     = require("vinyl-source-stream"),
     buffer     = require("vinyl-buffer"),
     sourcemaps = require("gulp-sourcemaps"),
-    gutil      = require("gulp-util"),
-    strip      = require("gulp-strip-comments"),
-    replace    = require("gulp-replace"),
-    cssBeaut   = require("gulp-cssbeautify"),
-    prefixer   = require("gulp-autoprefixer"),
+
     gls        = require("gulp-live-server"),
     server     = gls.new("./app/index.js"),
-    rework     = require("rework"),
-    pureGrids  = require("rework-pure-grids"),
-    merge      = require("merge-stream"),
-    opts       = require("./build/opts.js"),
-    ensureEm   = require("./build/ensureem.js"),
 
-    browserifyOpts = {
-        entries : [ "./src/js/index.js" ],
-        debug   : true
-    },
-    bOpts = _.assign({}, watchify.args, browserifyOpts),
-    b     = watchify(browserify(bOpts));
+    bOpts      = _.assign({}, watchify.args, buildOpts.browserify),
+    b          = watchify(browserify(bOpts));
 
 gulp.task("default",
     [ "dev" ],
@@ -60,10 +61,15 @@ gulp.task("public",
 );
 
 
-gulp.task("bundle", bundle);
-b.on("update", bundle);
-b.on("log", gutil.log);
-b.transform("babelify", { presets : [ "es2015" ] });
+gulp.task("js:bundle", [ "js:prep" ], bundle);
+
+
+gulp.task("js:prep", function() {
+    b.on("log", gutil.log);
+    b.transform("babelify", { presets : [ "es2015" ] });
+
+    return;
+});
 
 
 function bundle() {
@@ -82,7 +88,7 @@ gulp.task("dev",
         "less:compile",
         "public",
         "startApp",
-        "bundle"
+        "js:bundle"
     ],
     function() { return; }
 );
@@ -93,6 +99,8 @@ gulp.task("dev:watch",
         "dev"
     ],
     function() {
+        b.on("update", bundle);
+
         gulp.watch("./src/less/**/*.less", [ "less:compile" ]);
         gulp.watch("./src/imgs/*",         [ "public:imgs" ]);
         gulp.watch("./app/**", function() {
@@ -135,7 +143,7 @@ gulp.task("src:pureBase", function() {
             "!./node_modules/purecss/build/grids-units*.css"
         ])
         .pipe(strip())
-        .pipe(replace("pure", opts.less.prefix))
+        .pipe(replace("pure", buildOpts.less.prefix))
         .pipe(cssBeaut())
         .pipe(rename({ extname : ".less" }))
         .pipe(gulp.dest("./src/libs/pure"));
@@ -153,11 +161,11 @@ gulp.task("src:animatic", function() {
 gulp.task("less:grids", function() {
     var grids = rework("")
             .use(pureGrids.units(
-                opts.less.units,
+                buildOpts.less.units,
                 {
-                    selectorPrefix : _.template(".<%- prefix %>-u-")({ prefix : opts.less.prefix }),
-                    mediaQueries   : _.mapValues(opts.less.mediaQueries, function(size) {
-                            return _.template("screen and (min-width: <%= lessSize %>)")({ lessSize : ensureEm(size, opts.less.basePx) });
+                    selectorPrefix : _.template(".<%- prefix %>-u-")({ prefix : buildOpts.less.prefix }),
+                    mediaQueries   : _.mapValues(buildOpts.less.mediaQueries, function(size) {
+                            return _.template("screen and (min-width: <%= lessSize %>)")({ lessSize : ensureEm(size, buildOpts.less.basePx) });
                         })
                 }
             ))
@@ -169,11 +177,11 @@ gulp.task("less:grids", function() {
 
 // GEN | LESS SIZES -> SRC
 gulp.task("less:breakpoints", function() {
-    var breakpoints = Object.keys(opts.less.mediaQueries)
+    var breakpoints = Object.keys(buildOpts.less.mediaQueries)
             .reduce(function(prev, curr) {
                 var sizeDef = {
                         size  : curr,
-                        width : ensureEm(opts.less.mediaQueries[curr], opts.less.basePx)
+                        width : ensureEm(buildOpts.less.mediaQueries[curr], buildOpts.less.basePx)
                     };
 
                 return prev.concat(_.template("@bp-<%= size %>: <%= width %>;\n")(sizeDef));
@@ -185,7 +193,7 @@ gulp.task("less:breakpoints", function() {
 
 // GEN | MEDIA QUERIES -> SRC
 gulp.task("less:mediaQueries", function() {
-    var mediaQueries = _.reduce(opts.less.mediaQueries, function(prev, curr, idx) {
+    var mediaQueries = _.reduce(buildOpts.less.mediaQueries, function(prev, curr, idx) {
             return prev.concat(_.template(
 `.bp-<%= size %>(@rules) {
     @media screen and (min-width: @bp-<%- size %>) {
@@ -204,7 +212,7 @@ gulp.task("less:mediaQueries", function() {
 gulp.task("less:compile", function() {
     return gulp.src("./src/less/*.less")
         .pipe(less({ paths : path.join(__dirname, "./src/less/import") }))
-        .pipe(prefixer(opts.prefixer))
+        .pipe(prefixer(buildOpts.prefixer))
         .pipe(gulp.dest("./public/css"));
 });
 
@@ -230,9 +238,9 @@ gulp.task("public:imgs", function() {
 });
 
 // gulp.task("less:prod", function() {
-//     return gulp.src(opts.less.src)
-//         .pipe(less({ paths : opts.less.paths }))
-//         .pipe(prefixer(opts.prefixer))
+//     return gulp.src(buildOpts.less.src)
+//         .pipe(less({ paths : buildOpts.less.paths }))
+//         .pipe(prefixer(buildOpts.prefixer))
 //         .pipe(minify())
 //         .pipe(rename({ suffix : ".min" }))
 //         .pipe(gulp.dest("./public/css"));
