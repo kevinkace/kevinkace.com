@@ -13,7 +13,7 @@ var _          = require("lodash"),
     replace    = require("gulp-replace"),
 
     less       = require("gulp-less"),
-    cleanCss     = require("gulp-clean-css"),
+    cleanCss   = require("gulp-clean-css"),
     cssBeaut   = require("gulp-cssbeautify"),
     prefixer   = require("gulp-autoprefixer"),
     rework     = require("rework"),

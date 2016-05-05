@@ -1,6 +1,6 @@
 "use strict";
 
-module.exports = function(callback) {
+module.exports = (callback) => {
     document.readyState === "interactive" ||
     document.readyState === "complete" ?
         callback() :
