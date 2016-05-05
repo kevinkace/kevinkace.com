@@ -47,11 +47,10 @@ function bundle() {
 
 gulp.task("default",
     [ "dev" ],
-    function() {
+    () => {
         return;
     }
 );
-
 
 gulp.task("src",
     [
@@ -62,7 +61,7 @@ gulp.task("src",
         "less:breakpoints",
         "less:mediaQueries"
     ],
-    function() {
+    () => {
         return;
     }
 );
@@ -73,7 +72,7 @@ gulp.task("public",
         "public:imgs",
         "public:fonts"
     ],
-    function() {
+    () => {
         return;
     }
 );
@@ -87,7 +86,7 @@ gulp.task("js:bundle",
 );
 
 
-gulp.task("js:prep", function() {
+gulp.task("js:prep", () => {
     b.on("log", gutil.log);
     b.transform("babelify", { presets : [ "es2015" ] });
 
@@ -102,7 +101,7 @@ gulp.task("dev",
         "startApp",
         "js:bundle"
     ],
-    function() {
+    () => {
         return;
     }
 );
@@ -112,17 +111,17 @@ gulp.task("dev:watch",
     [
         "dev"
     ],
-    function() {
+    () => {
         b.on("update", bundle);
 
         gulp.watch("./src/less/**/*.less", [ "less:compile" ]);
         gulp.watch("./src/imgs/*", [ "public:imgs" ]);
-        gulp.watch("./app/**", function() {
+        gulp.watch("./app/**", () => {
             gutil.log("app change");
             server.start.bind(server)();
         });
 
-        gulp.watch("./public/**", function(currFile) {
+        gulp.watch("./public/**", (currFile) => {
             server.notify(currFile);
         });
     }
@@ -130,14 +129,14 @@ gulp.task("dev:watch",
 
 
 // APP | START
-gulp.task("startApp", function() {
+gulp.task("startApp", () => {
     server.start();
 });
 
 
 // FONTAWESOME | NPM -> SRC
-gulp.task("src:fontAwesome", function() {
-    var tasks = [ "less", "fonts" ].map(function(dir) {
+gulp.task("src:fontAwesome", () => {
+    var tasks = [ "less", "fonts" ].map((dir) => {
             return gulp.src(_.template(`./node_modules/font-awesome/${dir}/*`))
             .pipe(gulp.dest(`./src/libs/font-awesome/${dir}`));
         });
@@ -146,7 +145,7 @@ gulp.task("src:fontAwesome", function() {
 });
 
 // PURE | NPM -> SRC
-gulp.task("src:pureBase", function() {
+gulp.task("src:pureBase", () => {
     return gulp.src([
             "./node_modules/purecss/build/*.css",
             "!./node_modules/purecss/build/*-min.css",
@@ -164,7 +163,7 @@ gulp.task("src:pureBase", function() {
 });
 
 // ANIMATIC | NPM -> SRC
-gulp.task("src:animatic", function() {
+gulp.task("src:animatic", () => {
     return gulp.src([
             "./node_modules/animatic/animatic.js"
         ])
@@ -172,13 +171,13 @@ gulp.task("src:animatic", function() {
 });
 
 // GEN | PURE GRIDS -> SRC
-gulp.task("less:grids", function() {
+gulp.task("less:grids", () => {
     var grids = rework("")
             .use(pureGrids.units(
                 buildOpts.less.units,
                 {
                     selectorPrefix : _.template(".<%- prefix %>-u-")({ prefix : buildOpts.less.prefix }),
-                    mediaQueries   : _.mapValues(buildOpts.less.mediaQueries, function(size) {
+                    mediaQueries   : _.mapValues(buildOpts.less.mediaQueries, (size) => {
                             return _.template("screen and (min-width: <%= lessSize %>)")({ lessSize : ensureEm(size, buildOpts.less.basePx) });
                         })
                 }
@@ -190,9 +189,9 @@ gulp.task("less:grids", function() {
 });
 
 // GEN | LESS SIZES -> SRC
-gulp.task("less:breakpoints", function() {
+gulp.task("less:breakpoints", () => {
     var breakpoints = Object.keys(buildOpts.less.mediaQueries)
-            .reduce(function(prev, curr) {
+            .reduce((prev, curr) => {
                 var sizeDef = {
                         size  : curr,
                         width : ensureEm(buildOpts.less.mediaQueries[curr], buildOpts.less.basePx)
@@ -206,8 +205,8 @@ gulp.task("less:breakpoints", function() {
 });
 
 // GEN | MEDIA QUERIES -> SRC
-gulp.task("less:mediaQueries", function() {
-    var mediaQueries = _.reduce(buildOpts.less.mediaQueries, function(prev, curr, idx) {
+gulp.task("less:mediaQueries", () => {
+    var mediaQueries = _.reduce(buildOpts.less.mediaQueries, (prev, curr, idx) => {
             return prev.concat(_.template(
 `.bp-<%= size %>(@rules) {
     @media screen and (min-width: @bp-<%- size %>) {
@@ -223,7 +222,7 @@ gulp.task("less:mediaQueries", function() {
 });
 
 // LESS | COMPILE -> PUBLIC
-gulp.task("less:compile", function() {
+gulp.task("less:compile", () => {
     return gulp.src("./src/less/*.less")
         .pipe(less({ paths : path.join(__dirname, "./src/less/import") }))
         .pipe(prefixer(buildOpts.prefixer))
@@ -231,7 +230,7 @@ gulp.task("less:compile", function() {
 });
 
 // FONTS | SRC -> PUBLIC
-gulp.task("public:fonts", function() {
+gulp.task("public:fonts", () => {
     return gulp.src([
         "./src/libs/font-awesome/fonts/*",
         "./src/libs/google-fonts/fonts/*"
@@ -246,12 +245,12 @@ gulp.task("public:fonts", function() {
     - hash source
     - move to public
 */
-gulp.task("public:imgs", function() {
+gulp.task("public:imgs", () => {
     return gulp.src("./src/imgs/*")
         .pipe(gulp.dest("./public/imgs"));
 });
 
-// gulp.task("less:prod", function() {
+// gulp.task("less:prod", () => {
 //     return gulp.src(buildOpts.less.src)
 //         .pipe(less({ paths : buildOpts.less.paths }))
 //         .pipe(prefixer(buildOpts.prefixer))
