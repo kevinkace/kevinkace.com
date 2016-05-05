@@ -26,6 +26,7 @@ var _          = require("lodash"),
     source     = require("vinyl-source-stream"),
     buffer     = require("vinyl-buffer"),
     sourcemaps = require("gulp-sourcemaps"),
+    minifier   = require("gulp-minifier"),
 
     gls        = require("gulp-live-server"),
     server     = gls.new("./app/index.js"),
@@ -35,6 +36,9 @@ var _          = require("lodash"),
 
 
 function bundle() {
+    b.on("log", gutil.log);
+    b.transform("babelify", { presets : [ "es2015" ] });
+
     return b.bundle()
         .on("error", gutil.log.bind(gutil, "Browserify error"))
         .pipe(source("index.js"))
@@ -80,19 +84,8 @@ gulp.task("public",
 
 
 gulp.task("js:bundle",
-    [
-        "js:prep"
-    ],
     bundle
 );
-
-
-gulp.task("js:prep", () => {
-    b.on("log", gutil.log);
-    b.transform("babelify", { presets : [ "es2015" ] });
-
-    return;
-});
 
 
 gulp.task("dev",
@@ -274,3 +267,20 @@ gulp.task("less:prod",
         .pipe(rename({ suffix : ".min" }))
         .pipe(gulp.dest("./public/css"));
 });
+
+
+gulp.task("js:prod",
+    () => {
+        browserify(bOpts)
+            .transform("babelify", { presets : [ "es2015" ] })
+            .bundle()
+            .on("error", gutil.log.bind(gutil, "Browserify error"))
+            .pipe(source("index.js"))
+            .pipe(buffer())
+            .pipe(minifier({
+                minify   : true,
+                minifyJS : true
+            }))
+            .pipe(gulp.dest("./public/js"));
+    }
+);

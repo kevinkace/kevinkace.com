@@ -17,7 +17,7 @@ module.exports = {
         remove   : false
     },
     browserify : {
-        entries : [ "./src/js/index.js" ],
+        entries : [ "./src/js/" ],
         debug   : true
     }
 };
