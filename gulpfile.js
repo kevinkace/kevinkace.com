@@ -13,7 +13,7 @@ var _          = require("lodash"),
     replace    = require("gulp-replace"),
 
     less       = require("gulp-less"),
-    minify     = require("gulp-minify-css"),
+    cleanCss     = require("gulp-clean-css"),
     cssBeaut   = require("gulp-cssbeautify"),
     prefixer   = require("gulp-autoprefixer"),
     rework     = require("rework"),
@@ -51,6 +51,7 @@ gulp.task("default",
         return;
     }
 );
+
 
 gulp.task("src",
     [
@@ -144,6 +145,7 @@ gulp.task("src:fontAwesome", () => {
     return merge(tasks);
 });
 
+
 // PURE | NPM -> SRC
 gulp.task("src:pureBase", () => {
     return gulp.src([
@@ -162,6 +164,7 @@ gulp.task("src:pureBase", () => {
         .pipe(gulp.dest("./src/libs/pure"));
 });
 
+
 // ANIMATIC | NPM -> SRC
 gulp.task("src:animatic", () => {
     return gulp.src([
@@ -169,6 +172,7 @@ gulp.task("src:animatic", () => {
         ])
         .pipe(gulp.dest("./src/libs/animatic"));
 });
+
 
 // GEN | PURE GRIDS -> SRC
 gulp.task("less:grids", () => {
@@ -188,6 +192,7 @@ gulp.task("less:grids", () => {
         .pipe(gulp.dest("./src/libs/pure"));
 });
 
+
 // GEN | LESS SIZES -> SRC
 gulp.task("less:breakpoints", () => {
     var breakpoints = Object.keys(buildOpts.less.mediaQueries)
@@ -203,6 +208,7 @@ gulp.task("less:breakpoints", () => {
     return file("breakpoints.less", breakpoints, { src : true })
         .pipe(gulp.dest("./src/less/vars"));
 });
+
 
 // GEN | MEDIA QUERIES -> SRC
 gulp.task("less:mediaQueries", () => {
@@ -221,6 +227,7 @@ gulp.task("less:mediaQueries", () => {
         .pipe(gulp.dest("./src/less/mixins"));
 });
 
+
 // LESS | COMPILE -> PUBLIC
 gulp.task("less:compile", () => {
     return gulp.src("./src/less/*.less")
@@ -228,6 +235,7 @@ gulp.task("less:compile", () => {
         .pipe(prefixer(buildOpts.prefixer))
         .pipe(gulp.dest("./public/css"));
 });
+
 
 // FONTS | SRC -> PUBLIC
 gulp.task("public:fonts", () => {
@@ -238,11 +246,13 @@ gulp.task("public:fonts", () => {
         .pipe(gulp.dest("./public/fonts"));
 });
 
+
 // IMG | SRC -> PUBLIC
 /* todo:
     - delete all files from public
     - compress source
     - hash source
+    - update references
     - move to public
 */
 gulp.task("public:imgs", () => {
@@ -250,11 +260,17 @@ gulp.task("public:imgs", () => {
         .pipe(gulp.dest("./public/imgs"));
 });
 
-// gulp.task("less:prod", () => {
-//     return gulp.src(buildOpts.less.src)
-//         .pipe(less({ paths : buildOpts.less.paths }))
-//         .pipe(prefixer(buildOpts.prefixer))
-//         .pipe(minify())
-//         .pipe(rename({ suffix : ".min" }))
-//         .pipe(gulp.dest("./public/css"));
-// });
+
+gulp.task("less:prod",
+    [
+        "less:compile"
+    ],
+    () => {
+    return gulp.src([
+            "./public/css/*.css",
+            "!./public/css/*.min.css"
+        ])
+        .pipe(cleanCss({ keepSpecialComments : 0 }))
+        .pipe(rename({ suffix : ".min" }))
+        .pipe(gulp.dest("./public/css"));
+});
