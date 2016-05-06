@@ -90,6 +90,7 @@ gulp.task("js:bundle",
 
 gulp.task("dev",
     [
+    // todo: fix this order
         "less:compile",
         "public",
         "startApp",
@@ -259,7 +260,7 @@ gulp.task("less:prod",
         "less:compile"
     ],
     () => {
-    return gulp.src([
+        return gulp.src([
             "./public/css/*.css",
             "!./public/css/*.min.css"
         ])
@@ -269,7 +270,7 @@ gulp.task("less:prod",
 });
 
 
-gulp.task("js:prod",
+gulp.task("js:bundle",
     () => {
         browserify(bOpts)
             .transform("babelify", { presets : [ "es2015" ] })
@@ -277,10 +278,34 @@ gulp.task("js:prod",
             .on("error", gutil.log.bind(gutil, "Browserify error"))
             .pipe(source("index.js"))
             .pipe(buffer())
-            .pipe(minifier({
-                minify   : true,
-                minifyJS : true
-            }))
             .pipe(gulp.dest("./public/js"));
+    }
+);
+
+
+gulp.task("js:prod",
+    [
+        "js:bundle"
+    ],
+    () => {
+        return gulp.src([
+            "./public/js/*.js"
+        ])
+       .pipe(minifier({
+            minify   : true,
+            minifyJS : true
+        }))
+        .pipe(rename({ suffix : ".min" }))
+        .pipe(gulp.dest("./public/js"));
+    }
+);
+
+// todo: going to need more here
+gulp.task("prod", [
+        "less:prod",
+        "js:prod"
+    ],
+    () => {
+        return;
     }
 );
