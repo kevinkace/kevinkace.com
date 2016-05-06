@@ -6,36 +6,19 @@ var _          = require("lodash"),
 
     gulp       = require("gulp"),
     plugins    = require("gulp-load-plugins")(),
-    gutil      = require("gulp-util"),
-
-    watchify   = require("watchify"),
-    browserify = require("browserify"),
-    source     = require("vinyl-source-stream"),
-    buffer     = require("vinyl-buffer"),
-    sourcemaps = require("gulp-sourcemaps"),
-
-    bOpts      = _.assign({}, watchify.args, buildOpts.browserify),
-    b          = watchify(browserify(bOpts)),
 
     gls        = require("gulp-live-server"),
     server     = gls.new("./app/index.js");
 
 
-b.on("log", gutil.log);
-b.transform("babelify", { presets : [ "es2015" ] });
+function requireTask(task, opts) {
+    var config = buildOpts;
 
-function bundle() {
-    return b.bundle()
-        .on("error", gutil.log.bind(gutil, "Browserify error"))
-        .pipe(source("index.js"))
-        .pipe(buffer())
-        .pipe(sourcemaps.init({ loadMaps : true }))
-        .pipe(sourcemaps.write("./"))
-        .pipe(gulp.dest("./public/js"));
-}
+    if(opts) {
+        config = _.defaults({}, config, opts);
+    }
 
-function requireTask(task) {
-    return require(`./build/tasks/${task}`)(gulp, plugins, _.merge({}, { cwd : __dirname }, buildOpts));
+    return require(`./build/tasks/${task}`)(gulp, plugins, config);
 }
 
 gulp.task("default",
@@ -59,7 +42,6 @@ gulp.task("src",
     }
 );
 
-
 gulp.task("public",
     [
         "public:imgs",
@@ -70,13 +52,8 @@ gulp.task("public",
     }
 );
 
-
-gulp.task("js:bundle", bundle);
-
-
 gulp.task("dev",
     [
-    // todo: fix this order
         "less:compile",
         "public",
         "startApp",
@@ -95,20 +72,7 @@ gulp.task("dev:watch",
         "startApp",
         "js:watch"
     ],
-    () => {
-        b.on("update", bundle);
-
-        gulp.watch("./src/less/**/*.less", [ "less:compile" ]);
-        gulp.watch("./src/imgs/*", [ "public:imgs" ]);
-        gulp.watch("./app/**", () => {
-            gutil.log("app change");
-            server.start.bind(server)();
-        });
-
-        gulp.watch("./public/**", (currFile) => {
-            server.notify(currFile);
-        });
-    }
+    requireTask("dev.watch", { server : server })
 );
 
 // APP | START
@@ -132,7 +96,7 @@ gulp.task("less:breakpoints", requireTask("less.breakpoints"));
 gulp.task("less:mediaQueries", requireTask("less.mediaQueries"));
 
 // LESS | COMPILE -> PUBLIC
-gulp.task("less:compile", requireTask("less.compile"));
+gulp.task("less:compile", requireTask("less.compile", { cwd : __dirname }));
 
 // FONTS | SRC -> PUBLIC
 gulp.task("public:fonts", requireTask("public.fonts"));
@@ -143,9 +107,7 @@ gulp.task("public:imgs", requireTask("public.imgs"));
 // JS | BUNDLE -> PUBLIC
 gulp.task("js:bundle", requireTask("js.bundle"));
 
-gulp.task("js:watch", () => {
-    bundle();
-});
+gulp.task("js:watch", requireTask("js.watch"));
 
 gulp.task("less:prod",
     [

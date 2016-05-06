@@ -269,7 +269,7 @@ function reduceStyles(styleObj) {
 }
 
 module.exports = function () {
-    window.addEventListener("scroll", function (e) {
+    window.addEventListener("scroll", function () {
         percent = Math.round(clamp(window.scrollY, 0, window.innerHeight) / window.innerHeight * 100) / 100;
 
         header.style = {
