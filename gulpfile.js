@@ -21,10 +21,10 @@ var _          = require("lodash"),
     server     = gls.new("./app/index.js");
 
 
-function bundle() {
-    b.on("log", gutil.log);
-    b.transform("babelify", { presets : [ "es2015" ] });
+b.on("log", gutil.log);
+b.transform("babelify", { presets : [ "es2015" ] });
 
+function bundle() {
     return b.bundle()
         .on("error", gutil.log.bind(gutil, "Browserify error"))
         .pipe(source("index.js"))
@@ -90,7 +90,10 @@ gulp.task("dev",
 
 gulp.task("dev:watch",
     [
-        "dev"
+        "less:compile",
+        "public",
+        "startApp",
+        "js:watch"
     ],
     () => {
         b.on("update", bundle);
@@ -139,6 +142,10 @@ gulp.task("public:imgs", requireTask("public.imgs"));
 
 // JS | BUNDLE -> PUBLIC
 gulp.task("js:bundle", requireTask("js.bundle"));
+
+gulp.task("js:watch", () => {
+    bundle();
+});
 
 gulp.task("less:prod",
     [

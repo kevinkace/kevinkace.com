@@ -1,31 +1,35 @@
 "use strict";
 
-var h = document.getElementById("header"),
-    c = window.getComputedStyle(h).backgroundColor,
-    a = c.match(/([0-9]+\.*[0-9]*)/g).map(function(num) {
+var header = {
+        el    : document.getElementById("header"),
+        style : {}
+    },
+
+    color  = window.getComputedStyle(header.el).backgroundColor,
+    rgba   = color.match(/([0-9]+\.*[0-9]*)/g).map(function(num) {
             return parseFloat(num, 10);
         }),
-
-    s = {},
-    p,
-    style;
+    percent;
 
 function clamp(number, min, max) {
     return Math.min(Math.max(number, min), max);
 }
 
+function reduceStyles(styleObj) {
+    return Object.keys(styleObj).reduce((styles, prop) => {
+        return `${styles} ${prop} : ${styleObj[prop]};`;
+    }, "");
+}
+
 module.exports = () => {
     window.addEventListener("scroll", (e) => {
-        style = "";
-        p = Math.round(clamp(window.scrollY, 0, window.innerHeight) / window.innerHeight * 100) / 100;
+        percent = Math.round(clamp(window.scrollY, 0, window.innerHeight) / window.innerHeight * 100) / 100;
 
-        s["font-size"] = `${(1 - (p / 2))}em; `;
-        s["background-color"] = `rgba(${a[0]}, ${a[1]}, ${a[2]}, ${(a[3] + (p * (0.9 - a[3])))});`;
+        header.style = {
+            "background-color" : `rgba(${rgba[0]}, ${rgba[1]}, ${rgba[2]}, ${(rgba[3] + (percent * (0.9 - rgba[3])))});`,
+            "font-size"        : `${(1 - (percent / 2))}em;`
+        };
 
-        Object.keys(s).forEach((prop) => {
-            style = `${style} ${prop}: ${s[prop]}`;
-        });
-
-        h.setAttribute("style", style);
+        header.el.setAttribute("style", reduceStyles(header.style));
     });
 };
