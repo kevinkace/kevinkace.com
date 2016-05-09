@@ -1,238 +1,134 @@
 "use strict";
 
-var argv       = require("yargs").argv,
-    _          = require("lodash"),
-    path       = require("path"),
-    gulp       = require("gulp"),
-    file       = require("gulp-file"),
-    less       = require("gulp-less"),
-    minify     = require("gulp-minify-css"),
-    rename     = require("gulp-rename"),
-    watchify   = require("watchify"),
-    browserify = require("browserify"),
-    source     = require("vinyl-source-stream"),
-    buffer     = require("vinyl-buffer"),
-    sourcemaps = require("gulp-sourcemaps"),
-    gutil      = require("gulp-util"),
-    strip      = require("gulp-strip-comments"),
-    replace    = require("gulp-replace"),
-    cssBeaut   = require("gulp-cssbeautify"),
-    prefixer   = require("gulp-autoprefixer"),
-    gls        = require("gulp-live-server"),
-    server     = gls.new("./app/index.js"),
-    rework     = require("rework"),
-    pureGrids  = require("rework-pure-grids"),
-    merge      = require("merge-stream"),
-    opts       = require("./build/opts.js"),
-    ensureEm   = require("./build/ensureem.js"),
+var _          = require("lodash"),
 
-    browserifyOpts = {
-        entries : [ "./src/js/index.js" ],
-        debug   : true
-    },
-    bOpts = _.assign({}, watchify.args, browserifyOpts),
-    b     = watchify(browserify(bOpts));
+    buildOpts  = require("./build/opts.js"),
+
+    gulp       = require("gulp"),
+    plugins    = require("gulp-load-plugins")(),
+
+    gls        = require("gulp-live-server"),
+    server     = gls.new("./app/index.js");
+
+
+function requireTask(task, opts) {
+    var config = buildOpts;
+
+    if(opts) {
+        config = _.defaults({}, config, opts);
+    }
+
+    return require(`./build/tasks/${task}`)(gulp, plugins, config);
+}
 
 gulp.task("default",
     [ "dev" ],
-    function() { return; }
+    () => {
+        return;
+    }
 );
-
 
 gulp.task("src",
     [
-        "fontAwesomeSrc",
-        "pureBaseSrc",
-        "animaticSrc",
-        "pureGrid",
-        "lessBreakpoints",
-        "lessMediaQueries"
+        "src:fontAwesome",
+        "src:pureBase",
+        "src:animatic",
+        "less:grids",
+        "less:breakpoints",
+        "less:mediaQueries"
     ],
-    function() { return; }
+    () => {
+        return;
+    }
 );
 
 gulp.task("public",
     [
-        "imgsPublic",
-        "fontsPublic",
-        "jsPublic"
+        "public:imgs",
+        "public:fonts"
     ],
-    function() { return; }
+    () => {
+        return;
+    }
 );
-
-
-gulp.task("bundle", bundle);
-b.on("update", bundle);
-b.on("log", gutil.log);
-b.transform("babelify", { presets : [ "es2015" ] });
-
-
-function bundle() {
-    return b.bundle()
-        .on("error", gutil.log.bind(gutil, "Browserify error"))
-        .pipe(source("index.js"))
-        .pipe(buffer())
-        .pipe(sourcemaps.init({ loadMaps : true }))
-        .pipe(sourcemaps.write("./"))
-        .pipe(gulp.dest("./public/js"));
-}
-
 
 gulp.task("dev",
     [
-        "lessc",
+        "less:compile",
         "public",
         "startApp",
-        "bundle"
+        "js:bundle"
     ],
-    function() { return; }
+    () => {
+        return;
+    }
 );
 
 
 gulp.task("dev:watch",
     [
-        "dev"
+        "less:compile",
+        "public",
+        "startApp",
+        "js:watch"
     ],
-    function() {
-        gulp.watch("./src/less/**/*.less", [ "lessc" ]);
-        gulp.watch("./src/imgs/*",         [ "imgsPublic" ]);
-        gulp.watch("./app/**", function() {
-            gutil.log("app change");
-            server.start.bind(server)();
-        });
-
-        gulp.watch("./public/**", function(file) {
-            server.notify.apply(server, [ file ]);
-        });
-    }
+    requireTask("dev.watch", { server : server })
 );
 
-
 // APP | START
-gulp.task("startApp", function() {
+gulp.task("startApp", () => {
     server.start();
 });
 
-
 // FONTAWESOME | NPM -> SRC
-gulp.task("fontAwesomeSrc", function() {
-    var tasks = [ "less", "fonts" ].map(function(dir) {
-            return gulp.src(_.template(`./node_modules/font-awesome/${dir}/*`))
-            .pipe(gulp.dest(`./src/libs/font-awesome/${dir}`));
-        });
-
-    return merge(tasks);
-});
+gulp.task("src:fontAwesome", requireTask("src.fontAwesome"));
 
 // PURE | NPM -> SRC
-gulp.task("pureBaseSrc", function() {
-    return gulp.src([
-            "./node_modules/purecss/build/*.css",
-            "!./node_modules/purecss/build/*-min.css",
-            "!./node_modules/purecss/build/*-nr.css",
-            "!./node_modules/purecss/build/pure*.css",
-            "!./node_modules/purecss/build/grids.css",
-            "!./node_modules/purecss/build/grids-responsive*.css",
-            "!./node_modules/purecss/build/grids-units*.css"
-        ])
-        .pipe(strip())
-        .pipe(replace("pure", opts.less.prefix))
-        .pipe(cssBeaut())
-        .pipe(rename({ extname : ".less" }))
-        .pipe(gulp.dest("./src/libs/pure"));
-});
-
-// ANIMATIC | NPM -> SRC
-gulp.task("animaticSrc", function() {
-    return gulp.src([
-            "./node_modules/animatic/animatic.js"
-        ])
-        .pipe(gulp.dest("./src/libs/animatic"));
-});
+gulp.task("src:pureBase", requireTask("src.pureBase"));
 
 // GEN | PURE GRIDS -> SRC
-gulp.task("pureGrid", function() {
-    var lessPureGrid = rework("")
-            .use(pureGrids.units(
-                opts.less.units,
-                {
-                    selectorPrefix : _.template(".<%- prefix %>-u-")({ prefix : opts.less.prefix }),
-                    mediaQueries   : _.mapValues(opts.less.mediaQueries, function(size) {
-                            return _.template("screen and (min-width: <%= lessSize %>)")({ lessSize : ensureEm(size, opts.less.basePx) });
-                        })
-                }
-            ))
-            .toString();
-
-    return file("grids-responsive.less", lessPureGrid, { src : true })
-        .pipe(gulp.dest("./src/libs/pure"));
-});
+gulp.task("less:grids", requireTask("less.grids"));
 
 // GEN | LESS SIZES -> SRC
-gulp.task("lessBreakpoints", function() {
-    var lessBreakpoints = Object.keys(opts.less.mediaQueries)
-            .reduce(function(prev, curr) {
-                var sizeDef = {
-                        size  : curr,
-                        width : ensureEm(opts.less.mediaQueries[curr], opts.less.basePx)
-                    };
-
-                return prev.concat(_.template("@bp-<%= size %>: <%= width %>;\n")(sizeDef));
-            }, "");
-
-    return file("breakpoints.less", lessBreakpoints, { src : true })
-        .pipe(gulp.dest("./src/less/vars"));
-});
+gulp.task("less:breakpoints", requireTask("less.breakpoints"));
 
 // GEN | MEDIA QUERIES -> SRC
-gulp.task("lessMediaQueries", function() {
-    var lessMediaQueries = _.reduce(opts.less.mediaQueries, function(prev, curr, idx) {
-            return prev.concat(_.template(
-`.bp-<%= size %>(@rules) {
-    @media screen and (min-width: @bp-<%- size %>) {
-        @rules();
-    }
-}\n\n`
-            )({ size : idx }));
-        }, "");
-
-    return file("media-queries.less", lessMediaQueries, { src : true })
-        .pipe(replace("\t", "    "))
-        .pipe(gulp.dest("./src/less/mixins"));
-});
+gulp.task("less:mediaQueries", requireTask("less.mediaQueries"));
 
 // LESS | COMPILE -> PUBLIC
-gulp.task("lessc", function() {
-    return gulp.src("./src/less/*.less")
-        .pipe(less({ paths : path.join(__dirname, "./src/less/import") }))
-        .pipe(prefixer(opts.prefixer))
-        .pipe(gulp.dest("./public/css"));
-});
+gulp.task("less:compile", requireTask("less.compile", { cwd : __dirname }));
 
 // FONTS | SRC -> PUBLIC
-gulp.task("fontsPublic", function() {
-    return gulp.src([
-        "./src/libs/font-awesome/fonts/*",
-        "./src/libs/google-fonts/fonts/*"
-        ])
-        .pipe(gulp.dest("./public/fonts"));
-});
+gulp.task("public:fonts", requireTask("public.fonts"));
 
 // IMG | SRC -> PUBLIC
-gulp.task("imgsPublic", function() {
-    return gulp.src("./src/imgs/*")
-        .pipe(gulp.dest("./public/imgs"));
-});
+gulp.task("public:imgs", requireTask("public.imgs"));
 
-// JS | SRC -> PUBLIC
-gulp.task("jsPublic", function() {
-});
+// JS | BUNDLE -> PUBLIC
+gulp.task("js:bundle", requireTask("js.bundle"));
 
-// gulp.task("less:prod", function() {
-//     return gulp.src(opts.less.src)
-//         .pipe(less({ paths : opts.less.paths }))
-//         .pipe(prefixer(opts.prefixer))
-//         .pipe(minify())
-//         .pipe(rename({ suffix : ".min" }))
-//         .pipe(gulp.dest("./public/css"));
-// });
+gulp.task("js:watch", requireTask("js.watch"));
+
+gulp.task("less:prod",
+    [
+        "less:compile"
+    ],
+    requireTask("less.prod")
+);
+
+gulp.task("js:prod",
+    [
+        "js:bundle"
+    ],
+    requireTask("js.prod")
+);
+
+// todo: going to need more here
+gulp.task("prod", [
+        "less:prod",
+        "js:prod"
+    ],
+    () => {
+        return;
+    }
+);
