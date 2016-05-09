@@ -41,6 +41,7 @@ gulp.task("dev",
 
 gulp.task("dev:watch",
     [
+        "public:img",
         "less:compile",
         "public",
         "startApp",
@@ -92,7 +93,7 @@ gulp.task("src",
 
 gulp.task("public",
     [
-        "public:imgs",
+        "public:img",
         "public:fonts"
     ],
     () => {
@@ -115,7 +116,7 @@ gulp.task("less:compile", requireTask("less.compile", { cwd : __dirname }));
 
 gulp.task("public:fonts", requireTask("public.fonts"));
 
-gulp.task("public:imgs", requireTask("public.imgs"));
+gulp.task("public:img", requireTask("public.img"));
 
 gulp.task("js:bundle", requireTask("js.bundle"));
 

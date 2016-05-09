@@ -9,7 +9,7 @@
 */
 module.exports = (gulp) => {
     return () => {
-        return gulp.src("./src/imgs/*")
-            .pipe(gulp.dest("./public/imgs"));
+        return gulp.src("./src/img/**")
+            .pipe(gulp.dest("./public/img"));
     };
 };

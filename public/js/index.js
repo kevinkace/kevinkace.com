@@ -251,7 +251,7 @@ var header = {
     style: {}
 },
     color = window.getComputedStyle(header.el).backgroundColor,
-    rgba = color.match(/([0-9]+\.*[0-9]*)/g).map(function (num) {
+    rgba = color.match(/([0-9\.]+)/g).map(function (num) {
     return parseFloat(num, 10);
 }),
     percent;
@@ -271,7 +271,6 @@ module.exports = function () {
         percent = Math.round(clamp(window.scrollY, 0, window.innerHeight) / window.innerHeight * 100) / 100;
 
         header.style = {
-            "background-color": "rgba(" + rgba[0] + ", " + rgba[1] + ", " + rgba[2] + ", " + (rgba[3] + percent * (0.9 - rgba[3])) + ");",
             "font-size": 1 - percent / 2 + "em;"
         };
 
