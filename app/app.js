@@ -4,10 +4,13 @@ var fs         = require("fs"),
     path       = require("path"),
     async      = require("async"),
     glob       = require("glob"),
+
     express    = require("express"),
     app        = module.exports = express(),
+
     Remarkable = require("remarkable"),
     md         = new Remarkable({ html : true }),
+
     data       = {
         code     : require("./data/code"),
         footer   : require("./data/footer"),
@@ -96,5 +99,11 @@ async.waterfall([
                 }
             ])
             .use(express.static("./public"));
+
+        app.get("/ok", [
+            (req, res) => {
+                    res.send({ body : "what" });
+                }
+            ]);
     }
 ]);
