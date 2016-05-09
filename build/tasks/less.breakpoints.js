@@ -1,12 +1,12 @@
 "use strict";
 
-var ensureEm = require("../ensureem");
+var convert = require("../convert");
 
 module.exports = (gulp, plugins, config) => {
     return () => {
         var breakpoints = Object.keys(config.less.mediaQueries)
             .reduce((prev, curr) => {
-                var width = ensureEm(config.less.mediaQueries[curr], config.less.basePx);
+                var width = convert.pxToEm(config.less.mediaQueries[curr], config.less.basePx);
 
                 return prev.concat(`@bp-${curr}: ${width};\n`);
             }, "");

@@ -1,6 +1,6 @@
 "use strict";
 
-var ensureEm = require("../ensureem"),
+var convert = require("../convert"),
 
     _ = require("lodash"),
 
@@ -15,7 +15,7 @@ module.exports = (gulp, plugins, config) => {
                 {
                     selectorPrefix : `.${config.less.prefix}-u-`,
                     mediaQueries   : _.mapValues(config.less.mediaQueries, (size) => {
-                            return `screen and (min-width: ${ensureEm(size, config.less.basePx)})`;
+                            return `screen and (min-width: ${convert.pxToEm(size, config.less.basePx)})`;
                         })
                 }
             ))
