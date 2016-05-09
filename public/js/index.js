@@ -246,27 +246,12 @@ module.exports.polyfill = function() {
 },{"performance-now":1}],5:[function(require,module,exports){
 "use strict";
 
-<<<<<<< HEAD
-var headerScroll = require("./modules/header-scroll"),
-    scrollTo = require("./modules/scroll-to");
-
-headerScroll();
-scrollTo();
-
-},{"./modules/header-scroll":6,"./modules/scroll-to":7}],6:[function(require,module,exports){
-"use strict";
-
-var h = document.getElementById("header"),
-    c = window.getComputedStyle(h).backgroundColor,
-    a = c.match(/([0-9]+\.*[0-9]*)/g).map(function (num) {
-=======
 var header = {
     el: document.getElementById("header"),
     style: {}
 },
     color = window.getComputedStyle(header.el).backgroundColor,
     rgba = color.match(/([0-9]+\.*[0-9]*)/g).map(function (num) {
->>>>>>> f0db09ec72f7e29a2f6b4ae914242d92bc910dfa
     return parseFloat(num, 10);
 }),
     percent;
@@ -294,7 +279,7 @@ module.exports = function () {
     });
 };
 
-},{}],7:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 "use strict";
 
 var rafScroll = require("raf-scroll-to"),
@@ -310,7 +295,16 @@ module.exports = function () {
     });
 };
 
-},{"raf-scroll-to":3}]},{},[5])
+},{"raf-scroll-to":3}],7:[function(require,module,exports){
+"use strict";
+
+var headerScroll = require("./modules/header-scroll"),
+    scrollTo = require("./modules/scroll-to");
+
+headerScroll();
+scrollTo();
+
+},{"./modules/header-scroll":5,"./modules/scroll-to":6}]},{},[7])
 
 
 //# sourceMappingURL=index.js.map

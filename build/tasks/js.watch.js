@@ -23,8 +23,6 @@ module.exports = (gulp, plugins, config) => {
             .pipe(gulp.dest("./public/js"));
     }
 
-    bundle();
-
     return () => {
         b.on("log", plugins.util.log);
         b.transform("babelify", { presets : [ "es2015" ] });
