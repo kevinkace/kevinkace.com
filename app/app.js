@@ -85,24 +85,28 @@ async.waterfall([
 
     function runApp(state) {
         console.log("Start app");
-        app.set("view engine", "jade");
+        // app.set("view engine", "jade");
+        // app.set("views", "./app/views");
+
+        // if(app.get("env") === "development") {
+        //     app.locals.pretty = true;
+        // }
+
+        // app
+        //     .get("/", [
+        //         function(req, res) {
+        //             res.render("pages/home", state);
+        //         }
+        //     ])
+        //     .use(express.static("./public"));
+
+        app.engine("js", require("mithril-express"));
+        app.set("view engine", "js");
         app.set("views", "./app/views");
-
-        if(app.get("env") === "development") {
-            app.locals.pretty = true;
-        }
-
-        app
-            .get("/", [
-                function(req, res) {
-                    res.render("pages/home", state);
-                }
-            ])
-            .use(express.static("./public"));
 
         app.get("/ok", [
             (req, res) => {
-                    res.send({ body : "what" });
+                    res.render("pages/home", state);
                 }
             ]);
     }
