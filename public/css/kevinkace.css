@@ -53,9 +53,6 @@
   display: inline-block;
   width: 80px;
   height: 80px;
-  border-radius: 40px;
-  border: solid 4px #2E3437;
-  background-color: rgba(0, 0, 0, 0.6);
 }
 .target-chev {
   position: relative;
@@ -3703,7 +3700,7 @@ h2 {
   font-size: 3.1108em;
 }
 h3 {
-  font: 200 2em/1 "Montserrat", Arial, Helvetica, sans-serif;
+  font: 200 2em/1 "Raleway", Arial, Helvetica, sans-serif;
   text-transform: uppercase;
 }
 h4 {
@@ -3723,7 +3720,7 @@ p {
   font-size: 1.414em;
 }
 p.imp {
-  font: 200 3em/1.1 "Montserrat", Arial, Helvetica, sans-serif;
+  font: 200 3em/1.1 "Raleway", Arial, Helvetica, sans-serif;
 }
 p a {
   text-decoration: none;
@@ -3780,8 +3777,8 @@ code {
   text-indent: -9999em;
 }
 body {
-  color: #D1D4CE;
-  background: #202023;
+  color: #404040;
+  background: #f3f3f1;
 }
 a {
   color: #BDA77E;
@@ -3795,17 +3792,15 @@ header {
   top: 0;
   right: 0;
   left: 0;
-  margin: 1em 0;
   padding: 2em 0;
   z-index: 1;
-  background: rgba(20, 20, 20, 0.3);
   -webkit-transition: font-size ease-in-out 0.1s;
   transition: font-size ease-in-out 0.1s;
 }
 .logo {
   color: rgba(230, 230, 230, 0.5);
   margin: 0;
-  font: 100 5em/0.82 "Alfa Slab One", Georgia, "Times New Roman", serif;
+  font: 800 4em/0.82 "Roboto Slab", Georgia, "Times New Roman", serif;
   -webkit-perspective: 800px;
           perspective: 800px;
 }
@@ -3873,6 +3868,7 @@ header {
   overflow: hidden;
   min-height: 100vh;
   padding-top: 200px;
+  color: #D1D4CE;
   background: -webkit-radial-gradient(rgba(255, 255, 255, 0.14) 50%, rgba(255, 255, 255, 0.2) 100%), url(/img/home/splash.jpg) no-repeat 50% 50%;
   background: radial-gradient(rgba(255, 255, 255, 0.14) 50%, rgba(255, 255, 255, 0.2) 100%), url(/img/home/splash.jpg) no-repeat 50% 50%;
   background-size: cover;
@@ -3967,7 +3963,7 @@ header {
   }
 }
 .links {
-  margin-top: 2em;
+  margin-top: 6em;
   padding: 0;
   opacity: 0;
   text-align: center;
@@ -4012,7 +4008,6 @@ a[href="#more"] {
 }
 .sections {
   padding-bottom: 3em;
-  box-shadow: 0 1em 14em -2em #000 inset;
 }
 footer {
   margin-bottom: 1.4em;

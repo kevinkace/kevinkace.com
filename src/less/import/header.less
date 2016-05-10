@@ -3,23 +3,14 @@ header {
     top: 0;
     right: 0;
     left: 0;
-    margin: 1em 0;
     padding: 2em 0;
     z-index: 1;
-    background: rgba(20, 20, 20, 0.3);
-    // box-shadow: 0 -10px 24px rgba(256, 256, 256, 0.1);
-    // box-shadow: 0 2em 6em rgba(26,75,83,0.4),
-    //             0 0.7em 1.3em rgba(26,75,83,0.4),
-    //             0 -2em 6em rgba(26,75,83,0.4),
-    //             0 -0.7em 1.3em rgba(26,75,83,0.4);
     transition: font-size ease-in-out 0.1s;
 }
 .logo {
     color: @color-theme-1;
-    // text-shadow: 1px 1px 0    @color-theme-1-2,
-    //              0   0   10px #000;
     margin: 0;
-    font: 100 5em/0.82 @font-serif-1;
+    font: 800 4em/0.82 @font-serif-1;
     perspective: 800px;
 
     a {
@@ -31,8 +22,6 @@ header {
     em {
         display: none;
         color: darken(@color-theme-1, 50%);
-        // text-shadow: 1px 1px 0    darken(@color-theme-1-2, 10%),
-        //              0   0   10px #000;
 
         .bp-tb({
             display: inline-block;
@@ -66,8 +55,6 @@ header {
             em {
                 transform: rotateX(0);
                 top: 0;
-                // text-shadow: 1px 1px 0    @color-theme-1-2,
-                //              0   0   10px #000;
                 color: inherit;
             }
             span {
