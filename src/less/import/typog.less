@@ -3,10 +3,10 @@
 @font-serif: Georgia, "Times New Roman", serif;
 @font-sans: Arial, Helvetica, sans-serif;
 
-@font-serif-1: "Alfa Slab One", @font-serif;
+@font-serif-1: "Roboto Slab", @font-serif;
 @font-serif-2: "Rokkitt",       @font-serif;
-@font-sans-1:  "Montserrat",    @font-sans;
-@font-sans-2:  "Montserrat",    @font-sans;
+@font-sans-1:  "Asap",    @font-sans;
+@font-sans-2:  "Raleway",    @font-sans;
 
 @baseFontSize: @font-baseSize;
 @baseLineHeight: 2;
@@ -15,7 +15,7 @@
 
 html {
     /* Change default typefaces here */
-    font-family: @font-sans-1;
+    font-family: @font-serif-1;
     font-size: @baseFontSize / 16 * 100%;
 
     // Make everything look a little nicer in webkit
@@ -23,11 +23,6 @@ html {
 }
 
 body {
-    font-size: 0.7em;
-
-    .bp-pc({
-        font-size: 1em;
-    });
 }
 
 h1,
@@ -49,12 +44,11 @@ h1 {
     text-transform: uppercase;
 }
 h2 {
-    margin-top: @leading *1em;
+    margin: @leading * 1em 0 @leading * 0.7em;
     font-size: 2.2 * @scale * 1em;
-    // text-transform: uppercase;
 }
 h3 {
-    font: 200 2em/1 @font-sans-2;
+    font: 200 2em/1 @font-sans-1;
     text-transform: uppercase;
 }
 h4 {
@@ -72,9 +66,12 @@ p {
     margin-top: @leading*1em;
     margin-bottom: 0;
     line-height: @leading;
-    font-size: @scale*1em;
+    font-size: @scale*0.7em;
     &.imp {
-        font: 200 3em/1.1 @font-sans-2;
+        font: 200 2em/1.1 @font-sans-2;
+        .bp-pc({
+            font-size: 3em;
+        })
     }
     a {
         text-decoration: none;
@@ -93,7 +90,7 @@ ol {
     }
 
     &.flatlist {
-        margin: 1em 0 0;
+        margin: 1em 0 8em;
         padding: 0;
     }
 }

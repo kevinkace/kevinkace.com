@@ -7,32 +7,21 @@
         display: block;
         position: relative;
         padding: 0.7em;
-        color: #000;
-        /*border: solid 1px transparent;
-        border-right-color: @color-theme-1-2;
-        border-bottom-color: @color-theme-1-2;*/
+
+        color: @color-type-2;
         text-shadow: 0 0 15px #000;
         text-align: center;
-        /*background: linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, .2) 100%);*/
-        background: @color-theme-1;
         text-transform: uppercase;
+
+        background: @color-theme-1-2;
+
         transition: text-shadow 0.3s;
-        &:before {
-            content: "";
-            position: absolute;
-            top: 1px;
-            right: -1px;
-            bottom: -1px;
-            left: 1px;
-            background-color: @color-theme-1-2;
-        }
+
         &:hover {
             text-shadow: 0 0 24px #000,
                          0 0 30px #000,
                          0 0 15px #000;
-            background: linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%);
             i {
-                // .stroke(2px, fadeout(@color-link-1, 50%));
                 transform: scale(1.8) rotate(18deg);
                 transition: transform   5s cubic-bezier(0.060, 0.220, 0.000, 0.355),
                             text-shadow 5s cubic-bezier(0.060, 0.220, 0.000, 0.355);
@@ -50,10 +39,8 @@
     display: inline-block;
     width: @size;
     height: @size;
-    border-radius: @size/2;
-    border: solid 4px #2E3437;
-    background-color: rgba(0, 0, 0, 0.6);
 }
+
 .target-chev {
     @size: 200px;
     position: relative;
