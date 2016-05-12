@@ -44,6 +44,7 @@
     "jade": "^1.11.0",
     "lodash": "^3.10.1",
     "merge-stream": "^1.0.0",
+    "mithril": "^0.2.4",
     "mithril-express": "0.0.2",
     "purecss": "^0.6.0",
     "raf-scroll-to": "0.0.1",

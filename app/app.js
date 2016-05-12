@@ -100,13 +100,15 @@ async.waterfall([
         //     ])
         //     .use(express.static("./public"));
 
+        state.header = "Here's dudeguy header";
+
         app.engine("js", require("mithril-express"));
         app.set("view engine", "js");
         app.set("views", "./app/views");
 
-        app.get("/ok", [
+        app.get("/", [
             (req, res) => {
-                    res.render("pages/home", state);
+                    res.render("pages/home", require("./controllers/pages/home")(state));
                 }
             ]);
     }
