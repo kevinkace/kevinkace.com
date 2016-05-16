@@ -22,6 +22,7 @@
     "eslint": "^2.9.0",
     "eslint-config-arenanet": "^2.0.3",
     "express": "^4.13.3",
+    "express-interceptor": "^1.2.0",
     "font-awesome": "^4.4.0",
     "gulp": "^3.9.0",
     "gulp-autoprefixer": "^3.0.2",

@@ -6,6 +6,7 @@ var fs         = require("fs"),
     glob       = require("glob"),
 
     express    = require("express"),
+    intercept  = require("express-interceptor"),
     app        = module.exports = express(),
 
     Remarkable = require("remarkable"),
@@ -105,6 +106,16 @@ async.waterfall([
         app.engine("js", require("mithril-express"));
         app.set("view engine", "js");
         app.set("views", "./app/views");
+        app.use(intercept((req, res) => {
+            return {
+                isInterceptable : () => {
+                    return true;
+                },
+                intercept : (body, send) => {
+                    send(`<!doctype html>${body}`);
+                }
+            };
+        }));
 
         app.get("/", [
             (req, res) => {
