@@ -92,7 +92,7 @@ async.waterfall([
         app.use(intercept((req, res) => {
             return {
                 isInterceptable : () => {
-                    return true;
+                    return /text\/html/.test(res.get("Content-Type"));
                 },
                 intercept : (body, send) => {
                     send(`<!doctype html>${body}`);
