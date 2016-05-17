@@ -3,9 +3,21 @@
 var m = require("mithril");
 
 module.exports = {
-    controller : () => {
+    controller : (state, opts) => {
+        var ctrl = {};
     },
-    view : () => {
-        return m("div", "tests");
+    view : (ctrl, state, opts) => {
+        var title = opts.title;
+
+        return m("html",
+            m.trust(`
+<head>
+    <title>${title}</title>
+</head>
+            `),
+            m("body",
+                opts.content
+            )
+        );
     }
 };

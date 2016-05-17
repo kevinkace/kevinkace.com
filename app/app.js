@@ -7,6 +7,7 @@ var fs         = require("fs"),
 
     express    = require("express"),
     intercept  = require("express-interceptor"),
+    render     = require("mithril-node-render"),
     app        = module.exports = express(),
 
     Remarkable = require("remarkable"),
@@ -86,26 +87,8 @@ async.waterfall([
 
     function runApp(state) {
         console.log("Start app");
-        // app.set("view engine", "jade");
-        // app.set("views", "./app/views");
 
-        // if(app.get("env") === "development") {
-        //     app.locals.pretty = true;
-        // }
-
-        // app
-        //     .get("/", [
-        //         function(req, res) {
-        //             res.render("pages/home", state);
-        //         }
-        //     ])
-        //     .use(express.static("./public"));
-
-        state.header = "Here's dudeguy header";
-
-        app.engine("js", require("mithril-express"));
-        app.set("view engine", "js");
-        app.set("views", "./app/views");
+        state.title = "Here's dudeguy title";
         app.use(intercept((req, res) => {
             return {
                 isInterceptable : () => {
@@ -117,10 +100,15 @@ async.waterfall([
             };
         }));
 
-        app.get("/", [
-            (req, res) => {
-                    res.render("pages/home", require("./controllers/pages/home")(state));
-                }
-            ]);
+        app
+            .get("/", [
+                (req, res) => {
+                    var component = require("./views/pages/home"),
+                        body = render(component.view.call(null, component.controller(state), state));
+
+                        res.send(body);
+                    }
+                ])
+            .use(express.static("./public"));
     }
 ]);

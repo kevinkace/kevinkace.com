@@ -4,7 +4,18 @@ var m = require("mithril"),
 
     index = require("../index");
 
-module.exports = (ctrl) => {
-    // return m("h1", ctrl.header);
-    return m.component(index, { content : m("h1", ctrl.header) });
+module.exports = {
+    controller : (state) => {
+        var ctrl = {};
+
+        ctrl.length = state.title.length;
+
+        return ctrl;
+    },
+    view : (ctrl, state) => {
+        return m.component(index, state, {
+            title   : state.title,
+            content : m(".content", "here's content")
+        });
+    }
 };
