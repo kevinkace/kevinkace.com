@@ -16,8 +16,6 @@ module.exports = {
     controller : (state) => {
         var ctrl = {};
 
-        ctrl.length = state.title.length;
-
         return ctrl;
     },
     view : (ctrl, state) => {
