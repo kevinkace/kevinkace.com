@@ -12,12 +12,12 @@ module.exports = {
 <head>
     <title>${opts.title}</title>
 
-    <meta charset="utf-8"></meta>
-    <meta http-equiv="x-ua-compatible" content="ie=edge"></meta>
-    <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link href="https://fonts.googleapis.com/css?family=Rokkitt:700|Raleway:300|Roboto+Slab:400,700|Asap:700" rel="stylesheet"></link>
-    <link href="/css/kevinkace.css", rel="stylesheet"></link>
+    <link href="https://fonts.googleapis.com/css?family=Rokkitt:700|Raleway:300|Roboto+Slab:400,700|Asap:700" rel="stylesheet">
+    <link href="/css/kevinkace.css" rel="stylesheet">
 </head>
             `),
             m("body",
@@ -43,17 +43,19 @@ module.exports = {
                 ),
                 m("footer",
                     m(".content",
-                        m(".kace-g.icon-list.guttered",
+                        m("ul.kace-g.icon-list.guttered",
                             state.footer.links.map((link, idx, arr) => {
                                 return m(`li.kace-u-1-${arr.length}`,
                                     m(`a.btn btn-default[href=${link.url}]`,
-                                        m(`i.fa.fa-${link.title}`)
+                                        m(`i.fa.fa-${link.icon}`),
+                                        m("span.noTxt", link.title)
                                     )
                                 );
                             })
                         )
                     )
-                )
+                ),
+                m("script[src=/js/index/js]")
             )
         );
     }

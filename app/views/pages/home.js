@@ -35,9 +35,9 @@ module.exports = {
                                 m("span.noTxt", link.title)
                             )
                         );
-                    }),
-                    m("a.target-chev.noTxt", { href : "#more", id : "ui-moreCta" }, "more")
-                )
+                    })
+                ),
+                m("a.target-chev.noTxt", { href : "#more", id : "ui-moreCta" }, "more")
             ),
             sections : m(".sections", "sections sections"),
             content  : m(".content#more",
