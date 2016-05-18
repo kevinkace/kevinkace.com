@@ -88,7 +88,10 @@ async.waterfall([
     function runApp(state) {
         console.log("Start app");
 
-        state.title = "Here's dudeguy title";
+        if(app.get("env") === "development") {
+            app.locals.pretty = true;
+        }
+
         app.use(intercept((req, res) => {
             return {
                 isInterceptable : () => {
@@ -104,7 +107,7 @@ async.waterfall([
             .get("/", [
                 (req, res) => {
                     var component = require("./views/pages/home"),
-                        body = render(component.view.call(null, component.controller(state), state));
+                        body      = render(component.view.call(null, component.controller(state), state));
 
                         res.send(body);
                     }

@@ -10,7 +10,7 @@ module.exports = {
         return m("html", { lang : "en" },
             m.trust(`
 <head>
-    <title>${opts.title}</title>
+    <title>Kevin Cameron</title>
 
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
