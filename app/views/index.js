@@ -22,12 +22,14 @@ module.exports = {
             `),
             m("body",
                 m("header#header",
-                    m("h1.logo", { "data-rollText" : "Kace.com" },
-                        m("a", { href : "/" }, "Kevin",
-                            m("em", "Kace",
-                                m("i", ".com")
-                            ),
-                            m("span", "Cameron")
+                    m(".content",
+                        m("h1.logo", { "data-rollText" : "Kace.com" },
+                            m("a", { href : "/" }, "Kevin",
+                                m("em", "Kace",
+                                    m("i", ".com")
+                                ),
+                                m("span", "Cameron")
+                            )
                         )
                     )
                 ),
@@ -36,7 +38,20 @@ module.exports = {
                         opts.intro
                     ),
                     m(".sections",
-                        opts.sections
+                        opts.content
+                    )
+                ),
+                m("footer",
+                    m(".content",
+                        m(".kace-g.icon-list.guttered",
+                            state.footer.links.map((link, idx, arr) => {
+                                return m(`li.kace-u-1-${arr.length}`,
+                                    m(`a.btn btn-default[href=${link.url}]`,
+                                        m(`i.fa.fa-${link.title}`)
+                                    )
+                                );
+                            })
+                        )
                     )
                 )
             )
