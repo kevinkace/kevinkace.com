@@ -106,7 +106,7 @@ async.waterfall([
         app
             .get("/", [
                 (req, res) => {
-                    var component = require("./views/pages/home"),
+                    var component = require("../src/app/views/pages/home"),
                         body      = render(component.view.call(null, component.controller(state), state));
 
                         res.send(body);

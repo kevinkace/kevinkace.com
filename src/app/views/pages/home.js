@@ -13,12 +13,8 @@ function h3(...args) {
 }
 
 module.exports = {
-    controller : (state) => {
-        var ctrl = {};
-
-        return ctrl;
-    },
-    view : (ctrl, state) => {
+    controller : require("../../controllers"),
+    view       : (ctrl, state) => {
         return m.component(index, state, {
             title : state.title,
             intro : m(".content",
