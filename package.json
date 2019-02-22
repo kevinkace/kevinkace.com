@@ -4,7 +4,7 @@
   "description": "Portfolio site.",
   "main": "gulpfile.js",
   "scripts": {
-    "start": "gulp"
+    "start": "npx gulp"
   },
   "repository": {
     "type": "git",
