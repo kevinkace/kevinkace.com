@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "node build/index.js"
+    "build": "npx mithril-ssg"
   },
   "repository": {
     "type": "git",
@@ -20,8 +20,7 @@
   "devDependencies": {
     "eslint": "^5.14.1",
     "eslint-config-arenanet": "^4.4.1",
-    "mithril": "^1.1.6",
-    "mithril-ssg": "github:kevinkace/mithril-ssg"
+    "mithril": "^1.1.6"
   },
   "eslintConfig": {
     "extends": "arenanet",
@@ -31,5 +30,8 @@
     "parserOptions": {
       "ecmaVersion": 2017
     }
+  },
+  "dependencies": {
+    "mithril-ssg": "github:kevinkace/mithril-ssg"
   }
 }
