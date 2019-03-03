@@ -1,0 +1,24 @@
+{
+  "name": "build",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "globby": "^9.0.0",
+    "mithril": "^1.1.6",
+    "mithril-node-render": "^2.3.1",
+    "rmfr": "^2.0.0"
+  },
+  "eslintConfig": {
+    "extends": "arenanet",
+    "rules": {
+      "no-console": "off"
+    }
+  }
+}

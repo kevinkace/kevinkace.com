@@ -4,7 +4,8 @@
   "description": "Portfolio site for Kevin Cameron",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node build/index.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,20 @@
   "bugs": {
     "url": "https://github.com/kevinkace/kevinkace.com/issues"
   },
-  "homepage": "https://github.com/kevinkace/kevinkace.com#readme"
+  "homepage": "https://github.com/kevinkace/kevinkace.com#readme",
+  "devDependencies": {
+    "eslint": "^5.14.1",
+    "eslint-config-arenanet": "^4.4.1",
+    "mithril": "^1.1.6",
+    "mithril-ssg": "github:kevinkace/mithril-ssg"
+  },
+  "eslintConfig": {
+    "extends": "arenanet",
+    "env": {
+      "node": true
+    },
+    "parserOptions": {
+      "ecmaVersion": 2017
+    }
+  }
 }
