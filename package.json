@@ -20,7 +20,8 @@
   "devDependencies": {
     "eslint": "^5.14.1",
     "eslint-config-arenanet": "^4.4.1",
-    "mithril": "^1.1.6"
+    "mithril": "^1.1.6",
+    "mithril-ssg": "github:kevinkace/mithril-ssg"
   },
   "eslintConfig": {
     "extends": "arenanet",
@@ -31,7 +32,5 @@
       "ecmaVersion": 2017
     }
   },
-  "dependencies": {
-    "mithril-ssg": "github:kevinkace/mithril-ssg"
-  }
+  "dependencies": {}
 }
