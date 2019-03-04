@@ -1,7 +1,7 @@
 const m = require("mithril");
 
 const css = [
-    "/css/kevinkace.css",
+    "/kevinkace.css",
     "https://fonts.googleapis.com/css?family=Alfa+Slab+One|Rokkitt|Noto+Sans"
 ];
 
