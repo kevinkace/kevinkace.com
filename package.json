@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npx mithril-ssg"
+    "build": "npx mithril-ssg",
+    "dev": "npx http-server dist"
   },
   "repository": {
     "type": "git",
@@ -20,6 +21,7 @@
   "devDependencies": {
     "eslint": "^5.14.1",
     "eslint-config-arenanet": "^4.4.1",
+    "http-server": "^0.11.1",
     "mithril": "^1.1.6",
     "mithril-ssg": "github:kevinkace/mithril-ssg"
   },

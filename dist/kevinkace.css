@@ -1473,3 +1473,21 @@ header {
   font-weight: 100;
   font-family: "Alfa Slab One", Georgia, "Times New Roman", serif;
 }
+
+.footerLinks {
+  margin-top: 2em;
+  display: flex;
+  justify-content: space-between;
+}
+
+.footerLinks a {
+  display: flex;
+  align-items: center;
+}
+
+.footerLinks svg {
+  width: 2em;
+  height: 2em;
+  fill: #C3397E;
+  padding-right: 0.6em;
+}

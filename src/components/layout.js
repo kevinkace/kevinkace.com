@@ -7,16 +7,20 @@ const css = [
 
 const footerLinks = [{
         href  : "https://github.com/kevinkace",
-        label : "GitHub"
+        label : "GitHub",
+        icon  : "github"
     }, {
         href  : "https://linkedin.com/kevinkace",
-        label : "LinkedIn"
+        label : "LinkedIn",
+        icon  : "linkedin"
     }, {
         href  : "https://twitter.com/kevinkace",
-        label : "Twitter"
+        label : "Twitter",
+        icon  : "twitter"
     }, {
         href  : "https://instagram.com/kacekevin",
-        label : "Instagram"
+        label : "Instagram",
+        icon  : "instagram"
     }];
 
 const ga = `(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -64,8 +68,21 @@ module.exports = {
 
                 m("footer",
                     m(content,
-                        m("nav",
-                            footerLinks.map(({ href, label }) => m("a", { href }, label))
+                        m("nav", { class : "footerLinks" },
+                            footerLinks.map(({ href, label, icon }) =>
+                                m("a", {
+                                        href,
+                                        target : "_blank",
+                                        rel    : "noopener noreferrer"
+                                    },
+                                    m("svg",
+                                        m("use", {
+                                            "xlink:href" : `/icons.svg#icon-${icon}`
+                                        })
+                                    ),
+                                    label
+                                )
+                            )
                         )
                     )
                 )
