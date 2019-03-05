@@ -1445,6 +1445,7 @@ h3,
 h4,
 h5 {
   font-family: "Rokkitt", Georgia, "Times New Roman", serif;
+  color: #fff;
 }
 h1 {
   text-transform: uppercase;
@@ -1456,6 +1457,7 @@ body {
   background: #3a4549;
   background: -webkit-radial-gradient(#3a4549 0%, #0f080b 100%);
   background: radial-gradient(#3a4549 0%, #0f080b 100%);
+  color: #bbb
 }
 header {
   background: rgba(0, 0, 0, 0.2);
@@ -1474,6 +1476,11 @@ header {
   font-family: "Alfa Slab One", Georgia, "Times New Roman", serif;
 }
 
+.overview {
+  font-size: 1.3em;
+  line-height: 1.4;
+}
+
 .footerLinks {
   margin-top: 2em;
   display: flex;
@@ -1490,4 +1497,24 @@ header {
   height: 2em;
   fill: #C3397E;
   padding-right: 0.6em;
+}
+
+.cv {
+  margin-bottom: 2em;
+}
+
+.cv li {
+  margin-bottom: 1em;;
+}
+
+.cv p {
+  margin: 0;
+}
+
+.small {
+  font-size: 0.8em;
+}
+
+.bold {
+  font-weight: bold;
 }
