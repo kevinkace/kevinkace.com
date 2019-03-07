@@ -1,3 +1,0 @@
-### [Guild Wars 2](https://www.guildwars2.com)
-
-Main informational and marketing site for the greatest MMORPG: *Guild Wars 2*. Probably the largest and most visible site I worked on at [ArenaNet](https://www.arena.net). A mish-mash of tech (due in part to it's rushed inception), built upon a heavily customized internal [WordPress](https://wordpress.org/) instance, from which static HTML pages (and frontend assets) are exported to be served up by JsSrv. Exactly. Frontend is based on (the now discontinued) [YUI 3](http://yuilibrary.com/), using it's module loader for page-by-page JS requirements.
