@@ -27,7 +27,7 @@ const list = [{
 }, {
     label : "Mithril-SSG*",
     href  : "https://github.com/kevinkace/mithril-ssg",
-    desc  : "CLI static site generator for Mithril (used to generate <a href='https://kevinkace.dev'>kevinkace.dev</a>"
+    desc  : "CLI static site generator for Mithril (used to generate <a href='https://kevinkace.dev'>kevinkace.dev</a>)."
 }];
 
 module.exports = {
