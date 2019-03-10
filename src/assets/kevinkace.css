@@ -1518,3 +1518,7 @@ header {
 .bold {
   font-weight: bold;
 }
+
+.mono {
+  font-family: monospace;
+}
