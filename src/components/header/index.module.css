@@ -1,3 +1,4 @@
+@value bpTablet, bpDesktop from "../breakpoints.module.css";
 @value colorDark, colorHighlight, fontTitle from "../theme.module.css";
 
 .header {
@@ -14,8 +15,11 @@
     text-shadow: 1px 1px 0 colorHighlight, 0 0 10px #000;
 
     text-transform: uppercase;
+        font: normal 16vw/0.81 fontTitle;
 
-    font: normal 4.242rem/0.81 fontTitle;
+    @media (min-width: 460px) {
+        font-size: 4.242rem;
+    }
 
     a {
         color: inherit;

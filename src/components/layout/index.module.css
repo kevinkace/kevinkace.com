@@ -1,11 +1,11 @@
-@value bp-tablet, bp-desktop from "../breakpoints.module.css";
+@value bpTablet, bpDesktop from "../breakpoints.module.css";
 
 .fixed {
     max-width: 60em;
     margin: 0 auto;
     padding: 0 3%;
 
-    @media (min-width: bp-desktop) {
+    @media (min-width: bpDesktop) {
         padding: 0 29px;
     }
 }
