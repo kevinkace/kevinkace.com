@@ -2,28 +2,13 @@ import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
 
+import css from "./header.module.css";
+
 const Header = ({ siteTitle }) => (
-  <header
-    style={{
-      background: `red`,
-      marginBottom: `1.45rem`,
-    }}
-  >
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
-      }}
-    >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
-          }}
-        >
+  <header className={css.header}>
+    <div className={css.fixed}>
+      <h1 className={css.logotype}>
+        <Link className={css.link} to="/">
           {siteTitle}
         </Link>
       </h1>
