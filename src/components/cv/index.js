@@ -11,7 +11,7 @@ const list = [{
     label : "Animation-Resolve",
     sole  : true,
     href  : "https://github.com/kevinkace/animation-resolve",
-    desc  : "Tool providing a function that returns a Promise, which resolved when a CSS animation completes."
+    desc  : "Tool providing a function that returns a Promise, which resolves when a CSS animation completes."
 }, {
     label : "cssJoin",
     sole  : true,
