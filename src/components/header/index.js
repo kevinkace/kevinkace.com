@@ -2,7 +2,7 @@ import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
 
-import css from "./header.module.css";
+import css from "./index.module.css";
 
 function splitByLineBreaks(str) {
   return str.split(" ").reduce((acc, cur, idx) => {

@@ -1,3 +1,5 @@
+@value colorDark, colorHighlight, fontTitle from "../theme.module.css";
+
 .header {
     margin: 1em 0;
     padding: 2em 0;
@@ -8,13 +10,12 @@
 .logotype {
     margin: 0;
 
-    color: #1a575f;
-    text-shadow: 1px 1px 0 #1bbcce, 0 0 10px #000;
-
+    color: colorDark;
+    text-shadow: 1px 1px 0 colorHighlight, 0 0 10px #000;
 
     text-transform: uppercase;
 
-    font: normal 4.242rem/0.81 "Alfa Slab One", Georgia, "Times New Roman", serif;
+    font: normal 4.242rem/0.81 fontTitle;
 
     a {
         color: inherit;
@@ -23,5 +24,5 @@
 }
 
 .fixed {
-    composes: fixed from "../index.module.css";
+    composes: fixed from "../layout/index.module.css";
 }

@@ -1,0 +1,17 @@
+@value colorDark: #1a575f;
+@value colorHighlight: #1bbcce;
+@value colorLink: #c3397e;
+@value colorText: #bbb;
+
+@value fontTitle: "Alfa Slab One", Georgia, "Times New Roman", serif;
+@value fontBody: "Noto Sans", Arial, Helvetica, sans-serif;
+
+body {
+    font-family: fontBody;
+    color: colorText;
+    background: radial-gradient(#3a4549 0%, #0f080b 100%);
+}
+
+a {
+    color: colorLink;
+}
