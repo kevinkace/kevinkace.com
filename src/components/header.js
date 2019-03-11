@@ -4,12 +4,24 @@ import React from "react"
 
 import css from "./header.module.css";
 
+function splitByLineBreaks(str) {
+  return str.split(" ").reduce((acc, cur, idx) => {
+    if (idx) {
+      acc.push(<br/>);
+    }
+
+    acc.push(cur);
+
+    return acc;
+  }, []);
+}
+
 const Header = ({ siteTitle }) => (
   <header className={css.header}>
     <div className={css.fixed}>
       <h1 className={css.logotype}>
-        <Link className={css.link} to="/">
-          {siteTitle}
+        <Link to="/">
+          {splitByLineBreaks(siteTitle)}
         </Link>
       </h1>
     </div>
