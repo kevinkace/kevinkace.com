@@ -25,6 +25,7 @@ const footerLinks = [{
   icon  : <InstagramIcon />
 }].map(({ href, label, icon }) =>
   <a
+    key={label}
     href={href}
     target="_blank"
     rel="noopener noreferrer"
