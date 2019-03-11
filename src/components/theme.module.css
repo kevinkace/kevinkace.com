@@ -1,5 +1,6 @@
 @value colorDark: #126772;
 @value colorHighlight: #1bbcce;
+@value colorHeader: #6cadb5;
 @value colorLink: #b86f94;
 @value colorText: #bbb;
 
@@ -28,8 +29,10 @@ h1, h2, h3, h4, h5 {
 }
 
 h2 {
+    margin-top: 3rem;
+
+    color: colorHeader;
     font-size: 2.828rem;
     line-height: 3rem;
-    margin-top: 3rem;
     font-weight: 700;
 }

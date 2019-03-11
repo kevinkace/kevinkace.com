@@ -1,0 +1,22 @@
+@value colorDark, colorText from "../theme.module.css";
+
+.footer {
+    margin: 4em 0 4em;
+    nav {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    a {
+        display: flex;
+        align-items: center;
+
+        color: colorText;
+        text-decoration: none;
+    }
+
+    svg {
+        margin-right: 0.6em;
+        fill: colorDark;
+    }
+}
