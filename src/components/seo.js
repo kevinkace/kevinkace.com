@@ -77,6 +77,13 @@ function SEO({ description, lang, meta, keywords, title }) {
             : []
         )
         .concat(meta)}
+      link={[
+        {
+          href: "https://fonts.googleapis.com/css?family=Alfa+Slab+One|Rokkitt|Noto+Sans",
+          rel: "stylesheet",
+          type: "text/css"
+        }
+      ]}
     />
   )
 }
