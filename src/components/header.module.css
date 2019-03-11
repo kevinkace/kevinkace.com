@@ -10,12 +10,15 @@
 
     color: #1a575f;
     text-shadow: 1px 1px 0 #1bbcce, 0 0 10px #000;
-    line-height: 0.81;
-    font-weight: 100;
-    font-family: "Alfa Slab One", Georgia, "Times New Roman", serif;
+
+
+    text-transform: uppercase;
+
+    font: normal 4.242rem/0.81 "Alfa Slab One", Georgia, "Times New Roman", serif;
 
     a {
         color: inherit;
+        text-decoration: none;
     }
 }
 

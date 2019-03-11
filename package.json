@@ -14,6 +14,7 @@
     "gatsby-plugin-sharp": "^2.0.25",
     "gatsby-source-filesystem": "^2.0.23",
     "gatsby-transformer-sharp": "^2.1.15",
+    "minireset.css": "0.0.4",
     "postcss-nested": "^4.1.2",
     "prop-types": "^15.7.2",
     "react": "^16.8.4",
