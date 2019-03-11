@@ -7,7 +7,7 @@ import css from "./index.module.css";
 function splitByLineBreaks(str) {
   return str.split(" ").reduce((acc, cur, idx) => {
     if (idx) {
-      acc.push(<br/>);
+      acc.push(<br key={"br"}/>);
     }
 
     acc.push(cur);

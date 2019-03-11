@@ -2,9 +2,11 @@
 @value colorDark, colorHighlight, fontTitle from "../theme.module.css";
 
 .header {
-    margin: 1em 0;
+    margin: 1em 0 2.5em;
     padding: 2em 0;
-    box-shadow: 0 -10px 24px rgba(255, 255, 255, 0.1);
+    box-shadow:
+        0 -10px 2em rgba(255, 255, 255, 0.12),
+        0 10px 8em rgba(255, 255, 255, 0.03);
     background: rgba(0, 0, 0, 0.2);
 }
 

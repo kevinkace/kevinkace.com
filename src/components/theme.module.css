@@ -1,17 +1,35 @@
-@value colorDark: #1a575f;
+@value colorDark: #126772;
 @value colorHighlight: #1bbcce;
-@value colorLink: #c3397e;
+@value colorLink: #b86f94;
 @value colorText: #bbb;
+
+@value colorGradient1: #2e373a;
+@value colorGradient2: #0f080b;
 
 @value fontTitle: "Alfa Slab One", Georgia, "Times New Roman", serif;
 @value fontBody: "Noto Sans", Arial, Helvetica, sans-serif;
+@value fontDisplay: "Rokkitt", Georgia, "Times New Roman", serif;
 
 body {
     font-family: fontBody;
     color: colorText;
-    background: radial-gradient(#3a4549 0%, #0f080b 100%);
+    background: radial-gradient(colorGradient1 0%, colorGradient2 100%);
+    background-attachment: fixed;
+    background-size: cover;
 }
 
 a {
     color: colorLink;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: fontDisplay;
+    color: #fff;
+}
+
+h2 {
+    font-size: 2.828rem;
+    line-height: 3rem;
+    margin-top: 3rem;
+    font-weight: 700;
 }

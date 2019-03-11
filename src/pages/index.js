@@ -1,21 +1,24 @@
 import React from "react";
-import { Link } from "gatsby";
 
 import Layout from "../components/layout";
-import Image from "../components/image";
 import SEO from "../components/seo";
+import Cv from "../components/cv";
+
+import css from "./index.module.css";
 
 const IndexPage = () => (
   <Layout>
-    <SEO title="test" keywords={[`gatsby`, `application`, `react`]} />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link>
+    <SEO
+      title="Kevin Cameron's contact and portfolio site"
+      // keywords={[`gatsby`, `application`, `react`]}
+    />
+
+    <p className={css.overview}>
+      I’m a full-stack web developer, specializing in front-end. I love building great things with brilliant people. I have an obsession with user experience, performance, and maintainable code.
+    </p>
+
+    <Cv />
   </Layout>
 )
 
-export default IndexPage
+export default IndexPage;
