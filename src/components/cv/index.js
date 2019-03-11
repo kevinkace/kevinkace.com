@@ -41,8 +41,8 @@ const list = [{
       sole  : true,
       href  : "https://github.com/kevinkace/kevinkace.com",
       desc  : "Statically generated (Gatsby) portfolio site, hosted on Netlify."
-}].map(({ label, sole, href, desc }, idx) =>
-  <li key={idx}>
+}].map(({ label, sole, href, desc }) =>
+  <li key={label}>
     <a href={href}>
       {label}{sole ? <sup>*</sup> : ""}
     </a>
