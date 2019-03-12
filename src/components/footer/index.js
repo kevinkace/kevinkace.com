@@ -31,7 +31,7 @@ const footerLinks = [{
     rel="noopener noreferrer"
   >
     {icon}
-    {label}
+    <span>{label}</span>
   </a>
 );
 

@@ -1,6 +1,6 @@
-import { Link } from "gatsby"
-import PropTypes from "prop-types"
-import React from "react"
+import { Link } from "gatsby";
+import PropTypes from "prop-types";
+import React from "react";
 
 import css from "./index.module.css";
 
@@ -14,7 +14,7 @@ function splitByLineBreaks(str) {
 
     return acc;
   }, []);
-}
+};
 
 const Header = ({ siteTitle }) => (
   <header className={css.header}>
@@ -26,14 +26,14 @@ const Header = ({ siteTitle }) => (
       </h1>
     </div>
   </header>
-)
+);
 
 Header.propTypes = {
   siteTitle: PropTypes.string,
-}
+};
 
 Header.defaultProps = {
   siteTitle: ``,
-}
+};
 
-export default Header
+export default Header;

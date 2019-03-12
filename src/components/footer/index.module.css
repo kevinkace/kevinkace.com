@@ -1,10 +1,26 @@
+@value bpMobile from "../breakpoints.module.css";
 @value colorDark, colorText from "../theme.module.css";
 
 .footer {
     margin: 4em 0 4em;
+
+    font-size: 0.9em;
+
+    @media (min-width: bpMobile) {
+        font-size: unset;
+    }
+
     nav {
         display: flex;
         justify-content: space-between;
+    }
+
+    span {
+        display: none;
+
+        @media (min-width: bpMobile) {
+            display: inline;
+        }
     }
 
     a {
