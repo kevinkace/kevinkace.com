@@ -41,8 +41,8 @@ const list = [{
       sole  : true,
       href  : "https://github.com/kevinkace/kevinkace.com",
       desc  : "Statically generated (Gatsby) portfolio site, hosted on Netlify."
-}].map(({ label, sole, href, desc }) =>
-  <li key={label}>
+}].map(({ label, sole, href, desc }, idx) =>
+  <li key={label} style={{ animationDelay : `${idx * 100 + 800}ms` }}>
     <a href={href}>
       {label}{sole ? <sup>*</sup> : ""}
     </a>

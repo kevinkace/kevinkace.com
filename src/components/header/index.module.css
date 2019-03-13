@@ -1,17 +1,31 @@
 @value bpMobile, bpTablet, bpDesktop from "../breakpoints.module.css";
 @value colorDark, colorHighlight, fontTitle from "../theme.module.css";
 
-.header {
+.header :global {
     margin: 1em 0 2.5em;
-    padding: 2em 0;
+    padding: 0.5em 0;
+
     box-shadow:
         0 -10px 2em rgba(255, 255, 255, 0.12),
         0 10px 8em rgba(255, 255, 255, 0.03);
     background: rgba(0, 0, 0, 0.2);
+
+    overflow: hidden;
+    max-height: 0;
+
+    animation: 600ms ease-out 300ms forwards Open;
+    transform-origin: 50% 0;
 }
 
-.logotype {
+@keyframes :global(Open) {
+    100% {
+        max-height: 200px;
+    }
+}
+
+.logotype :global {
     margin: 0;
+    padding: 0.5em 0;
 
     color: colorDark;
     text-shadow: 1px 1px 0 colorHighlight, 0 0 10px #000;
@@ -26,6 +40,18 @@
     a {
         color: inherit;
         text-decoration: none;
+    }
+
+    span {
+        display: inline-block;
+        transform: translateY(-200px);
+        animation: 300ms forwards Drop;
+    }
+}
+
+@keyframes :global(Drop) {
+    100% {
+        transform: translateY(0);
     }
 }
 

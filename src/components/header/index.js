@@ -5,15 +5,11 @@ import React from "react";
 import css from "./index.module.css";
 
 function splitByLineBreaks(str) {
-  return str.split(" ").reduce((acc, cur, idx) => {
-    if (idx) {
-      acc.push(<br key={"br"}/>);
-    }
-
-    acc.push(cur);
-
-    return acc;
-  }, []);
+  return str.split("").map((char, idx) => {
+    return char === " " ?
+      <br key={idx} /> :
+      <span key={idx} style={{ animationDelay : `${Math.random() + 0.4}s` }}>{char}</span>;
+  })
 };
 
 const Header = ({ siteTitle }) => (

@@ -9,3 +9,16 @@
         padding: 0 29px;
     }
 }
+
+.content :global {
+    composes: fixed;
+    opacity: 0;
+
+    animation: 600ms forwards 500ms FadeIn;
+}
+
+@keyframes :global(FadeIn) {
+    100% {
+        opacity: 1;
+    }
+}
