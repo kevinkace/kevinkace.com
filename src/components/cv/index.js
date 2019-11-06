@@ -8,7 +8,7 @@ import data from "./data";
 const ListItem = ({ attrs, idx }) => {
   const { label, sole, href, desc } = attrs;
 
-  return <li style={{ animationDelay : `${idx * 100 + 800}ms` }}>
+  return <li style={{ animationDelay : `${idx * 70 + 800}ms` }}>
     <a href={href}>
       {label}{sole ? <sup>*</sup> : ""}
     </a>
