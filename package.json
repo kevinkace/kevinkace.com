@@ -15,7 +15,7 @@
     "gatsby-plugin-react-svg": "^2.1.2",
     "gatsby-plugin-sharp": "^2.2.36",
     "gatsby-source-filesystem": "^2.0.23",
-    "gatsby-transformer-sharp": "^2.1.15",
+    "gatsby-transformer-sharp": "^2.2.23",
     "minireset.css": "0.0.6",
     "postcss-nested": "^4.2.0",
     "prop-types": "^15.7.2",
