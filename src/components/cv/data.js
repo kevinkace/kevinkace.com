@@ -23,10 +23,10 @@ export default [{
     sole  : true,
     href  : "https://npmjs.com/package/svg-spritzer",
     desc  : "Tool to join separate SVGs into a single sprite."
-}, {
-    label : "Crucible CMS",
-    href  : "https://npmjs.com/package/crucible",
-    desc  : "SPA, headless CMS backed by <a href='https://firebase.google.com'>Firebase</a>."
+// }, {
+//     label : "Crucible CMS",
+//     href  : "https://npmjs.com/package/crucible",
+//     desc  : "SPA, headless CMS backed by <a href='https://firebase.google.com'>Firebase</a>."
 }, {
     label : "Mithril-SSG",
     sole  : true,

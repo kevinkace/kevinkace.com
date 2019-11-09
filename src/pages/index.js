@@ -14,7 +14,7 @@ const IndexPage = () => (
     />
 
     <p className={css.overview}>
-      I’m a full-stack web developer, specializing in front-end. I love building great things with brilliant people. I have an obsession with user experience, performance, and maintainable code.
+      I’m a full-stack web developer, specializing in front-end. I love building great things with brilliant people. I'm obsessed with user experience, performance, and maintainable code.
     </p>
 
     <Cv />

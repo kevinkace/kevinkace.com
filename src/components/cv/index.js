@@ -10,7 +10,7 @@ const ListItem = ({ attrs, idx }) => {
 
   return <li style={{ animationDelay : `${idx * 70 + 800}ms` }}>
     <a href={href}>
-      {label}{sole ? <sup>*</sup> : ""}
+      {label}{false && sole ? <sup>*</sup> : ""}
     </a>
     <p dangerouslySetInnerHTML={{ __html : desc }}/>
   </li>
@@ -38,7 +38,7 @@ const Cv = () => (
       {list}
     </ul>
 
-    <p className={css.small}>* sole contributor</p>
+    {/* <p className={css.small}>* sole contributor</p> */}
   </div>
 );
 
