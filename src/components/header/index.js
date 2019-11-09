@@ -8,7 +8,7 @@ function splitByLineBreaks(str) {
   return str.split("").map((char, idx) => {
     return char === " " ?
       <br key={idx} /> :
-      <span key={idx} style={{ animationDelay : `${Math.random() + 0.4}s` }}>{char}</span>;
+      <span key={idx} style={{ animationDelay : `${Math.random() * 0.5 + 0.1}s` }}>{char}</span>;
   })
 };
 

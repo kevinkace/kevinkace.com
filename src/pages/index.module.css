@@ -1,4 +1,10 @@
+@value bpMobile from "../components/breakpoints.module.css";
+
 .overview {
-    font-size: 1.3em;
+    font-size: 1.2em;
     line-height: 1.4;
+
+    @media (min-width: bpMobile) {
+        font-size: 1.3em;
+    }
 }

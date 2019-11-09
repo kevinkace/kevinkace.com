@@ -3,7 +3,7 @@
 
 .header :global {
     margin: 1em 0 2.5em;
-    padding: 0.5em 0;
+    padding: 0;
 
     box-shadow:
         0 -10px 2em rgba(255, 255, 255, 0.12),
@@ -13,7 +13,7 @@
     overflow: hidden;
     max-height: 0;
 
-    animation: 600ms ease-out 300ms forwards Open;
+    animation: 400ms ease-out 300ms forwards Open;
     transform-origin: 50% 0;
 }
 
@@ -44,8 +44,8 @@
 
     span {
         display: inline-block;
-        transform: translateY(-200px);
-        animation: 300ms forwards Drop;
+        transform: translateY(-5em);
+        animation: 500ms forwards Drop;
     }
 }
 

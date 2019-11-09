@@ -3,7 +3,7 @@
 .fixed {
     max-width: 60em;
     margin: 0 auto;
-    padding: 0 3%;
+    padding: 0 4%;
 
     @media (min-width: bpDesktop) {
         padding: 0 29px;
