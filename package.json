@@ -17,7 +17,7 @@
     "gatsby-source-filesystem": "^2.0.23",
     "gatsby-transformer-sharp": "^2.3.2",
     "minireset.css": "0.0.6",
-    "postcss-nested": "^4.2.0",
+    "postcss-nested": "^4.2.1",
     "prop-types": "^15.7.2",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
