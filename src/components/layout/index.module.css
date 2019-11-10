@@ -1,5 +1,18 @@
 @value bpTablet, bpDesktop from "../breakpoints.module.css";
 
+/* .videoBg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-height: 100%;
+    min-width: 100%;
+
+    height: auto;
+    width: auto;
+
+    z-index: -1;
+} */
+
 .fixed {
     max-width: 60em;
     margin: 0 auto;

@@ -24,6 +24,7 @@
     "react-helmet": "^5.2.1"
   },
   "devDependencies": {
+    "postcss-color-mod-function": "^3.0.3",
     "prettier": "^1.18.2"
   },
   "keywords": [

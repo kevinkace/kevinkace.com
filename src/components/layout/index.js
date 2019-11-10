@@ -35,6 +35,14 @@ const Layout = ({ children }) => (
           <Footer />
 
         </div>
+        {/* <video
+          className={css.videoBg}
+          autoPlay
+          muted
+          loop
+        >
+          <source src={'../../../bg.mp4'} type='video/mp4'></source>
+        </video> */}
       </>
     )}
   />

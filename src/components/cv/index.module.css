@@ -18,10 +18,40 @@
             display: inline-block;
             margin-bottom: 0.3em;
 
+            background-image: linear-gradient(130deg, #d47199, #ce8765);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+
             font-weight: bold;
             font-size: 1.2em;
             text-decoration: none;
+
+            animation: smallHue 5s infinite linear;
+
+
+            &:hover {
+                animation-name: hue;
+                animation-duration: 0.8s;
+            }
         }
+    }
+}
+
+@keyframes :global(smallHue) {
+    0% {
+        filter: hue-rotate(0deg);
+    }
+    50% {
+        filter: hue-rotate(-45deg);
+    }
+}
+
+@keyframes :global(hue) {
+    0% {
+        filter: hue-rotate(0deg);
+    }
+    50% {
+        filter: hue-rotate(-180deg);
     }
 }
 

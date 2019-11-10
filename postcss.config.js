@@ -1,7 +1,6 @@
-const postcssNested = require(`postcss-nested`)
-
 module.exports = () => ({
     plugins: [
-        postcssNested(),
+        require(`postcss-nested`)(),
+        require(`postcss-color-mod-function`)()
     ],
 });

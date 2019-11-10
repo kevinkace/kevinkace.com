@@ -17,6 +17,12 @@
     transform-origin: 50% 0;
 }
 
+/* tighten up arount "o" */
+[data-char=r-10],
+[data-char=o-11] {
+    letter-spacing: -0.05em;
+}
+
 @keyframes :global(Open) {
     100% {
         max-height: 200px;
