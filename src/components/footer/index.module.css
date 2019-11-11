@@ -2,7 +2,7 @@
 @value colorDark, colorText from "../theme.module.css";
 
 .footer {
-    margin: 4em 0 4em;
+    margin: 3em 0;
 
     font-size: 0.5em;
 
@@ -39,6 +39,8 @@
 }
 
 .floatOff {
+    display: block;
+    padding: 1em;
 
     span {
         transition: transform 200ms;

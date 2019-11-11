@@ -1,4 +1,5 @@
 @value bpMobile from "../components/breakpoints.module.css";
+@value colorStrong, colorHeader from "../components/theme.module.css";
 
 .overview {
     font-size: 1.2em;
@@ -7,4 +8,33 @@
     @media (min-width: bpMobile) {
         font-size: 1.3em;
     }
+}
+
+.resume {
+    h1 {
+        border-bottom: solid 1px #fff3;
+
+        + p {
+            color: colorStrong;
+        }
+    }
+}
+
+.back {
+    display: flex;
+    margin: 1em 0 0;
+
+    align-items: center;
+
+    svg {
+        margin-right: 0.4em;
+        width: 1em;
+        fill: currentColor;
+    }
+}
+
+.button {
+    composes: gradientButton from "../components/button.css";
+
+    margin: 3em 0;
 }

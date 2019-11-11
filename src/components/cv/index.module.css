@@ -1,5 +1,5 @@
 .cv :global {
-    margin-bottom: 2em;
+    margin-bottom: 3em;
     overflow: hidden;
 
     ul {
@@ -14,27 +14,21 @@
 
         animation: 200ms forwards SlideIn;
 
-        > a {
-            display: inline-block;
-            margin-bottom: 0.3em;
-
-            background-image: linear-gradient(130deg, #d47199, #ce8765);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-
-            font-weight: bold;
-            font-size: 1.2em;
-            text-decoration: none;
-
-            animation: smallHue 5s infinite linear;
-
-
-            &:hover {
-                animation-name: hue;
-                animation-duration: 0.8s;
-            }
+        p {
+            margin-top: 0;
         }
     }
+}
+
+.gradient {
+    composes: gradientText from "../button.css";
+
+    display: inline-block;
+    margin-bottom: 0.3em;
+
+    font-weight: bold;
+    font-size: 1.2em;
+    text-decoration: none;
 }
 
 @keyframes :global(smallHue) {

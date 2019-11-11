@@ -13,7 +13,7 @@ import Header from "../header";
 import Footer from "../footer";
 import css from "./index.module.css"
 
-const Layout = ({ children }) => (
+const Layout = ({ noHeader, children }) => (
   <StaticQuery
     query={graphql`
       query SiteTitleQuery {
@@ -27,7 +27,7 @@ const Layout = ({ children }) => (
     `}
     render={data => (
       <>
-        <Header siteTitle={data.site.siteMetadata.header} />
+        <Header siteTitle={data.site.siteMetadata.header} noHeader={noHeader} />
         <div className={css.content}>
 
           <main>{children}</main>

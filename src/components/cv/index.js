@@ -9,7 +9,7 @@ const ListItem = ({ attrs, idx }) => {
   const { label, sole, href, desc } = attrs;
 
   return <li style={{ animationDelay : `${idx * 70 + 800}ms` }}>
-    <a href={href}>
+    <a href={href} className={css.gradient}>
       {label}{false && sole ? <sup>*</sup> : ""}
     </a>
     <p dangerouslySetInnerHTML={{ __html : desc }}/>

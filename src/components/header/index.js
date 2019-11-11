@@ -16,8 +16,8 @@ function splitByLineBreaks(str) {
   })
 };
 
-const Header = ({ siteTitle }) => (
-  <header className={css.header}>
+const Header = ({ siteTitle, noHeader }) => (
+  noHeader ? <div></div> : <header className={css.header}>
     <div className={css.fixed}>
       <h1 className={css.logotype}>
         <Link to="/">

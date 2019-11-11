@@ -1,10 +1,11 @@
 import React from "react";
 
 import Layout from "../components/layout";
-import SEO from "../components/seo";
-import Cv from "../components/cv";
+import SEO    from "../components/seo";
+import Cv     from "../components/cv";
 
 import css from "./index.module.css";
+import { Link } from "gatsby";
 
 const IndexPage = () => (
   <Layout>
@@ -18,6 +19,9 @@ const IndexPage = () => (
     </p>
 
     <Cv />
+
+    <Link to={"/resume"} className={css.button}>Full resume</Link>
+
   </Layout>
 )
 

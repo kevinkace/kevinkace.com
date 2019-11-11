@@ -3,6 +3,7 @@
 @value colorHeader: #d8d8d8;
 @value colorLink: #d47199;
 @value colorText: #bbb;
+@value colorStrong: #efefef;
 
 @value colorGradient1: #2e373a;
 @value colorGradient2: #0f080b;
@@ -21,22 +22,47 @@ body {
 
 a {
     color: colorLink;
+    text-decoration: none;
 }
 
 h1, h2, h3, h4, h5 {
+    margin: 0.9em 0 0.5em;
+
     font-family: fontDisplay;
-    color: #fff;
+    color: colorHeader;
+    letter-spacing: 0.01em;
+    font-size: 2.3em;
+    font-weight: 700;
 }
 
-h2 {
-    margin-top: 3rem;
+h1 {
+    font-size: 2.6em;
+}
 
-    color: colorHeader;
-    font-size: 2.828rem;
-    line-height: 3rem;
-    font-weight: 700;
+
+h3 {
+    font-family: fontBody;
+    font-size: 1.6em;
 }
 
 sup {
     opacity: 0.6;
+}
+
+p {
+    margin: 0 0 1em;
+}
+
+strong {
+    color: colorStrong;
+    font-weight: normal;
+}
+
+ul {
+    list-style: circle;
+    margin: 0 0 0 1em;
+}
+
+li {
+    margin: 0 0 0.3em;
 }

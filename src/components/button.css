@@ -1,0 +1,66 @@
+.gradient {
+    background-image: linear-gradient(130deg, #d47199, #ce8765);
+
+    animation: smallHue 5s infinite linear;
+
+    &:hover {
+        animation-name: hue;
+        animation-duration: 0.8s;
+    }
+}
+
+.gradientText {
+    composes: gradient;
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.gradientButton {
+    composes: gradient;
+
+    position: relative;
+    padding: 0.6em 0.9em;
+
+    color: #000;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 1em;
+    border-radius: 0.1em;
+    z-index: 1;
+
+    &:before {
+        content: "";
+        position: absolute;
+        top: 3px;
+        right: 0;
+        bottom: -3px;
+        left: 0;
+
+        border-radius: 0.1em;
+        background: linear-gradient(130deg, color-mod(#d47199 shade(40%)), color-mod(#ce8765 shade(40%)));
+        z-index: -1;
+    }
+}
+
+
+@keyframes smallHue {
+    0% {
+        filter: hue-rotate(0deg);
+    }
+    50% {
+        filter: hue-rotate(-45deg);
+    }
+}
+
+@keyframes hue {
+    0% {
+        filter: hue-rotate(-100deg);
+    }
+    50% {
+        filter: hue-rotate(-180deg);
+    }
+    100% {
+        filter: hue-rotate(-100deg);
+    }
+}
