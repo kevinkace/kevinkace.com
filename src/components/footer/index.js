@@ -2,10 +2,10 @@ import React from "react";
 
 import css from "./index.module.css";
 
-import GithubIcon from "./icons/github.svg";
-import InstagramIcon from "./icons/instagram.svg";
-import LinkedinIcon from "./icons/linkedin.svg";
-import TwitterIcon from "./icons/twitter.svg";
+import GithubIcon from "./icons/animated/github.svg";
+import InstagramIcon from "./icons/animated/instagram.svg";
+import LinkedinIcon from "./icons/animated/linkedin.svg";
+import TwitterIcon from "./icons/animated/twitter.svg";
 
 const footerLinks = [{
   href  : "https://github.com/kevinkace",
@@ -29,6 +29,7 @@ const footerLinks = [{
     href={href}
     target="_blank"
     rel="noopener noreferrer"
+    className={css.floatOff}
   >
     {icon}
     <span>{label}</span>
