@@ -1,5 +1,5 @@
 @value bpMobile from "../components/breakpoints.module.css";
-@value colorStrong, colorHeader from "../components/theme.module.css";
+@value colorStrong, colorHeader, colorText from "../components/theme.module.css";
 
 .overview {
     font-size: 1.2em;
@@ -20,11 +20,25 @@
     }
 }
 
-.back {
-    display: flex;
+.links {
     margin: 1em 0 0;
-
+    display: flex;
     align-items: center;
+    font-size: 0.9em;
+
+    > * {
+        margin-right: 1em;
+        display: flex;
+
+        align-items: center;
+
+        &:not(:last-child):after {
+            content: "|";
+            position: relative;
+            left: 0.55em;
+            color: colorText;
+        }
+    }
 
     svg {
         margin-right: 0.4em;
@@ -35,6 +49,4 @@
 
 .button {
     composes: gradientButton from "../components/button.css";
-
-    margin: 3em 0;
 }
