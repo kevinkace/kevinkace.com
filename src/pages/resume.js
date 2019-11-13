@@ -1,7 +1,7 @@
 import React from "react";
 import { graphql, Link } from 'gatsby'
 
-import BackIcon     from "../components/layout/back.svg";
+import BackIcon    from "../components/layout/back.svg";
 import DownloadIcon from "../components/layout/download.svg";
 
 import Layout from "../components/layout";
@@ -15,7 +15,7 @@ const ResumePage = ({ data }) => {
             <SEO title="Kevin Cameron's Resume" />
 
             <div className={css.links}>
-                <Link to="/"><BackIcon/>back</Link>
+                <Link to="/" className={css.back}><BackIcon/>back</Link>
                 <a href="/resume.md"><DownloadIcon/>markdown</a>
             </div>
 

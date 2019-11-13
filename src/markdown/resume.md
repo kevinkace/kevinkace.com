@@ -5,36 +5,31 @@ title: "resume: Kevin A. Cameron"
 
 # Kevin A. Cameron
 
-Seattle WA  
-kevinacameron@gmail.com  
-[Github](https://github.com/kevinkace) [LinkedIn](https://www.linkedin.com/in/kevinkace/)  
+Seattle, WA  
+[resume@kevinkace.dev](mailto:resume@kevinkace.dev)  
+[Github](https://github.com/kevinkace) | [LinkedIn](https://www.linkedin.com/in/kevinkace/) | [CodePen]("https://codepen.io/kevinkace")
 
 I’m a full-stack web developer, specializing in front-end. I love to build great things with brilliant people. I’m obsessed with user experience, and performant, maintainable code.
 
 ## Experience
 
-**Senior Web Programmer, ArenaNet**  
-**March 2013 - Present**
+### Senior Web Programmer, ArenaNet <br>March 2013 - Present
 
 Lead developer on majority of marketing websites, (Path of Fire, Play for Free, online manual). Created highly interactive single page applications using MithrilJS, Modular-CSS, React (Gatsby), Webpack, Rollup, and custom state management. Provided technical mentorship to new hires, including code reviews and project direction.
 
-**Web Developer, Anime-Planet**  
-**2010 - 2019**
+### Web Developer, Anime-Planet <br>2010 - 2019
 
 Provide guidance for front-end design and technical decisions. Implemented certain key features, including new responsive, animated SVG site banners.. 
 
-**Front-End Developer, NCsoft**  
-**Dec 2010 - March 2013**
+### Front-End Developer, NCsoft <br>Dec 2010 - March 2013
 
 CMS customization for customer-facing websites My Aion, and Aion-Online. HTML emails. Complete overhaul of the City of Heroes game website.
 
-**Front-End Developer (WAP), Motricity**  
-**Nov 2010 - Mar 2010**
+### Front-End Developer (WAP), Motricity <br>Nov 2010 - Mar 2010
 
 Wrote custom CSS for dozens of low-power mobile phones.
 
-**Web Developer, Kace Visual (self-employed)**  
-**2009 - 2010**
+### Web Developer, Kace Visual (self-employed) <br>2009 - 2010
 
 A handful of small business sites.
 

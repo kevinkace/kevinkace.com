@@ -41,8 +41,9 @@ h1 {
 
 
 h3 {
-    font-family: fontBody;
-    font-size: 1.6em;
+    margin-bottom: 0.6em;
+
+    font: normal 1.1em/1.2 fontBody;
 }
 
 sup {

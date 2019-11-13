@@ -3,7 +3,7 @@ import React from "react";
 import css from "./index.module.css";
 
 import GithubIcon from "./icons/animated/github.svg";
-import InstagramIcon from "./icons/animated/instagram.svg";
+// import InstagramIcon from "./icons/animated/instagram.svg";
 import LinkedinIcon from "./icons/animated/linkedin.svg";
 import TwitterIcon from "./icons/animated/twitter.svg";
 import CodePen from "./icons/animated/codepen.svg";
