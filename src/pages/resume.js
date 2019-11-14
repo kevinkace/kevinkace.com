@@ -9,7 +9,7 @@ import SEO    from "../components/seo";
 
 import css from "./index.module.css";
 
-const ResumePage = ({ data }) => {
+export default function ResumePage({ data }) {
     return (
         <Layout noHeader={true}>
             <SEO title="Kevin Cameron's Resume" />
@@ -34,6 +34,4 @@ export const query = graphql`
             }
         }
     }
-`
-
-export default ResumePage;
+`;

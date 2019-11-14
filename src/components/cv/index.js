@@ -5,7 +5,7 @@ import css from "./index.module.css";
 
 import data from "./data";
 
-const ListItem = ({ attrs, idx }) => {
+function ListItem ({ attrs, idx }) {
   const { label, sole, href, desc } = attrs;
 
   return <li style={{ animationDelay : `${idx * 70 + 800}ms` }}>
@@ -28,20 +28,22 @@ ListItem.defaultProps = {
   idx   : 0
 };
 
-const list = data.map((attrs, idx) =>
-  <ListItem  key={attrs.label} attrs={attrs} idx={idx} />
-);
+function List() {
+  return <ul>
+      {data.map((attrs, idx) =>
+        <ListItem  key={attrs.label} attrs={attrs} idx={idx} />
+      )}
+    </ul>;
+};
 
-const Cv = () => (
-  <div className={css.cv}>
-    <h2>Projects</h2>
+export default function Cv() {
+  return (
+    <div className={css.cv}>
+      <h2>Projects</h2>
 
-    <ul>
-      {list}
-    </ul>
+      <List />
 
-    {/* <p className={css.small}>* sole contributor</p> */}
-  </div>
-);
-
-export default Cv;
+      {/* <p className={css.small}>* sole contributor</p> */}
+    </div>
+  );
+};

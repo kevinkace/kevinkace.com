@@ -7,8 +7,8 @@ import Cv     from "../components/cv";
 import css from "./index.module.css";
 import { Link } from "gatsby";
 
-const IndexPage = () => (
-  <Layout>
+export default function IndexPage() {
+  return <Layout>
     <SEO
       title="Kevin Cameron's contact and portfolio site"
       // keywords={[`gatsby`, `application`, `react`]}
@@ -23,6 +23,4 @@ const IndexPage = () => (
     <Link to={"/resume"} className={css.button}>Full resume</Link>
 
   </Layout>
-)
-
-export default IndexPage;
+};
