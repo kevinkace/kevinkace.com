@@ -5,7 +5,7 @@ import css from "./index.module.css";
 import data from "./data.js";
 
 function FooterLinks() {
-  return <nav>
+  return <nav data-noprint>
     {data.map(({ href, label, icon }) =>
       <a
         key={label}
