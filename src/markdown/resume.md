@@ -19,7 +19,7 @@ Lead developer on majority of marketing websites, (Path of Fire, Play for Free, 
 
 ### Web Developer, Anime-Planet <br>2010 - 2019
 
-Provide guidance for front-end design and technical decisions. Implemented certain key features, including new responsive, animated SVG site banners.. 
+Provide guidance for front-end design and technical decisions. Implemented certain key features, including new responsive, animated SVG site banners.
 
 ### Front-End Developer, NCsoft <br>Dec 2010 - March 2013
 
