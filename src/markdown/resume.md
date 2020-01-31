@@ -36,6 +36,7 @@ A handful of small business sites.
 ## Expertise
 
 - Javascript SPAs
+- Node.js
 - CSS animations/transitions
 - Build systems, CI, CD
 - Developer experience
