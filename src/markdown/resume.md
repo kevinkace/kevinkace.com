@@ -15,7 +15,7 @@ I’m a full-stack web developer, specializing in front-end. I love to build gre
 
 ### Senior Web Programmer, ArenaNet <br>March 2013 - Present
 
-Created highly interactive single page applications using MithrilJS, Modular-CSS, React (Gatsby), Webpack, Rollup, and custom state management. Worked on intricate build systems geared towards developer experience, and code optimization in Node.js. Provided technical mentorship to new hires, including code reviews and project direction. Lead developer on majority of marketing websites, (Path of Fire, Play for Free, online manual). 
+Created highly interactive single page applications using MithrilJS, Modular-CSS, React (Gatsby), Webpack, Rollup, and custom state management. Developed intricate build systems geared towards developer experience, and code optimization in Node.js. Provided technical mentorship to new hires, including code reviews and project direction. Lead developer on majority of marketing websites, (Path of Fire, Play for Free, online manual). 
 
 ### Web Developer, Anime-Planet <br>2010 - 2019
 
