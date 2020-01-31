@@ -15,7 +15,7 @@ I’m a full-stack web developer, specializing in front-end. I love to build gre
 
 ### Senior Web Programmer, ArenaNet <br>March 2013 - Present
 
-Lead developer on majority of marketing websites, (Path of Fire, Play for Free, online manual). Created highly interactive single page applications using MithrilJS, Modular-CSS, React (Gatsby), Webpack, Rollup, and custom state management. Provided technical mentorship to new hires, including code reviews and project direction.
+Created highly interactive single page applications using MithrilJS, Modular-CSS, React (Gatsby), Webpack, Rollup, and custom state management. Provided technical mentorship to new hires, including code reviews and project direction. Lead developer on majority of marketing websites, (Path of Fire, Play for Free, online manual). 
 
 ### Web Developer, Anime-Planet <br>2010 - 2019
 
@@ -27,11 +27,11 @@ CMS customization for customer-facing websites My Aion, and Aion-Online. HTML em
 
 ### Front-End Developer (WAP), Motricity <br>Nov 2010 - Mar 2010
 
-Wrote custom CSS for dozens of low-power mobile phones.
+Wrote custom CSS for dozens of low-power mobile phones. A major component of this work was thorough hand-testing and documentation of all devices and their capabilities.
 
 ### Web Developer, Kace Visual (self-employed) <br>2009 - 2010
 
-A handful of small business sites.
+A handful of small business sites, including CMS integration and customization.
 
 ## Expertise
 
