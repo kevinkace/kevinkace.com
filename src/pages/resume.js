@@ -16,7 +16,8 @@ export default function ResumePage({ data }) {
 
             <div className={css.links} data-noprint>
                 <Link to="/" className={css.back}><BackIcon/>back</Link>
-                <a href="/resume.md"><DownloadIcon/>markdown</a>
+                <a href="/kevin-a-cameron-resume.md"><DownloadIcon/>markdown</a>
+                <a href="/kevin-a-cameron-resume.pdf"><DownloadIcon/>pdf</a>
             </div>
 
             <div className={css.resume} dangerouslySetInnerHTML={{ __html : data.markdownRemark.html }}>
