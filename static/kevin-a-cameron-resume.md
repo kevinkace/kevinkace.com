@@ -1,8 +1,3 @@
----
-path: '/resume'
-title: "resume: Kevin A. Cameron"
----
-
 # Kevin A. Cameron
 
 Seattle, WA  
