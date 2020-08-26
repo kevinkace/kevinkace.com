@@ -16,7 +16,6 @@
 
         + p {
             margin-bottom: 2em;
-            color: colorStrong;
         }
     }
 
@@ -54,4 +53,24 @@
 
 .button {
     composes: gradientButton from "../components/button.css";
+}
+
+@media print {
+    body {
+        background: white;
+        color: black;
+
+        h1, h2, h3 {
+            color: black;
+        }
+
+        a {
+            color: hsla(336, 94%, 40%, 1);
+        }
+    }
+
+
+    [data-noprint] {
+        display: none !important;
+    }
 }

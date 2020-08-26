@@ -14,7 +14,7 @@ export default function ResumePage({ data }) {
         <Layout noHeader={true}>
             <SEO title="Kevin Cameron's Resume" />
 
-            <div className={css.links}>
+            <div className={css.links} data-noprint>
                 <Link to="/" className={css.back}><BackIcon/>back</Link>
                 <a href="/kevin-a-cameron-resume.md"><DownloadIcon/>markdown</a>
                 <a href="/kevin-a-cameron-resume.pdf"><DownloadIcon/>pdf</a>
