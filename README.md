@@ -6,4 +6,4 @@ Portfolio site for Kevin Cameron - [kevinkace.dev](https://kevinkace.dev)
 
 ## Tech
 
-Static site using Gatsby, hosted with Netlify. Uses CSS-Modules.
+Built with Sveltekit, hosted with Netlify.
