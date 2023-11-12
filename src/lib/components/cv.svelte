@@ -5,7 +5,7 @@
 </script>
 
 <div class="cv">
-    <h2>Projects</h2>
+    <h2>Created & contributions</h2>
 
     <ul>
         {#each cv as {label, sole, href, desc }, idx}
