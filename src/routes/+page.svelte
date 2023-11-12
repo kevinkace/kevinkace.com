@@ -11,7 +11,7 @@
 
 <Cv cv={data.cv} />
 
-<!--<Link to={"/resume"} class='button'>Full resume</Link> -->
+<a href=/resume class='button'>Full resume</a>
 
 
 <style lang='scss'>
