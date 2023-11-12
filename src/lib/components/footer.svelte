@@ -155,11 +155,11 @@
             }
         }
 
-        &:hover g:global(.rainbow) use {
+        &:hover :global(g.rainbow use) {
             animation-name: rainbowA;
         }
 
-        g:global(.radiate) use {
+        :global(g.radiate use) {
             opacity: 0;
             fill: #fff;
             mix-blend-mode: color-burn;
@@ -171,7 +171,7 @@
             }
         }
 
-        &:hover g:global(.radiate) use {
+        &:hover :global(g.radiate use) {
             animation-name: radiateA;
         }
     }
