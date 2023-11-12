@@ -32,17 +32,15 @@
     </nav>
 </footer>
 
-<style lang="postcss">
-    @custom-media --mq-mobile  screen and (min-width: 28em);
-    @custom-media --mq-tabled  screen and (min-width: 31.25em);
-    @custom-media --mq-desktop screen and (min-width: 60em);
+<style lang="scss">
+    @import "$lib/css/breakpoints.scss";
 
     .footer {
         margin: 3em 0;
 
         font-size: 0.5em;
 
-        @media (--mq-mobile) {
+        @media screen and (min-width: $bpMobile) {
             font-size: unset;
         }
 
@@ -54,7 +52,7 @@
         span {
             display: none;
 
-            @media (--mq-mobile) {
+            @media screen and (min-width: $bpMobile) {
                 display: inline;
             }
         }

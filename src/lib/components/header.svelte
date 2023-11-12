@@ -21,7 +21,7 @@
 
 {#if !noHeader}
     <header class="header">
-        <div class="global-fixed">
+        <div class="fixed">
             <h1 class="logotype">
                 <a href="/">
                     {#each chars as { char, idx, animationDelay }}
@@ -42,10 +42,9 @@
     </header>
 {/if}
 
-<style lang="postcss">
-    @custom-media --mq-mobile  screen and (min-width: 28em);
-    @custom-media --mq-tabled  screen and (min-width: 31.25em);
-    @custom-media --mq-desktop screen and (min-width: 60em);
+<style lang="scss">
+    @import "$lib/css/breakpoints.scss";
+    @import "$lib/css/layouts.scss";
 
     .header {
         margin: 1em 0 2.5em;
@@ -85,7 +84,7 @@
         text-transform: uppercase;
         font: normal 15vw/0.81 var(--font-title);
 
-        @media (--mq-mobile) {
+        @media screen and (min-width: $bpMobile) {
             font-size: 4.242rem;
         }
 
@@ -105,6 +104,10 @@
         100% {
             transform: translateY(0);
         }
+    }
+
+    .fixed {
+        @extend .fixed;
     }
 
 </style>

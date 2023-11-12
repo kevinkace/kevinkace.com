@@ -1,9 +1,5 @@
 @import "minireset.css";
 
-@custom-media --mq-mobile  screen and (min-width: 28em);
-@custom-media --mq-tabled  screen and (min-width: 31.25em);
-@custom-media --mq-desktop screen and (min-width: 60em);
-
 :root {
     --color-dark: #126772;
     --color-highlight: #1bbcce;
@@ -74,14 +70,4 @@ ul {
 
 li {
     margin: 0 0 0.3em;
-}
-
-.global-fixed {
-    max-width: 60em;
-    margin: 0 auto;
-    padding: 0 4%;
-
-    @media (--mq-desktop) {
-        padding: 0 29px;
-    }
 }

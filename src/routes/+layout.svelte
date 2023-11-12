@@ -2,21 +2,19 @@
     import Header from "$lib/components/header.svelte";
     import Footer from "$lib/components/footer.svelte";
 
-    import '../global.css';
+    import '$lib/css/global.scss';
 </script>
 
 <Header />
-<div class="content global-fixed">
+<div class="content">
     <main>
         <slot />
     </main>
     <Footer />
 </div>
 
-<style lang="postcss">
-    @custom-media --mq-mobile  screen and (min-width: 28em);
-    @custom-media --mq-tabled  screen and (min-width: 31.25em);
-    @custom-media --mq-desktop screen and (min-width: 60em);
+<style lang="scss">
+    @import "$lib/css/layouts.scss";
 
 
     /* .videoBg {
@@ -33,12 +31,14 @@
     } */
 
     .content {
+        @extend .fixed;
+
         opacity: 0;
 
-        animation: 600ms forwards 500ms FadeIn;
+        animation: 600ms forwards 500ms fadeIn;
     }
 
-    @keyframes FadeIn {
+    @keyframes fadeIn {
         100% {
             opacity: 1;
         }
