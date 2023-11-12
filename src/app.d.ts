@@ -7,6 +7,13 @@ declare global {
 		// interface PageData {}
 		// interface Platform {}
 	}
+
+	type Char = {
+		char : string;
+		idx : number;
+		animationDelay: string;
+	}
+	type Chars = Char[];
 }
 
 export {};

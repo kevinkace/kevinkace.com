@@ -7,3 +7,16 @@ Portfolio site for Kevin Cameron - [kevinkace.dev](https://kevinkace.dev)
 ## Tech
 
 Built with Sveltekit, hosted with Netlify.
+
+## migration
+- manifest:
+{
+    name: `${title} - ${description}`,
+    short_name: title,
+    start_url: '/',
+    background_color: '#663399',
+    theme_color: '#663399',
+    display: 'minimal-ui',
+    icon: 'src/images/kevinkace-icon.png',
+},
+- GA UA-68300806-1
