@@ -1,4 +1,5 @@
 export const title = 'Kevin Cameron';
+export const desc = 'I\'m a web developer with a passion for UX, accessibility, and performance.';
 
 /** @type Links */
 export const links = [{

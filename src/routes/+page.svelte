@@ -1,7 +1,7 @@
 <script>
     import Cv from '$lib/components/cv.svelte';
 
-    /** @type {import('./$types').PageData}*/
+    /** @type {import('./$types').LayoutData}*/
     export let data;
 </script>
 
@@ -12,7 +12,6 @@
 <Cv cv={data.cv} />
 
 <a href=/resume class='button'>Full resume</a>
-
 
 <style lang='scss'>
     @use 'src/lib/css/buttons';

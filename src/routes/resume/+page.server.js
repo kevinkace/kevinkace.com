@@ -1,10 +1,11 @@
 import resume from '$lib/data/resume.md';
 
-console.log(resume.render());
-
-/** @type {import('./$types').PageLoad} */
+/** @type {import('./$types').PageServerLoad} */
 export function load() {
     return {
-        resume : resume.render()
+        resume : resume.render(),
+        meta   : {
+            title : 'resume'
+        }
     };
 }
