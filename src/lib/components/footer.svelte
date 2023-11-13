@@ -7,6 +7,7 @@
     import CodePen   from "$lib/icons/animated/codepen.svg?raw";
     import MobyGames from "$lib/icons/animated/moby-games.svg?raw";
 
+    /** @type Icons */
     const icons = {
         Github,
         LinkedIn,

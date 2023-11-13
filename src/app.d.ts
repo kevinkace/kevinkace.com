@@ -14,6 +14,26 @@ declare global {
 		animationDelay: string;
 	}
 	type Chars = Char[];
+
+	type CvItem = {
+		label: string;
+		sole?: boolean;
+		href: string;
+		desc: string;
+	}
+
+	type CvItems = CvItem[];
+
+	type Link = {
+		label: string;
+		href: string;
+	}
+
+	type Links = Link[];
+
+	type Icons = {
+		[key: string]: Song;
+	};
 }
 
 export {};

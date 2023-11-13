@@ -1,6 +1,7 @@
 <script>
     const showSole = false;
 
+    /** @type CvItems */
     export let cv;
 </script>
 

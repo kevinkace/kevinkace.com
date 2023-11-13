@@ -1,3 +1,4 @@
+/** @type CvItems */
 export const cv = [{
     label : 'Lyrite',
     sole  : true,

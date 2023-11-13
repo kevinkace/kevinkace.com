@@ -1,4 +1,6 @@
 export const title = 'Kevin Cameron';
+
+/** @type Links */
 export const links = [{
     href  : 'https://github.com/kevinkace',
     label : 'Github'
