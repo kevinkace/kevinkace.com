@@ -1,18 +1,18 @@
 <script>
     import { links } from "$lib/data/common";
 
-    import Github from "$lib/icons/animated/github.svg?raw";
-    import Twitter from "$lib/icons/animated/twitter.svg?raw";
-    import LinkedIn from "$lib/icons/animated/linkedin.svg?raw";
+    import Github    from "$lib/icons/animated/github.svg?raw";
+    import LinkedIn  from "$lib/icons/animated/linkedin.svg?raw";
     import Instagram from "$lib/icons/animated/instagram.svg?raw";
-    import CodePen from "$lib/icons/animated/codepen.svg?raw";
+    import CodePen   from "$lib/icons/animated/codepen.svg?raw";
+    import MobyGames from "$lib/icons/animated/moby-games.svg?raw";
 
     const icons = {
         Github,
-        Twitter,
         LinkedIn,
         Instagram,
-        CodePen
+        CodePen,
+        MobyGames
     };
 </script>
 

@@ -9,6 +9,6 @@ export const links = [{
     href  : 'https://www.linkedin.com/in/kevinkace/',
     label : 'LinkedIn'
 }, {
-    href  : 'https://twitter.com/kevinkace',
-    label : 'Twitter'
+    href  : 'https://www.mobygames.com/person/674440/kevin-cameron/',
+    label : 'MobyGames'
 }];
