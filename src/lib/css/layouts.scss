@@ -1,0 +1,11 @@
+@import './breakpoints.scss';
+
+.fixed {
+    max-width: 60em;
+    margin: 0 auto;
+    padding: 0 4%;
+
+    @media screen and (min-width: $bpTablet) {
+        padding: 0 29px;
+    }
+}
