@@ -1,9 +1,6 @@
 <script>
     import BackIcon from '$lib/icons/back.svg?raw';
     import DownloadIcon from '$lib/icons/download.svg?raw';
-    import MarkdownIcon from '$lib/icons/markdown2.svg?raw';
-    import PdfIcon from '$lib/icons/pdf.svg?raw';
-
 
     /** @type {import('./$types').PageData}*/
     export let data;
