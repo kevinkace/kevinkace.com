@@ -1,7 +1,8 @@
 <script>
+    import { page } from "$app/stores";
     import { title } from "$lib/data/common";
 
-    export let noHeader = false;
+    $:noHeader = $page.route.id === "/resume";
 
     /**
      * split a string into an array of characters with animation delay

@@ -71,3 +71,30 @@ ul {
 li {
     margin: 0 0 0.3em;
 }
+
+
+
+@media print {
+    body {
+        background: white;
+        color: black;
+        font-size: 0.6em;
+
+        h1, h2, h3 {
+            color: black;
+        }
+
+        h1 {
+            margin-top: 0;
+        }
+
+        a {
+            color: inherit;
+        }
+    }
+
+
+    [data-noprint] {
+        display: none !important;
+    }
+}

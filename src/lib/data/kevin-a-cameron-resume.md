@@ -8,7 +8,7 @@ I’m a full-stack web developer, specializing in front-end. I love to build gre
 
 ## Experience
 
-### Senior Web Programmer, ArenaNet <br>March 2013 - Present
+### Web Lead, ArenaNet <br>March 2013 - Present
 
 Lead developer on many marketing websites, ([Path of Fire](https://www.guildwars2.com/en/path-of-fire/), [Play Guild Wars 2](https://welcome.guildwars2.com/en/play-guild-wars-2), [New Player Guide](https://www.guildwars2.com/en/new-player-guide)). Automated GDPR request processing in internal CRM tool. Created highly interactive single page applications with MithrilJS, Modular-CSS, React, Webpack, Rollup, and custom state management. Provided technical mentorship to new hires, including code reviews and project direction.
 
