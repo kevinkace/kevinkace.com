@@ -14,21 +14,7 @@
 </div>
 
 <style lang="scss">
-    @import "$lib/css/layouts.scss";
-
-
-    /* .videoBg {
-        position: fixed;
-        top: 0;
-        left: 0;
-        min-height: 100%;
-        min-width: 100%;
-
-        height: auto;
-        width: auto;
-
-        z-index: -1;
-    } */
+    @use "src/lib/css/layouts.scss";
 
     .content {
         @extend .fixed;

@@ -44,8 +44,8 @@
 {/if}
 
 <style lang="scss">
-    @import "$lib/css/breakpoints.scss";
-    @import "$lib/css/layouts.scss";
+    @use "src/lib/css/layouts.scss";
+    @import "src/lib/css/breakpoints.scss";
 
     .header {
         margin: 1em 0 2.5em;

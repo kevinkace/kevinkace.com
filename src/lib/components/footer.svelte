@@ -33,7 +33,7 @@
 </footer>
 
 <style lang="scss">
-    @import "$lib/css/breakpoints.scss";
+    @import "src/lib/css/breakpoints.scss";
 
     .footer {
         margin: 3em 0;

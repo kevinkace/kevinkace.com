@@ -21,8 +21,8 @@
 </div>
 
 <style lang="scss">
-    @import "$lib/css/breakpoints";
-    @import "$lib/css/buttons";
+    @use "src/lib/css/breakpoints";
+    @use "src/lib/css/buttons";
 
     .overview {
         font-size: 1.2em;

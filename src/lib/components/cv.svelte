@@ -25,7 +25,7 @@
 </div>
 
 <style lang="scss">
-    @import '$lib/css/buttons';
+    @use 'src/lib/css/buttons';
 
     .cv {
         margin-bottom: 3em;

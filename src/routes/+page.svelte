@@ -15,8 +15,8 @@
 
 
 <style lang='scss'>
-    @import '$lib/css/breakpoints';
-    @import '$lib/css/buttons';
+    @use 'src/lib/css/buttons';
+    @import 'src/lib/css/breakpoints';
 
     .overview {
         font-size: 1.2em;
@@ -27,69 +27,7 @@
         }
     }
 
-    .resume {
-        h1 {
-            border-bottom: solid 1px #fff3;
-
-            + p {
-                margin-bottom: 2em;
-            }
-        }
-
-        p {
-            margin-bottom: 2em
-        }
-    }
-
-    .links {
-        margin: 1em 0 0;
-        display: flex;
-        align-items: center;
-        font-size: 0.9em;
-
-        > * {
-            margin-right: 1em;
-            display: flex;
-
-            align-items: center;
-
-            &:not(:last-child):after {
-                content: "|";
-                position: relative;
-                left: 0.55em;
-                color: var(--color-text);
-            }
-        }
-
-        svg {
-            margin-right: 0.4em;
-            width: 1em;
-            fill: currentColor;
-        }
-    }
-
     .button {
         @extend .gradientButton;
     }
-
-    @media print {
-        body {
-            background: white;
-            color: black;
-
-            h1, h2, h3 {
-                color: black;
-            }
-
-            a {
-                color: hsla(336, 94%, 40%, 1);
-            }
-        }
-
-
-        [data-noprint] {
-            display: none !important;
-        }
-    }
-
 </style>
