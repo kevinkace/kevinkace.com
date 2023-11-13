@@ -15,9 +15,6 @@ const mdsvexOptions = {
 const config = {
 	extensions : [ '.svelte', '.md' ],
     preprocess : [
-        // preprocess({
-        //     // postcss : true,
-        // }),
         vitePreprocess(), mdsvex(mdsvexOptions)
     ],
     kit : {
